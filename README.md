@@ -8,7 +8,9 @@ Inspiration from: https://onepagelove.com/isis-cocco
 
 ### Install
 
+```
 sudo pip install flask
+```
 
 ### Run
 
