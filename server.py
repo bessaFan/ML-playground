@@ -1,8 +1,11 @@
 import time
+import glob  
 import os
+from IPython import embed
 from shutil import copyfile
-from flask import Flask, request, redirect, url_for
+from flask import Flask, request, redirect, url_for, render_template
 from werkzeug.utils import secure_filename
+
 
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
@@ -11,11 +14,11 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
-
 @app.route("/")
 def hello():
-    f = open("main.html","r") #opens file with name of "test.txt"
-    return f.read()
+    images=list(glob.glob('static/*g'))
+    print images
+    return render_template('main.html', images=images, name='bessa!')
 
 @app.route("/test")
 def test():
