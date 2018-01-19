@@ -53,21 +53,14 @@
     <div class = "col-md-5">
       <h1>Upload new Images</h1>
       <form method=post enctype=multipart/form-data>
-        <p><input type=file name=file accept = "image/*">
-          <form action="/action_page.php">
-            Select images: <input type="file" name="img" multiple>
-            <input type="submit" accept = "image/*">
-          </form>
-          <input class="btn btn-primary" type=submit value=Upload></p>
-          <img id="blah" src="static/twitter-icon.png" style= "object-fit:cover" height="42" width="42" />
+          Select images: 
+          <input type=file name=file accept="image/*" multiple>
+          <input type="submit" class="btn btn-primary" type=submit value=Upload>
+
           {% for image in images %}
           <img  src="{{ image }}" style= "object-fit:cover" height="42" width="42" />
           {% endfor %}
 
-          {{name}}
-          <!--  -->
-          <!-- <img id="tsne_plot" src="static/Untitled-1.jpg"> -->
-          <!-- <input class="btn btn-primary" type=submit value=ChooseFile> -->
         </form>
 
         <form class="form-horizontal">
