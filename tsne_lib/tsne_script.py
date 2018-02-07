@@ -24,8 +24,10 @@ from sklearn import manifold, datasets
 import sys
 from IPython import embed
 
-def tsne_images(res,perplexity,dpi):
-  filenames=list(glob.glob('static/uploads/*g'))
+def tsne_images(session_id,res,perplexity,dpi):
+  filenames=list(glob.glob('static/uploads/%s/*g' % session_id))
+  if not filenames:
+    return  # do nothing if there are no files to operate on
   total_res = res**2
   x_value = np.zeros((len(filenames),total_res)) # Dimension of the image: 70*70=4900; x_value will store images in 2d array
   count = 0
@@ -51,7 +53,7 @@ def tsne_images(res,perplexity,dpi):
   # plt.ylabel('%s' % y)
   # patches=[]
   #plt.legend(handles=patches,bbox_to_anchor=(1.04,0.5), loc="center left", borderaxespad=0, frameon=False)
-  save_location = 'static/output/output.png' 
+  save_location = 'static/output/%s/output.png' % session_id
   plt.savefig(save_location,dpi=dpi,pad_inches=1,bbox_inches='tight')
   # plt.show()
   print('Saved image scatter to %s' % save_location)

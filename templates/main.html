@@ -9,6 +9,7 @@
 
   <!-- Bootstrap -->
   <link href="static/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/css/style.css" rel="stylesheet">
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -21,7 +22,7 @@
         // do ajax request to ask for what the location of the TSNE image is. Then use in in the following line.
         console.log('button pressed')
         httpGetAsync('/test',handleTSNEResponse)
-      }i
+      }
       function httpGetAsync(theUrl, callback)
       {
         console.log('async 1')
@@ -56,9 +57,8 @@
         Select images: 
         <input type=file name=file accept="image/*" multiple>
         <input type="submit" class="btn btn-primary" type=submit value=Upload>
-
         {% for image in images %}
-        <img  src="{{ image }}" style= "object-fit:cover" height="42" width="42" />
+          <img  src="{{ image }}" style= "object-fit:cover" height="42" width="42" />
         {% endfor %}
       </form>
 
@@ -93,6 +93,7 @@
             <input type="number" class="form-control" name = "DotsPerInchs" id="number" value = "50" placeholder="DotsPerInchs">
           </div>
         </div>
+        <input type="hidden" name="session" value="{{session_id}}">
         <div class="form-group">
           <div class="col-sm-offset-4 col-sm-3">
             <button type="submit" class="btn btn-success" onclick="generateTSNE()">Generate t-SNE</button>
@@ -106,10 +107,17 @@
 
 
     <div class = "col-md-6">
-      <h2>image</h2>
       <!-- <div id="playground-canvas"> -->
       <!-- <canvas id="output" width="600" height="600"></canvas> -->
-      <img id="tsne_plot" src="static/output/output.png" style= "object-fit:cover" height="100%" width="100%" >
+      {% if plot_exists %}
+        <img id="tsne_plot" src="static/output/{{session_id}}/output.png" style= "object-fit:cover" height="100%" width="100%" >
+      {% else %}
+          <h1>Generate t-SNE Plots</h1>
+          <h2>1. Upload Images</h2>
+          <h2>2. Set Parameters</h2>
+          <h2>2. Click Generate</h2>
+        </div>
+      {% endif %}
     </div>
   </div>
 

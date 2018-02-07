@@ -6,6 +6,7 @@ from tsne_lib import tsne_script
 from shutil import copyfile
 from flask import Flask, request, redirect, url_for, render_template
 from werkzeug.utils import secure_filename
+import uuid
 
 
 
@@ -17,7 +18,21 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 @app.route("/")
 def main():
-    images=list(glob.glob('static/uploads/*g'))    
+
+    # Set a session ID
+    session_id=request.args.get('session')
+    if not session_id:
+        session_id = uuid.uuid4()
+        return redirect('/?session=%s' % session_id)
+    
+    # Create folders for this session ID
+    images=list(glob.glob('static/uploads/%s/*g' % session_id))    
+    if not os.path.exists('static/output/%s/' % session_id):
+        os.makedirs('static/output/%s/' % session_id)
+    if not os.path.exists('static/uploads/%s/' % session_id):
+        os.makedirs('static/uploads/%s/' % session_id)
+    plot_exists = os.path.exists('static/output/%s/output.png' % session_id)
+
     # #load tsne image
     # perplexity = 15
     # x_resolution = 2000
@@ -26,8 +41,12 @@ def main():
     # #embed()
     # #process variables here
     # tsne_data = tsne_script.tsne_images(DotsPerInchs,perplexity)
+<<<<<<< HEAD
     # return render_template('main.html', images=images)
     return render_template('combined.html', images=images)
+=======
+    return render_template('main.html', images=images, session_id=session_id, plot_exists=plot_exists)
+>>>>>>> ec866be0b382b60f84f51cbf61c43dabb3c35772
 
 @app.route("/tsne", methods=['POST', 'GET'])
 def tsne():
@@ -35,14 +54,19 @@ def tsne():
     # print(request)
     # print(vars(request))
 
+    session_id=request.args.get('session')
+    if not session_id:
+        session_id = uuid.uuid4()
+        return redirect('/?session=%s' % session_id)
+
     perplexity = int (request.args.get('perplexity'))
     x_resolution = int( request.args.get('x_resolution'))
     y_resolution = int (request.args.get('y_resolution'))
     DotsPerInchs = int (request.args.get('DotsPerInchs'))
     #embed()
     #process variables here
-    tsne_data = tsne_script.tsne_images(x_resolution, perplexity,DotsPerInchs)
-    return redirect('/')
+    tsne_data = tsne_script.tsne_images(session_id,x_resolution, perplexity,DotsPerInchs)
+    return redirect('/?session=%s' % session_id)
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -50,6 +74,12 @@ def allowed_file(filename):
 
 @app.route('/', methods=['POST'])
 def upload_file():
+
+    session_id=request.args.get('session')
+    if not session_id:
+      session_id = uuid.uuid4()
+      return redirect('/?session=%s' % session_id)
+
     if request.method == 'POST':
         # check if the post request has the file part
         if 'file' not in request.files:
@@ -64,9 +94,9 @@ def upload_file():
               return redirect(request.url)
           if file and allowed_file(file.filename):
               filename = secure_filename(file.filename)
-              file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+              file.save(os.path.join(app.config['UPLOAD_FOLDER'], session_id, filename))
         return redirect(request.url)
 
 if __name__ == "__main__":
     #app.run(port=80)
-    app.run(debug = True)
+    app.run(debug = True, port=80)
