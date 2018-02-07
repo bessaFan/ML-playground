@@ -26,7 +26,8 @@ def main():
     # #embed()
     # #process variables here
     # tsne_data = tsne_script.tsne_images(DotsPerInchs,perplexity)
-    return render_template('main.html', images=images)
+    # return render_template('main.html', images=images)
+    return render_template('combined.html', images=images)
 
 @app.route("/tsne", methods=['POST', 'GET'])
 def tsne():
