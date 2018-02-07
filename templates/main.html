@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <title>Bootstrap 101 Template</title>
+  <title>Generate t-SNE</title>
 
   <!-- Bootstrap -->
   <link href="static/css/bootstrap.min.css" rel="stylesheet">
@@ -21,7 +21,7 @@
         // do ajax request to ask for what the location of the TSNE image is. Then use in in the following line.
         console.log('button pressed')
         httpGetAsync('/test',handleTSNEResponse)
-      }
+      }i
       function httpGetAsync(theUrl, callback)
       {
         console.log('async 1')
@@ -53,67 +53,65 @@
     <div class = "col-md-5">
       <h1>Upload new Images</h1>
       <form method=post enctype=multipart/form-data>
-          Select images: 
-          <input type=file name=file accept="image/*" multiple>
-          <input type="submit" class="btn btn-primary" type=submit value=Upload>
+        Select images: 
+        <input type=file name=file accept="image/*" multiple>
+        <input type="submit" class="btn btn-primary" type=submit value=Upload>
 
-          {% for image in images %}
-          <img  src="{{ image }}" style= "object-fit:cover" height="42" width="42" />
-          {% endfor %}
+        {% for image in images %}
+        <img  src="{{ image }}" style= "object-fit:cover" height="42" width="42" />
+        {% endfor %}
+      </form>
 
-        </form>
-
-        <form class="form-horizontal">
-          <h3>Resizing Parameters</h3> 
-          <span id="helpBlock" class="help-block">Values for the dimension of each image. (enter same value for squares)</span>
-          <div class="form-group">
-            <label for="inputEmail3" class="col-sm-3 control-label">x resolution</label>
-            <div class="col-sm-4">
-              <input type="number" class="form-control" id="number" placeholder="x resolution">
-            </div>
+      <form class="form-horizontal" action = '/tsne'>
+        <h3>Resizing Parameters</h3> 
+        <span id="helpBlock" class="help-block">Values for the dimension of each image. (enter same value for squares)</span>
+        <div class="form-group">
+          <label for="inputEmail3" class="col-sm-3 control-label">x resolution</label>
+          <div class="col-sm-4">
+            <input type="number" class="form-control" name = "x_resolution" id="number" value = "200"placeholder="x resolution">
           </div>
-          <div class="form-group">
-            <label for="inputEmail3" class="col-sm-3 control-label">y resolution</label>
-            <div class="col-sm-4">
-              <input type="number" class="form-control" id="number" placeholder="y resolution">
-            </div>
+        </div>
+        <div class="form-group">
+          <label for="inputEmail3" class="col-sm-3 control-label">y resolution</label>
+          <div class="col-sm-4">
+            <input type="number" class="form-control"  name = "y_resolution"id="number" value = "200"placeholder="y resolution">
           </div>
-          <h3>t-SNE Parameters</h3> 
-          <span id="helpBlock" class="help-block">Different values result in different result</span>
-          <div class="form-group">
-            <label for="inputEmail3" class="col-sm-3 control-label">perplexity</label>
-            <div class="col-sm-4">
-              <input type="number" class="form-control" id="number" placeholder="perplexity">
-            </div>
+        </div>
+        <h3>t-SNE Parameters</h3> 
+        <span id="helpBlock" class="help-block">Different values result in different result</span>
+        <div class="form-group">
+          <label for="inputEmail3" class="col-sm-3 control-label">perplexity</label>
+          <div class="col-sm-4">
+            <input type="number" class="form-control"  name = "perplexity" id="number" value = "15" placeholder="perplexity">
           </div>
-          <h3>Output Plot Parameters</h3> 
-          <span id="helpBlock" class="help-block">The resolution of the image</span>
-          <div class="form-group">
-            <label for="inputEmail3" class="col-sm-3 control-label">Dots Per Inchs</label>
-            <div class="col-sm-4">
-              <input type="number" class="form-control" id="number" placeholder="resolution">
-            </div>
+        </div>
+        <h3>Output Plot Parameters</h3> 
+        <span id="helpBlock" class="help-block">The resolution of the image</span>
+        <div class="form-group">
+          <label for="inputEmail3" class="col-sm-3 control-label">Dots Per Inchs</label>
+          <div class="col-sm-4">
+            <input type="number" class="form-control" name = "DotsPerInchs" id="number" value = "50" placeholder="DotsPerInchs">
           </div>
-          <div class="form-group">
-            <div class="col-sm-offset-4 col-sm-3">
-              <button type="button" class="btn btn-success" onclick="generateTSNE()">Generate t-SNE</button>
-            </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-4 col-sm-3">
+            <button type="submit" class="btn btn-success" onclick="generateTSNE()">Generate t-SNE</button>
+            <!--  <input type="submit" class="btn btn-success">Generate t-SNE</input> -->
+
           </div>
-        </form>
-      </div>
-
-
-
-
-
-
-      <div class = "col-md-6">
-        <h2>image</h2>
-        <!-- <div id="playground-canvas"> -->
-        <!-- <canvas id="output" width="600" height="600"></canvas> -->
-        <img id="tsne_plot" src="static/Untitled-1.jpg">
-      </div>
+        </div>
+      </form>
     </div>
+
+
+
+    <div class = "col-md-6">
+      <h2>image</h2>
+      <!-- <div id="playground-canvas"> -->
+      <!-- <canvas id="output" width="600" height="600"></canvas> -->
+      <img id="tsne_plot" src="static/output/output.png" style= "object-fit:cover" height="100%" width="100%" >
+    </div>
+  </div>
 
 
 
@@ -125,6 +123,8 @@
 -->
 
 <img id="tsne_plot" src="">
+
+
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
