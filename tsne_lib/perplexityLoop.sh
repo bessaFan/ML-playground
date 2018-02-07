@@ -1,0 +1,1 @@
+./main.py image_scatter  --csv combined.csv --color-by CellLine -x tsne1 -y tsne2 --dpi 650

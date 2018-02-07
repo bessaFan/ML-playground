@@ -1,0 +1,22 @@
+Example to call tsne function:
+
+./main.py tsne  --csv ResultTable\ -\ 2\ wells\,\ 1\ fields\,\ thresh\ 160_with_Traces_full_curated.csv 
+
+Example to display cells in an "image scatter":
+./main.py image_scatter  --csv ResultTable\ -\ 2\ wells\,\ 1\ fields\,\ thresh\ 160_with_Traces_full_curated.csv -x tsne1 -y tsne2 --colour CellLine --dpi 650
+
+
+main.py segmentation --img_dir /path_to_images --output_csv 'foo.csv'
+main.py crop_images --csv 'ResultTable_curated_t193-WT-LFS.csv'
+main.py tsne_images --csv 'ResultTable_curated_t193-WT-LFS.csv' --res 70 --perplexity 30
+main.py image_scatter  --csv 'ResultTable_curated_t193-WT-LFS.csv' -x tsne1 -y tsne2 --dpi 650
+
+。/main.py crop_images  --csv fileNew.csv 
+./main.py image_scatter  --csv fileNew.csv --color-by CellID -x tsne1 -y tsne2 --dpi 650
+./main.py tsne_images  --csv file.csv --perplexity 1
+
+
+
+
+./main.py tsne_images  --csv combined.csv --perplexity 1
+./main.py image_scatter  --csv combined.csv --color-by CellLine -x tsne1 -y tsne2 --dpi 650

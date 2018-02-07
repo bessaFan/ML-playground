@@ -1,0 +1,5 @@
+from tsne import bh_sne
+import numpy as np
+o = np.random.rand(50,50*50)
+o = np.float64(o)
+bh_sne(o,perplexity=5)
