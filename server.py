@@ -18,7 +18,6 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 @app.route("/")
 def main():
-
     # Set a session ID
     session_id=request.args.get('session')
     if not session_id:
@@ -32,15 +31,6 @@ def main():
     if not os.path.exists('static/uploads/%s/' % session_id):
         os.makedirs('static/uploads/%s/' % session_id)
     plot_exists = os.path.exists('static/output/%s/output.png' % session_id)
-
-    # #load tsne image
-    # perplexity = 15
-    # x_resolution = 2000
-    # y_resolution = 2000
-    # DotsPerInchs = 50
-    # #embed()
-    # #process variables here
-    # tsne_data = tsne_script.tsne_images(DotsPerInchs,perplexity)
 
     return render_template('main.html', images=images, session_id=session_id, plot_exists=plot_exists)
 
@@ -59,10 +49,11 @@ def tsne():
     perplexity = int (request.args.get('perplexity'))
     x_resolution = int( request.args.get('x_resolution'))
     y_resolution = int (request.args.get('y_resolution'))
+    CanvasSize = int (request.args.get('CanvasSize'))
     DotsPerInchs = int (request.args.get('DotsPerInchs'))
     #embed()
     #process variables here
-    tsne_data = tsne_script.tsne_images(session_id,x_resolution, perplexity,DotsPerInchs)
+    tsne_data = tsne_script.tsne_images(session_id,x_resolution, perplexity,DotsPerInchs,CanvasSize)
     return redirect('/?session=%s' % session_id)
 
 def allowed_file(filename):
@@ -95,5 +86,4 @@ def upload_file():
         return redirect(request.url)
 
 if __name__ == "__main__":
-    #app.run(port=80)
-    app.run(debug = True, port=80)
+    app.run(debug = True, port=200)

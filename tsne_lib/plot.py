@@ -1,4 +1,5 @@
 import numpy as np
+from IPython import embed
 
 def image_scatter(xx, yy, images, colours, min_canvas_size=1000, bg_color=255, lw=10):
     """
@@ -18,7 +19,7 @@ def image_scatter(xx, yy, images, colours, min_canvas_size=1000, bg_color=255, l
     canvas: numpy array
         Image of visualization
     """
-
+    images = [np.flip(images[x],0) for x in range(len(images))]
     max_width = max([image.shape[0] for image in images])
     max_height = max([image.shape[1] for image in images])
 

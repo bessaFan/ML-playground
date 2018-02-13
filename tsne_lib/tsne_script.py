@@ -14,7 +14,6 @@ import scipy
 import pandas as pd
 import click
 import matplotlib.patches as mpatches
-from IPython import embed
 if os.name != 'nt':
   from tsne import bh_sne
 from time import time
@@ -24,7 +23,7 @@ from sklearn import manifold, datasets
 import sys
 from IPython import embed
 
-def tsne_images(session_id,res,perplexity,dpi):
+def tsne_images(session_id,res,perplexity,dpi, canvasSize):
   filenames=list(glob.glob('static/uploads/%s/*g' % session_id))
   if not filenames:
     return  # do nothing if there are no files to operate on
@@ -46,7 +45,7 @@ def tsne_images(session_id,res,perplexity,dpi):
   tsne = manifold.TSNE( init='pca', random_state=0, perplexity=perplexity)
   vis_data = tsne.fit_transform(x_value)
 
-  canvas = plot.image_scatter(vis_data[:, 0], vis_data[:, 1], images, colour, min_canvas_size=4000)
+  canvas = plot.image_scatter(vis_data[:, 0], vis_data[:, 1], images, colour, min_canvas_size=canvasSize)
   plt.imshow(canvas,origin='lower')
   # plt.title('%s vs %s' % (x,y))
   # plt.xlabel('%s' % x)
