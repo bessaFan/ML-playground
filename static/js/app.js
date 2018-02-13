@@ -1,3 +1,5 @@
+// set visibility with javascript
+
 (function() {
   var desktopSize = window.innerWidth > 980;
 
