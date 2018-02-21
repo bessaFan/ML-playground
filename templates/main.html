@@ -118,12 +118,13 @@
         <form method=post enctype=multipart/form-data>
           Select images: 
           <input type=file name=file accept="image/*" multiple>
-          <input type="submit" class="btn btn-primary" type=submit value=Upload>
 
           <div id="cp" class="input-group colorpicker-component col-sm-4" title="Using input value">
-            <input type="text" class="form-control input-lg " value="#DD0F20"/>
+            <input name="hexcolor" type="text" class="form-control input-lg " value="#DD0F20"/>
             <span class="input-group-addon"><i></i></span>
           </div>
+
+          <input type="submit" class="btn btn-primary" type=submit value=Upload>
         </form>
       {% for color in colors %}
         <div style="margin:4px 0px">
