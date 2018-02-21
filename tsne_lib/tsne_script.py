@@ -23,7 +23,7 @@ from sklearn import manifold, datasets
 import sys
 from IPython import embed
 
-def tsne_images(session_id,res,perplexity,dpi, canvasSize):
+def tsne_images(session_id,res,perplexity, early_exaggeration, learning_rate, dpi, canvasSize):
   filenames=list(glob.glob('static/uploads/%s/*g' % session_id))
   if not filenames:
     return  # do nothing if there are no files to operate on
@@ -42,7 +42,7 @@ def tsne_images(session_id,res,perplexity,dpi, canvasSize):
     count += 1
 
   # vis_data = bh_sne(x_value,perplexity=perplexity)# tsne embedding
-  tsne = manifold.TSNE( init='pca', random_state=0, perplexity=perplexity)
+  tsne = manifold.TSNE( init='pca', random_state=0, early_exaggeration=early_exaggeration, learning_rate=learning_rate,perplexity=perplexity)
   vis_data = tsne.fit_transform(x_value)
 
   canvas = plot.image_scatter(vis_data[:, 0], vis_data[:, 1], images, colour, min_canvas_size=canvasSize)

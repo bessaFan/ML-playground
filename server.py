@@ -32,9 +32,9 @@ def main():
     plot_exists = os.path.exists('static/output/%s/output.png' % session_id)
 
     colors = [
-        {'hex':'dd0f20', 'images':images},
-        {'hex':'000f21', 'images':images},
-        {'hex':'ff0f22', 'images':images}
+        {'hex':'ff005b', 'images':images},
+        {'hex':'0086ff', 'images':images},
+        {'hex':'ffe600', 'images':images}
     ]
 
     return render_template('main.html', colors=colors, session_id=session_id, plot_exists=plot_exists)
@@ -48,12 +48,14 @@ def tsne():
         return redirect('/?session=%s' % session_id)
 
     perplexity = int (request.args.get('perplexity'))
+    early_exaggeration = int (request.args.get('early_exaggeration'))
+    learning_rate = int (request.args.get('learning_rate'))
     x_resolution = int( request.args.get('x_resolution'))
     y_resolution = int (request.args.get('y_resolution'))
     CanvasSize = int (request.args.get('CanvasSize'))
     DotsPerInchs = int (request.args.get('DotsPerInchs'))
 
-    tsne_data = tsne_script.tsne_images(session_id,x_resolution, perplexity,DotsPerInchs,CanvasSize)
+    tsne_data = tsne_script.tsne_images(session_id,x_resolution, perplexity,early_exaggeration, learning_rate, DotsPerInchs,CanvasSize)
     return redirect('/?session=%s' % session_id)
 
 def allowed_file(filename):
