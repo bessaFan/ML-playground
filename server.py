@@ -31,11 +31,11 @@ def main():
         os.makedirs('static/uploads/%s/' % session_id)
     plot_exists = os.path.exists('static/output/%s/output.png' % session_id)
 
-    colors = {
-        'dd0f20':{'images':[images]},
-        '000f21':{'images':[images]},
-        'ff0f22':{'images':[images]}
-        }
+    colors = [
+        {'hex':'dd0f20', 'images':images},
+        {'hex':'000f21', 'images':images},
+        {'hex':'ff0f22', 'images':images}
+    ]
 
     return render_template('main.html', colors=colors, session_id=session_id, plot_exists=plot_exists)
 
