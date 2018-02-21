@@ -139,19 +139,13 @@
 
       <form class="form-horizontal" action = '/tsne' >
         <h3>Resizing Parameters </h3> 
-        <span id="helpBlock" class="help-block">Values for the dimension of each image. (enter same value for squares)</span>
-<!--         <div class="form-group" style= "visibility: hidden">
-          <label for="inputEmail3" class="col-sm-3 control-label">X Resolution</label>
+        <span id="helpBlock" class="help-block">Values for the dimension of each image.</span>
+        <div class="form-group">
+          <label for="inputEmail3" class="col-sm-3 control-label">Resolution</label>
           <div class="col-sm-4">
-            <input type="number" class="form-control" name = "x_resolution" id="number" value = "200" placeholder="x resolution">
+            <input type="number" class="form-control" name = "resolution" id="number" value = "200" placeholder="resolution">
           </div>
         </div>
-        <div class="form-group" style= "visibility: hidden">
-          <label for="inputEmail3" class="col-sm-3 control-label">Y Resolution</label>
-          <div class="col-sm-4">
-            <input type="number" class="form-control"  name = "y_resolution" id="number" value = "200" placeholder="y resolution">
-          </div>
-        </div> -->
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-3 control-label">Canvas Size</label>
           <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary invert" data-toggle="tooltip" data-placement="right" title="Size of the plot">
@@ -227,6 +221,7 @@
             <h1 style="color: black">t-SNE plot</h1>
             <img id="tsne_plot" src="static/output/{{session_id}}/output.png" style= "object-fit:cover" height="100%" width="100%" >
           </div>
+          <a href="#" class="button" id="btn-download" download="static/output/{{session_id}}/output.png">Save Image</a>
 
           {% else %}
 
