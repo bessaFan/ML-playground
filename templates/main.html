@@ -189,6 +189,7 @@
         </div>
         <!-- set the loading icon visible when the "generate" tSNE button is pressed  -->
         <input type="hidden" name="session" value="{{session_id}}">
+        <input type="hidden" name="colors" value="{{colors}}">
         <div class="form-group">
           <div class="col-sm-offset-4 col-sm-3">
             <button type="submit" class="btn btn-success"  onclick= "setVisible()" onclick= "checkFolder()" onclick="generateTSNE()">Generate t-SNE</button>

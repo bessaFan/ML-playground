@@ -1,3 +1,4 @@
+import json
 import time
 import glob
 import os
@@ -58,7 +59,14 @@ def tsne():
     CanvasSize = int (request.args.get('CanvasSize'))
     DotsPerInchs = int (request.args.get('DotsPerInchs'))
 
-    tsne_data = tsne_script.tsne_images(session_id,resolution, perplexity,early_exaggeration, learning_rate, DotsPerInchs,CanvasSize)
+    # Get colors and images information
+    colors_text = request.args.get('colors')
+    # Convert from badly formatted json to dict
+    colors_text = colors_text.replace("'",'"')
+    colors_text = colors_text.replace('u"','"')
+    colors_dict = json.loads(colors_text)
+
+    tsne_data = tsne_script.tsne_images(session_id, colors_dict, resolution, perplexity,early_exaggeration, learning_rate, DotsPerInchs,CanvasSize)
     return redirect('/?session=%s' % session_id)
 
 def allowed_file(filename):

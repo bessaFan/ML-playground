@@ -23,8 +23,11 @@ from sklearn import manifold, datasets
 import sys
 from IPython import embed
 
-def tsne_images(session_id,res,perplexity, early_exaggeration, learning_rate, dpi, canvasSize):
-  filenames=list(glob.glob('static/uploads/%s/*g' % session_id))
+def tsne_images(session_id,colors_dict, res, perplexity, early_exaggeration, learning_rate, dpi, canvasSize):
+
+  l = [c['images'] for c in colors_dict]  # pull out image names into list of lists
+  filenames = [item for sublist in l for item in sublist] # flatten list
+
   if not filenames:
     return  # do nothing if there are no files to operate on
   total_res = res**2
