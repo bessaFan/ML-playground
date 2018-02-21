@@ -222,7 +222,8 @@
             <h1 style="color: black">t-SNE plot</h1>
             <img id="tsne_plot" src="static/output/{{session_id}}/output.png" style= "object-fit:cover" height="100%" width="100%" >
           </div>
-          <a href="#" class="button" id="btn-download" download="static/output/{{session_id}}/output.png">Save Image</a>
+          <!-- download image button -->
+          <a href="static/output/{{session_id}}/output.png" class="button" id="btn-download" download="output.png">Save Image</a>
 
           {% else %}
 
