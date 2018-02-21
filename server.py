@@ -2,7 +2,6 @@ import time
 import glob
 import os
 from tsne_lib import tsne_script
-#from IPython import embed
 from shutil import copyfile
 from flask import Flask, request, redirect, url_for, render_template
 from werkzeug.utils import secure_filename
@@ -37,10 +36,6 @@ def main():
 
 @app.route("/tsne", methods=['POST', 'GET'])
 def tsne():
-    # print('test tsne!')
-    # print(request)
-    # print(vars(request))
-
     session_id=request.args.get('session')
     if not session_id:
         session_id = uuid.uuid4()
@@ -51,8 +46,7 @@ def tsne():
     y_resolution = int (request.args.get('y_resolution'))
     CanvasSize = int (request.args.get('CanvasSize'))
     DotsPerInchs = int (request.args.get('DotsPerInchs'))
-    #embed()
-    #process variables here
+
     tsne_data = tsne_script.tsne_images(session_id,x_resolution, perplexity,DotsPerInchs,CanvasSize)
     return redirect('/?session=%s' % session_id)
 
