@@ -114,27 +114,25 @@
   <div class="row app">
     <div class = "col-md-6" style="background-color: #000">
       <!-- upload images -->
-      <h1>Upload new Images</h1>
+      <h1>Upload New Images</h1>
         <form method=post enctype=multipart/form-data>
           Select images: 
           <input type=file name=file accept="image/*" multiple>
 
-          <div id="cp" class="input-group colorpicker-component" title="Using input value">
-            <input name="hexcolor" type="text" class="form-control input-lg" value="#DD0F20"/>
+          <div id="cp" class="input-group colorpicker-component col-sm-4" title="Using input value">
+            <input name="hexcolor" type="text" class="form-control input-lg " value="#DD0F20"/>
             <span class="input-group-addon"><i></i></span>
           </div>
 
           <input type="submit" class="btn btn-primary" type=submit value=Upload>
         </form>
       {% for color in colors %}
-        <div>
-          <h2>
-            Color: {{ color.hex }}
-          </h2>
+        <div style="margin:4px 0px">
 
             {% for image in color.images %}
             <span id="input-images">
-              <img class="input-image zoomed" src="{{ image }}" style= "object-fit:cover" height="42" width="42" />
+              <img class="input-image zoomed" src="{{ image }}" style= "object-fit:cover; border:5px solid #{{ color.hex }}" height="42" width="42"/>
+
             </span>
             {% endfor %}
         </div>
@@ -143,20 +141,21 @@
       <form class="form-horizontal" action = '/tsne' >
         <h3>Resizing Parameters </h3> 
         <span id="helpBlock" class="help-block">Values for the dimension of each image. (enter same value for squares)</span>
-        <div class="form-group">
-          <label for="inputEmail3" class="col-sm-3 control-label">x resolution</label>
+<!--         <div class="form-group" style= "visibility: hidden">
+          <label for="inputEmail3" class="col-sm-3 control-label">X Resolution</label>
           <div class="col-sm-4">
             <input type="number" class="form-control" name = "x_resolution" id="number" value = "200" placeholder="x resolution">
           </div>
         </div>
-        <div class="form-group">
-          <label for="inputEmail3" class="col-sm-3 control-label">y resolution</label>
+        <div class="form-group" style= "visibility: hidden">
+          <label for="inputEmail3" class="col-sm-3 control-label">Y Resolution</label>
           <div class="col-sm-4">
             <input type="number" class="form-control"  name = "y_resolution" id="number" value = "200" placeholder="y resolution">
           </div>
-        </div>
+        </div> -->
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-3 control-label">Canvas Size</label>
+          <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary invert" data-toggle="tooltip" data-placement="right" title="Size of the plot">
           <div class="col-sm-4">
             <input type="number" class="form-control"  name = "CanvasSize" id="number" value = "4000" placeholder="canvas size">
           </div>
@@ -165,16 +164,31 @@
         <h3>t-SNE Parameters</h3> 
         <span id="helpBlock" class="help-block">Different values result in different result</span>
         <div class="form-group">
-          <label for="inputEmail3" class="col-sm-3 control-label">perplexity</label>
+          <label for="inputEmail3" class="col-sm-3 control-label">Perplexity</label>
           <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary invert" data-toggle="tooltip" data-placement="right" title="The perplexity is related to the number of nearest neighbors that is used in other manifold learning algorithms. Larger datasets usually require a larger perplexity. Consider selecting a value between 5 and 50. The choice is not extremely critical since t-SNE is quite insensitive to this parameter.">
           <div class="col-sm-4">
             <input type="number" class="form-control"  name = "perplexity" id="number" value = "15" placeholder="perplexity">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputEmail3" class="col-sm-3 control-label">Early Exaggeration</label>
+          <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary invert" data-toggle="tooltip" data-placement="right" title="Controls how tight natural clusters in the original space are in the embedded space and how much space will be between them. For larger values, the space between natural clusters will be larger in the embedded space. Again, the choice of this parameter is not very critical. If the cost function increases during initial optimization, the early exaggeration factor or the learning rate might be too high.">
+          <div class="col-sm-4">
+            <input type="number" class="form-control"  name = "early_exaggeration" id="number" value = "12" placeholder="early_exaggeration">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputEmail3" class="col-sm-3 control-label">Learning Rate</label>
+          <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary invert" data-toggle="tooltip" data-placement="right" title="The learning rate for t-SNE is usually in the range [10.0, 1000.0]. If the learning rate is too high, the data may look like a ‘ball’ with any point approximately equidistant from its nearest neighbours. If the learning rate is too low, most points may look compressed in a dense cloud with few outliers. If the cost function gets stuck in a bad local minimum increasing the learning rate may help.">
+          <div class="col-sm-4">
+            <input type="number" class="form-control"  name = "learning_rate" id="number" value = "200" placeholder="learning_rate">
           </div>
         </div>
         <h3>Output Plot Parameters</h3> 
         <span id="helpBlock" class="help-block">The resolution of the image</span>
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-3 control-label">Dots Per Inchs</label>
+          <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary invert" data-toggle="tooltip" data-placement="right" title="The resolution of the final plot. The bigger the value, the better the image quality. However, the plot generating speed increases as the resolution gets higher.">
           <div class="col-sm-4">
             <input type="number" class="form-control" name = "DotsPerInchs" id="number" value = "50" placeholder="DotsPerInchs">
           </div>

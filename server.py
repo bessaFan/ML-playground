@@ -41,7 +41,6 @@ def main():
         images=list(glob.glob('static/uploads/%s/%s/*' % (session_id,color_name)))
         colors.append({'hex':color_name,'images':images})
 
-
     return render_template('main.html', colors=colors, session_id=session_id, plot_exists=plot_exists)
 
 
@@ -53,12 +52,13 @@ def tsne():
         return redirect('/?session=%s' % session_id)
 
     perplexity = int (request.args.get('perplexity'))
-    x_resolution = int( request.args.get('x_resolution'))
-    y_resolution = int (request.args.get('y_resolution'))
+    early_exaggeration = int (request.args.get('early_exaggeration'))
+    learning_rate = int (request.args.get('learning_rate'))
+    resolution = int( request.args.get('resolution'))
     CanvasSize = int (request.args.get('CanvasSize'))
     DotsPerInchs = int (request.args.get('DotsPerInchs'))
 
-    tsne_data = tsne_script.tsne_images(session_id,x_resolution, perplexity,DotsPerInchs,CanvasSize)
+    tsne_data = tsne_script.tsne_images(session_id,resolution, perplexity,early_exaggeration, learning_rate, DotsPerInchs,CanvasSize)
     return redirect('/?session=%s' % session_id)
 
 def allowed_file(filename):
