@@ -6,6 +6,7 @@ from shutil import copyfile
 from flask import Flask, request, redirect, url_for, render_template
 from werkzeug.utils import secure_filename
 import uuid
+from IPython import embed
 
 
 
@@ -24,18 +25,22 @@ def main():
         return redirect('/?session=%s' % session_id)
     
     # Create folders for this session ID
-    images=list(glob.glob('static/uploads/%s/*g' % session_id))    
     if not os.path.exists('static/output/%s/' % session_id):
         os.makedirs('static/output/%s/' % session_id)
     if not os.path.exists('static/uploads/%s/' % session_id):
         os.makedirs('static/uploads/%s/' % session_id)
+
+    # Check if plot exists, the front-end will display different things
     plot_exists = os.path.exists('static/output/%s/output.png' % session_id)
 
-    colors = [
-        {'hex':'dd0f20', 'images':images},
-        {'hex':'000f21', 'images':images},
-        {'hex':'ff0f22', 'images':images}
-    ]
+    # Create list of files organized by colors
+    colors = []
+    color_names=list(glob.glob('static/uploads/%s/*' % session_id))
+    for color_name in color_names:
+        color_name = os.path.basename(color_name) # get just the color name, not a long folder path including static/uploads
+        images=list(glob.glob('static/uploads/%s/%s/*' % (session_id,color_name)))
+        colors.append({'hex':color_name,'images':images})
+
 
     return render_template('main.html', colors=colors, session_id=session_id, plot_exists=plot_exists)
 
@@ -64,6 +69,8 @@ def allowed_file(filename):
 def upload_file():
 
     session_id=request.args.get('session')
+    hexcolor=request.form.get('hexcolor')
+    hexcolor=hexcolor[1:] # remove # from #FFFFFF
     if not session_id:
       session_id = uuid.uuid4()
       return redirect('/?session=%s' % session_id)
@@ -82,7 +89,11 @@ def upload_file():
               return redirect(request.url)
           if file and allowed_file(file.filename):
               filename = secure_filename(file.filename)
-              file.save(os.path.join(app.config['UPLOAD_FOLDER'], session_id, filename))
+              folder = os.path.join(app.config['UPLOAD_FOLDER'], session_id, hexcolor)
+              if not os.path.exists(folder):
+                  os.makedirs(folder)
+              path = os.path.join(folder, filename)
+              file.save(path)
         return redirect(request.url)
 
 if __name__ == "__main__":
