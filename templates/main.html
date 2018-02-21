@@ -4,11 +4,21 @@
   <title>Generate t-SNE</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link href="static/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/node_modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.css" rel="stylesheet">
   <link rel="stylesheet" href="./static/css/app.css">
 
   <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+
+    $(function () {
+       $('#cp').colorpicker();
+     });
+
     function generateTSNE() 
     {
     // do ajax request to ask for what the location of the TSNE image is. Then use in in the following line.
@@ -105,17 +115,29 @@
     <div class = "col-md-6" style="background-color: #000">
       <!-- upload images -->
       <h1>Upload new Images</h1>
-      <form method=post enctype=multipart/form-data>
-        Select images: 
-        <input type=file name=file accept="image/*" multiple>
-        <input type="submit" class="btn btn-primary" type=submit value=Upload>
+          Select images: 
+          <input type=file name=file accept="image/*" multiple>
+          <input type="submit" class="btn btn-primary" type=submit value=Upload>
 
-        {% for image in images %}
-        <span id="input-images">
-          <img class="input-image" src="{{ image }}" style= "object-fit:cover" height="42" width="42" />
-        </span>
-        {% endfor %}
-      </form>
+          <div id="cp" class="input-group colorpicker-component" title="Using input value">
+            <input type="text" class="form-control input-lg" value="#DD0F20"/>
+            <span class="input-group-addon"><i></i></span>
+          </div>
+      {% for color in colors %}
+      <div>
+        <h2>
+          Color: {{ color }}
+        </h2>
+        <form method=post enctype=multipart/form-data>
+
+          {% for image in color.images %}
+          <span id="input-images">
+            <img class="input-image zoomed" src="{{ image }}" style= "object-fit:cover" height="42" width="42" />
+          </span>
+          {% endfor %}
+        </form>
+      </div>
+      {% endfor %}
 
       <form class="form-horizontal" action = '/tsne' >
         <h3>Resizing Parameters </h3> 
@@ -143,7 +165,7 @@
         <span id="helpBlock" class="help-block">Different values result in different result</span>
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-3 control-label">perplexity</label>
-          <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="The perplexity is related to the number of nearest neighbors that is used in other manifold learning algorithms. Larger datasets usually require a larger perplexity. Consider selecting a value between 5 and 50. The choice is not extremely critical since t-SNE is quite insensitive to this parameter.">
+          <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary invert" data-toggle="tooltip" data-placement="right" title="The perplexity is related to the number of nearest neighbors that is used in other manifold learning algorithms. Larger datasets usually require a larger perplexity. Consider selecting a value between 5 and 50. The choice is not extremely critical since t-SNE is quite insensitive to this parameter.">
           <div class="col-sm-4">
             <input type="number" class="form-control"  name = "perplexity" id="number" value = "15" placeholder="perplexity">
           </div>
@@ -217,6 +239,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="static/js/bootstrap.min.js"></script>
+  <script src="static/node_modules/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js" rel="stylesheet"></script>
 
 
 </body>

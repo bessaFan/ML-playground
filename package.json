@@ -1,0 +1,25 @@
+{
+  "name": "generate_tsne_plots_online",
+  "version": "1.0.0",
+  "description": "Inspiration from: https://onepagelove.com/isis-cocco",
+  "main": "index.js",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "bootstrap-colorpicker": "^2.5.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bessaFan/generate_tsne_plots_online.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bessaFan/generate_tsne_plots_online/issues"
+  },
+  "homepage": "https://github.com/bessaFan/generate_tsne_plots_online#readme"
+}
