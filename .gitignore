@@ -1,7 +1,6 @@
 *.pyc
 uploads
 output
-node_modules
 *old*
 
 
