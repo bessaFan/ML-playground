@@ -17,11 +17,14 @@ import matplotlib.patches as mpatches
 if os.name != 'nt':
   from tsne import bh_sne
 from time import time
-import matplotlib.pyplot as plt
 from matplotlib.ticker import NullFormatter
 from sklearn import manifold, datasets
 import sys
 from IPython import embed
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+plt.switch_backend('agg')
 
 def tsne_images(session_id,colors_dict, res, perplexity, early_exaggeration, learning_rate, dpi, canvasSize):
 
@@ -50,10 +53,10 @@ def tsne_images(session_id,colors_dict, res, perplexity, early_exaggeration, lea
 
   canvas = plot.image_scatter(vis_data[:, 0], vis_data[:, 1], images, colour, min_canvas_size=canvasSize)
   plt.imshow(canvas,origin='lower')
-  # plt.title('%s vs %s' % (x,y))
-  # plt.xlabel('%s' % x)
-  # plt.ylabel('%s' % y)
-  # patches=[]
+  #plt.title('%s vs %s' % (x,y))
+  #plt.xlabel('%s' % x)
+  #plt.ylabel('%s' % y)
+  #patches=[]
   #plt.legend(handles=patches,bbox_to_anchor=(1.04,0.5), loc="center left", borderaxespad=0, frameon=False)
   save_location = 'static/output/%s/output.png' % session_id
   plt.savefig(save_location,dpi=dpi,pad_inches=1,bbox_inches='tight')
