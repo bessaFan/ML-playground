@@ -12,6 +12,7 @@
 
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <title>Generate t-SNE</title>
+  <link rel="shortcut icon" href="static/favicon.ico">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
@@ -231,7 +232,7 @@
           {% if plot_exists %}
           <div class="image">
             <h1 style="color: black">t-SNE plot</h1>
-            <img id="tsne_plot" src="static/output/{{session_id}}/output.png" style= "object-fit:cover" height="100%" width="100%" >
+            <img id="tsne_plot" src="static/output/{{session_id}}/output.png?timestamp={{timestamp}}" style= "object-fit:cover" height="100%" width="100%" >
           </div>
           <!-- download image button -->
           <a href="static/output/{{session_id}}/output.png" class="button" id="btn-download" download="output.png">Save Image</a>
