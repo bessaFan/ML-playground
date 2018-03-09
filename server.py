@@ -15,7 +15,9 @@ ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+app.config['MAX_CONTENT_LENGTH'] = 300 * 1024 * 1024 # Allow 300 MB maximum upload at once
+FILE_SIZE_LIMIT = 3 * 1024 * 1024 # 3 MB
+NUM_IMAGES_LIMIT = 100
 
 @app.route("/")
 def main():
@@ -89,19 +91,37 @@ def upload_file():
             print('No file part')
             return redirect(request.url)
         files = request.files.getlist("file")
+
+        # Create folder if necessary
+        folder = os.path.join(app.config['UPLOAD_FOLDER'], session_id, hexcolor)
+        if not os.path.exists(folder):
+            os.makedirs(folder)
+
+        # Check if number of images exceeds the limit
+        new_num_images = len(files)
+        existing_num_images = len(list(glob.glob('static/uploads/%s/**/*' % session_id)))
+        if new_num_images + existing_num_images > NUM_IMAGES_LIMIT:
+          return redirect(request.url)  # TODO: Warn user that this has happened
+
         for file in files:
-          # if user does not select file, browser also
-          # submit a empty part without filename
+          # if user does not select file, browser also submit a empty part without filename
           if file.filename == '':
               print('No selected file')
               return redirect(request.url)
+
           if file and allowed_file(file.filename):
+              # Skip file if too large (>5MB)
+              file.seek(0, os.SEEK_END)
+              file_size = file.tell()
+              if file_size > FILE_SIZE_LIMIT:
+                continue # Skip this file it is too big # TODO: Warn user that this has happened
+              file.seek(0) # File is allowable size seek back to the beginning of the file. Without this no data would be read because we already seeked to the end of the file to read it's length.
+              
+              # Save file
               filename = secure_filename(file.filename)
-              folder = os.path.join(app.config['UPLOAD_FOLDER'], session_id, hexcolor)
-              if not os.path.exists(folder):
-                  os.makedirs(folder)
               path = os.path.join(folder, filename)
               file.save(path)
+
         return redirect(request.url)
 
 if __name__ == "__main__":
