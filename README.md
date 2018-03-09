@@ -21,4 +21,12 @@ sudo gunicorn server:app -b:8080
 
 ```
 
+### Server Setup
 
+```
+sudo cp clean_up.py /etc/cron.daily/
+sudo chmod +x /etc/cron.daily/clean_up
+# modify clean_up.py so that the directory paths to clean are correct for the server
+# optionally test that cron successfully runs the clean_up script with:
+sudo run-parts -v /etc/cron.daily
+```
