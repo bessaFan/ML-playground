@@ -1,6 +1,10 @@
 import numpy as np
 from IPython import embed
 
+def hex2rgb(hexcode):
+    rgb = tuple(map(ord,hexcode[1:].decode('hex')))
+    return rgb
+
 def image_scatter(xx, yy, images, colours, min_canvas_size=1000, bg_color=255, lw=10):
     """
     Embeds images into a scatter plot.
@@ -47,7 +51,7 @@ def image_scatter(xx, yy, images, colours, min_canvas_size=1000, bg_color=255, l
         w, h = image.shape[:2]
         scaled_x = np.argmin((x - x_coords)**2)+lw # TODO: Replace this to use a scale factor
         scaled_y = np.argmin((y - y_coords)**2)+lw # TODO: Replace this to use a scale factor
-        canvas[scaled_x-lw:scaled_x+w+lw, scaled_y-lw:scaled_y+h+lw] = colour # put coloured box around image 
+        canvas[scaled_x-lw:scaled_x+w+lw, scaled_y-lw:scaled_y+h+lw] = hex2rgb(colour) # put coloured box around image 
         # from IPython import embed
         # embed() # drop into an IPython session
         canvas[scaled_x:scaled_x+w, scaled_y:scaled_y+h] = image # embed image
