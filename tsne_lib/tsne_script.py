@@ -51,7 +51,7 @@ def tsne_images(session_id,colors_dict, res, perplexity, early_exaggeration, lea
   tsne = manifold.TSNE( init='pca', random_state=0, early_exaggeration=early_exaggeration, learning_rate=learning_rate,perplexity=perplexity)
   vis_data = tsne.fit_transform(x_value)
 
-  canvas = plot.image_scatter(vis_data[:, 0], vis_data[:, 1], images, colour, min_canvas_size=canvasSize)
+  canvas = plot.image_scatter(vis_data[:, 0], vis_data[:, 1], images, colour,res, min_canvas_size=canvasSize )
   plt.imshow(canvas,origin='lower')
   #plt.title('%s vs %s' % (x,y))
   #plt.xlabel('%s' % x)

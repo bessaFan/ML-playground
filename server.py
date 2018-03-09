@@ -10,7 +10,7 @@ import uuid
 from IPython import embed
 
 
-
+ 
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 app = Flask(__name__)
