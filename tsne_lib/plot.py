@@ -1,7 +1,11 @@
 import numpy as np
 from IPython import embed
 
-def image_scatter(xx, yy, images, colours, min_canvas_size=1000, bg_color=255, lw=10):
+def hex2rgb(hexcode):
+    rgb = tuple(map(ord,hexcode[1:].decode('hex')))
+    return rgb
+
+def image_scatter(xx, yy, images, colours, res, min_canvas_size=1000, bg_color=255):
     """
     Embeds images into a scatter plot.
     Parameters
@@ -19,6 +23,7 @@ def image_scatter(xx, yy, images, colours, min_canvas_size=1000, bg_color=255, l
     canvas: numpy array
         Image of visualization
     """
+    lw=int(res*0.3) #this is the size of the coloured box!!
     images = [np.flip(images[x],0) for x in range(len(images))]
     max_width = max([image.shape[0] for image in images])
     max_height = max([image.shape[1] for image in images])
@@ -37,20 +42,28 @@ def image_scatter(xx, yy, images, colours, min_canvas_size=1000, bg_color=255, l
         canvas_res_x = min_canvas_size
         canvas_res_y = scale_canvas_y/float(scale_canvas_x)*min_canvas_size
 
+
     # Create canvas by embedding images at the correct positions according it t-sne
-    canvas = np.ones((int(canvas_res_x)+max_width+lw, int(canvas_res_y)+max_height+lw, 3),dtype='uint8')*bg_color
+    canvas = np.ones((int(canvas_res_x)+max_width+3*lw, int(canvas_res_y)+max_height+3*lw, 3),dtype='uint8')*bg_color
     # TODO: Replace this to use a scale factor
     x_coords = np.linspace(x_min, x_max, canvas_res_x) # TODO: Replace this to use a scale factor
     y_coords = np.linspace(y_min, y_max, canvas_res_y) # TODO: Replace this to use a scale factor
 
     for x, y, image, colour in zip(xx, yy, images, colours):
         w, h = image.shape[:2]
-        scaled_x = np.argmin((x - x_coords)**2)+lw # TODO: Replace this to use a scale factor
-        scaled_y = np.argmin((y - y_coords)**2)+lw # TODO: Replace this to use a scale factor
-        canvas[scaled_x-lw:scaled_x+w+lw, scaled_y-lw:scaled_y+h+lw] = colour # put coloured box around image 
+        scaled_x = np.argmin((x - x_coords)**2) # TODO: Replace this to use a scale factor
+        scaled_y = np.argmin((y - y_coords)**2) # TODO: Replace this to use a scale factor
+        x_start= lw+scaled_x-lw
+        x_end=lw+scaled_x+w+lw
+        y_start=lw+scaled_y-lw
+        y_end=lw+scaled_y+h+lw
+        canvas[x_start:x_end, y_start:y_end] = hex2rgb(colour) # put coloured box around image 
+        #canvas[scaled_x-lw:scaled_x+w+lw, scaled_y-lw:scaled_y+h+lw] = hex2rgb(colour) # put coloured box around image 
+        # canvas[scaled_x-lw:(scaled_x-lw)+res*2, scaled_y-lw:(scaled_y-lw)+res*2] = hex2rgb(colour) # put coloured box around image 
+        # embed()
         # from IPython import embed
         # embed() # drop into an IPython session
-        canvas[scaled_x:scaled_x+w, scaled_y:scaled_y+h] = image # embed image
+        canvas[scaled_x+lw:scaled_x+w+lw, scaled_y+lw:scaled_y+h+lw] = image # embed image
 
     # from PIL import Image
     # image = Image.fromarray(np.uint8(canvas))

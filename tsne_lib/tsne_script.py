@@ -26,7 +26,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 plt.switch_backend('agg')
 
-def tsne_images(session_id,colors_dict, res, perplexity, early_exaggeration, learning_rate, dpi, canvasSize):
+def tsne_images(session_id,colors_dict, res, perplexity, early_exaggeration, learning_rate, dpi, canvasSize,colour):
 
   l = [c['images'] for c in colors_dict]  # pull out image names into list of lists
   filenames = [item for sublist in l for item in sublist] # flatten list
@@ -37,7 +37,7 @@ def tsne_images(session_id,colors_dict, res, perplexity, early_exaggeration, lea
   x_value = np.zeros((len(filenames),total_res)) # Dimension of the image: 70*70=4900; x_value will store images in 2d array
   count = 0
   images = []
-  colour = np.zeros(len(filenames))
+  # colour = np.zeros(len(filenames))
   for imageName in filenames: 
     image = scipy.misc.imresize(skimage.io.imread(imageName), (res,res)) #reshape size to (70,70) for every image; 70 being the res
     image3d=image[:,:,:3]
@@ -51,7 +51,7 @@ def tsne_images(session_id,colors_dict, res, perplexity, early_exaggeration, lea
   tsne = manifold.TSNE( init='pca', random_state=0, early_exaggeration=early_exaggeration, learning_rate=learning_rate,perplexity=perplexity)
   vis_data = tsne.fit_transform(x_value)
 
-  canvas = plot.image_scatter(vis_data[:, 0], vis_data[:, 1], images, colour, min_canvas_size=canvasSize)
+  canvas = plot.image_scatter(vis_data[:, 0], vis_data[:, 1], images, colour,res, min_canvas_size=canvasSize )
   plt.imshow(canvas,origin='lower')
   #plt.title('%s vs %s' % (x,y))
   #plt.xlabel('%s' % x)

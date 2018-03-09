@@ -10,7 +10,7 @@ import uuid
 from IPython import embed
 
 
-
+ 
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 app = Flask(__name__)
@@ -44,6 +44,7 @@ def main():
         images=list(glob.glob('static/uploads/%s/%s/*' % (session_id,color_name)))
         colors.append({'hex':color_name,'images':images})
 
+
     return render_template('main.html', colors=colors, session_id=session_id, plot_exists=plot_exists, timestamp=str(time.time()))
 
 
@@ -68,7 +69,16 @@ def tsne():
     colors_text = colors_text.replace('u"','"')
     colors_dict = json.loads(colors_text)
 
-    tsne_data = tsne_script.tsne_images(session_id, colors_dict, resolution, perplexity,early_exaggeration, learning_rate, DotsPerInchs,CanvasSize)
+    colors = [] 
+    hex_number = "" 
+    for section in range(len(colors_dict)):
+      for hex1 in colors_dict[section]['hex']: 
+        hex_number+= hex1
+      for files in colors_dict[section]['images']:
+        colors.append('#'+hex_number.encode('ascii','ignore')) 
+      hex_number = "" 
+
+    tsne_data = tsne_script.tsne_images(session_id, colors_dict, resolution, perplexity,early_exaggeration, learning_rate, DotsPerInchs,CanvasSize, colors)
     return redirect('/?session=%s' % session_id)
 
 def allowed_file(filename):
@@ -125,4 +135,4 @@ def upload_file():
         return redirect(request.url)
 
 if __name__ == "__main__":
-    app.run(debug = True, port=200)
+    app.run(debug = True, port=2000)
