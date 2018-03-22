@@ -30,12 +30,6 @@
      $('#cp').colorpicker();
    });
 
-  function image_number_alert(){
-    // var files = $(this)[0].files;
-    // if(files.length > 10){
-        alert("you can select max 10 files.");
-    // }
-  }
 
   function generateTSNE() {
     // do ajax request to ask for what the location of the TSNE image is. Then use in in the following line.
@@ -78,15 +72,23 @@
     // Get files that user selected
     input = document.getElementById('fileinput');
     files = input.files;
-    // console.log('input.files[0]: ', input.files[0], files[0].size);
 
+
+    // console.log('input.files[0]: ', input.files[0], files[0].size);
+    for (i = 0; i < files.length; i++) { 
+      if (files[i].size>3*1024*1024) { // this is 3 MiB
+        $('#modalImageTooBig').modal('show');
+      }
+    }
+
+    
     // Check if number of files exceed limit
     num_image_limit = 100;
     existing_images = document.getElementsByClassName('input-image');
     num_existing_images = existing_images.length;
     if (num_existing_images + files.length > num_image_limit){
       input.value = '';
-      $('#modalTooManyImages').modal('show')
+      $('#modalTooManyImages').modal('show');
     }
 
     // Check if size of files exceed limit
@@ -164,6 +166,7 @@
 </head>
 
 <body>
+
   <!-- Modal -->
   <div class="modal fade" id="modalTooManyImages" tabindex="-1" role="dialog" aria-labelledby="modalTooManyImagesLabel">
     <div class="modal-dialog" role="document" style="color:#333">
@@ -176,6 +179,27 @@
           </div>
           <div class="modal-body">
               <p>Sorry, you have exeeded the maximum number of images that can be uploaded which is 100. The images that you have selected have been ignored.</p>
+          </div>
+          <div class="modal-footer">
+              <button class="btn btn-default" data-dismiss="modal">Ok</button>
+          </div>
+      </div>
+
+    </div>
+  </div>
+
+    <!-- Modal -->
+  <div class="modal fade" id="modalImageTooBig" tabindex="-1" role="dialog" aria-labelledby="modalImageTooBigLabel">
+    <div class="modal-dialog" role="document" style="color:#333">
+      <div class="modal-content">
+          <div class="modal-header alert alert-danger">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+              <h4 class="modal-title" id="modalImageTooBigLabel">Image size too big</h4>
+          </div>
+          <div class="modal-body">
+              <p>Sorry, you have exeeded the maximum size of images that can be uploaded which is 3MB. The images that you have selected have been ignored.</p>
           </div>
           <div class="modal-footer">
               <button class="btn btn-default" data-dismiss="modal">Ok</button>
@@ -201,7 +225,7 @@
 
 
         
-        <input type="submit" class="btn btn-primary" type=submit value=Upload  onclick="image_number_alert()">
+        <input type="submit" class="btn btn-primary" type=submit value=Upload >
       </form>
       {% for color in colors %}
       <div style="margin:4px 0px">
