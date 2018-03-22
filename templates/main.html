@@ -68,6 +68,25 @@
           alert("no files selected");
         }
       }
+  function sanityCheckInputFiles() {
+    // Get files that user selected
+    input = document.getElementById('fileinput');
+    files = input.files;
+    // console.log('input.files[0]: ', input.files[0], files[0].size);
+
+    // Check if number of files exceed limit
+    num_image_limit = 100;
+    existing_images = document.getElementsByClassName('input-image');
+    num_existing_images = existing_images.length;
+    if (num_existing_images + files.length > num_image_limit){
+      input.value = '';
+      $('#modalTooManyImages').modal('show')
+    }
+
+    // Check if size of files exceed limit
+
+  }
+
     </script>
   </script>
   <style>
@@ -121,6 +140,27 @@
 </head>
 
 <body>
+  <!-- Modal -->
+  <div class="modal fade" id="modalTooManyImages" tabindex="-1" role="dialog" aria-labelledby="modalTooManyImagesLabel">
+    <div class="modal-dialog" role="document" style="color:#333">
+      <div class="modal-content">
+          <div class="modal-header alert alert-danger">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+              <h4 class="modal-title" id="modalTooManyImagesLabel">Too Many Image Files</h4>
+          </div>
+          <div class="modal-body">
+              <p>Sorry, you have exeeded the maximum number of images that can be uploaded which is 100. The images that you have selected have been ignored.</p>
+          </div>
+          <div class="modal-footer">
+              <button class="btn btn-default" data-dismiss="modal">Ok</button>
+          </div>
+      </div>
+
+    </div>
+  </div>
+
   <!-- left side of the layout -->
   <div class="row app">
     <div class = "col-md-6" style="background-color: #000">
@@ -128,7 +168,7 @@
       <h1>Upload New Images</h1>
         <form method=post enctype=multipart/form-data>
           Select images: (max. 100 images, max. 3 MB each)
-          <input type=file name=file accept="image/*" multiple>
+          <input id=fileinput onchange="sanityCheckInputFiles()" type=file name=file accept="image/*" multiple>
 
           <div id="cp" class="input-group colorpicker-component col-sm-4" title="Using input value">
             <input name="hexcolor" type="text" class="form-control input-lg " value="#DD0F20"/>
