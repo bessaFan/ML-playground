@@ -13,10 +13,10 @@
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <title>Generate t-SNE</title>
   <link rel="shortcut icon" href="static/favicon.ico">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
   <link href="static/css/bootstrap.min.css" rel="stylesheet">
   <link href="static/node_modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.css" rel="stylesheet">
   <link rel="stylesheet" href="./static/css/app.css">
@@ -31,7 +31,7 @@
    });
 
 
-  function generateTSNE() {
+    function generateTSNE() {
     // do ajax request to ask for what the location of the TSNE image is. Then use in in the following line.
     console.log('button pressed')
     httpGetAsync('/test',handleTSNEResponse)
@@ -68,7 +68,7 @@
           alert("no files selected");
         }
       }
-  function sanityCheckInputFiles() {
+      function sanityCheckInputFiles() {
     // Get files that user selected
     input = document.getElementById('fileinput');
     files = input.files;
@@ -95,82 +95,10 @@
 
   }
 
-    </script>
-  </script>
-  <style>
-
-    body{
-      color:#fff;
-      background: linear-gradient( to right, black 50%, white 50%); 
-    }
-    /*needed for creating a button with animation*/
-    .button {
-      display: inline-block;
-      border-radius: 4px;
-      background-color: #ffaa00;
-      border: none;
-      color: #FFFFFF;
-      top:100%;
-      left: 0%;
-      font-size: 28px;
-      padding: 20px;
-      width: 300px;
-
-      transition: all 0.5s;
-      cursor: pointer;
-      margin: 5px;
-    }
-    .button span {
-      cursor: pointer;
-      display: inline-block;
-      position: relative;
-      transition: 0.5s;
-    }
-    .button span:after {
-      content: '\00bb';
-      position: absolute;
-      opacity: 0;
-      top: 0;
-      right: 20px;
-      transition: 0.5s;
-    }
-    .button:hover span {
-      padding-right: 25px;
-    }
-    .button:hover span:after {
-      opacity: 1;
-      right: 0;
-    }
-    .alert {
-      padding: 20px;
-      background-color: #f44336;
-      color: white;
-    }
-    .closebtn {
-      margin-left: 15px;
-      color: white;
-      font-weight: bold;
-      float: right;
-      font-size: 22px;
-      line-height: 20px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .closebtn:hover {
-      color: black;
-    }
-
-  </style>
-
+</script>
 
 </head>
 
-  <!-- HEADER -->
-  <div class="" > 
-   <div class="" style="background-color: #20b2bf">
-    header
-   </div>
-  </div>
 
 
 <body>
@@ -179,63 +107,75 @@
   <div class="modal fade" id="modalTooManyImages" tabindex="-1" role="dialog" aria-labelledby="modalTooManyImagesLabel">
     <div class="modal-dialog" role="document" style="color:#333">
       <div class="modal-content">
-          <div class="modal-header alert alert-danger">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-              </button>
-              <h4 class="modal-title" id="modalTooManyImagesLabel">Too Many Image Files</h4>
-          </div>
-          <div class="modal-body">
-              <p>Sorry, you have exeeded the maximum number of images that can be uploaded which is 100. The images that you have selected have been ignored.</p>
-          </div>
-          <div class="modal-footer">
-              <button class="btn btn-default" data-dismiss="modal">Ok</button>
-          </div>
+        <div class="modal-header alert alert-danger">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="modalTooManyImagesLabel">Too Many Image Files</h4>
+        </div>
+        <div class="modal-body">
+          <p>Sorry, you have exeeded the maximum number of images that can be uploaded which is 100. The images that you have selected have been ignored.</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-default" data-dismiss="modal">Ok</button>
+        </div>
       </div>
 
     </div>
   </div>
 
-    <!-- Modal -->
+  <!-- Modal -->
   <div class="modal fade" id="modalImageTooBig" tabindex="-1" role="dialog" aria-labelledby="modalImageTooBigLabel">
     <div class="modal-dialog" role="document" style="color:#333">
       <div class="modal-content">
-          <div class="modal-header alert alert-danger">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-              </button>
-              <h4 class="modal-title" id="modalImageTooBigLabel">Image size too big</h4>
-          </div>
-          <div class="modal-body">
-              <p>Sorry, you have exeeded the maximum size of images that can be uploaded which is 3MB. The images that you have selected have been ignored.</p>
-          </div>
-          <div class="modal-footer">
-              <button class="btn btn-default" data-dismiss="modal">Ok</button>
-          </div>
+        <div class="modal-header alert alert-danger">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="modalImageTooBigLabel">Image size too big</h4>
+        </div>
+        <div class="modal-body">
+          <p>Sorry, you have exeeded the maximum size of images that can be uploaded which is 3MB. The images that you have selected have been ignored.</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-default" data-dismiss="modal">Ok</button>
+        </div>
       </div>
 
     </div>
   </div>
 
 
+  <!-- Header -->
+  <div class="row" > 
+    <div class="header col-md-12" >
+      <span class="header-text">
+        Generate t-SNE Plots in the Browser
+      </span>
+      <span>
+        <img src="static/images/dots.png" style="height:39px" class="header-img">
+      </span>
+    </div>
+  </div>
 
-  <!-- left side of the layout -->
-  <div class="row app">
-    <div class = "col-md-6" style="background-color: #000">
+  <!-- Body -->
+  <div class="row equal">
+    <!-- left side of the layout -->
+    <div class = "col-md-6 leftside" style="padding-left: 45px">
       <!-- upload images -->
       <h1>Upload New Images</h1>
-        <form method=post enctype=multipart/form-data>
-          Select images: (max. 100 images, max. 3 MB each)
-          <input id=fileinput onchange="sanityCheckInputFiles()" type=file name=file accept="image/*" multiple>
+      <form method=post enctype=multipart/form-data>
+        Select images: (max. 100 images, max. 3 MB each)
+        <input id=fileinput onchange="sanityCheckInputFiles()" type=file name=file accept="image/*" multiple style="opacity: .7;">
 
         <div id="cp" class="input-group colorpicker-component col-sm-4" title="Using input value">
-          <input name="hexcolor" type="text" class="form-control input-lg " value="#DD0F20"/>
-          <span class="input-group-addon"><i></i></span>
+          <input name="hexcolor" type="text" class="form-control input-lg " value="#196f90" style="height: 34px;font-size: 16px;" />
+          <span class="input-group-addon" "><i></i></span>
         </div>
 
 
         
-        <input type="submit" class="btn btn-primary" type=submit value=Upload >
+        <input type="submit" class="btn btn-primary" type=submit value=Upload style="opacity: 0.7; border-width: 0px;">
       </form>
       {% for color in colors %}
       <div style="margin:4px 0px">
@@ -252,7 +192,8 @@
 
 
       <form class="form-horizontal" action = '/tsne' >
-        <h3>Resizing Parameters </h3> 
+
+        <h3 style="padding-top: 15px; border-top: 1px solid rgba(18, 65, 69, .07);" >Resizing Parameters </h3> 
         <span id="helpBlock" class="help-block">Values for the dimension of each image.</span>
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-3 control-label">Resolution</label>
@@ -269,7 +210,7 @@
           </div>
         </div>
         <!-- tSNE Parameters form -->
-        <h3>t-SNE Parameters</h3> 
+        <h3 style="padding-top: 15px; border-top: 1px solid rgba(18, 65, 69, .07);">t-SNE Parameters</h3> 
         <span id="helpBlock" class="help-block">Different values result in different result</span>
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-3 control-label">Perplexity</label>
@@ -292,72 +233,74 @@
             <input type="number" class="form-control"  name = "learning_rate" id="number" value = "200" placeholder="learning_rate">
           </div>
         </div>
-        <h3>Output Plot Parameters</h3> 
+        <h3 style="padding-top: 15px; border-top: 1px solid rgba(18, 65, 69, .07);">Output Plot Parameters</h3> 
         <span id="helpBlock" class="help-block">The resolution of the image</span>
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-3 control-label">Dots Per Inchs</label>
           <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary invert" data-toggle="tooltip" data-placement="right" title="The resolution of the final plot. The bigger the value, the better the image quality. However, the plot generating speed increases as the resolution gets higher.">
           <div class="col-sm-4">
-            <input type="number" class="form-control" name = "DotsPerInchs" id="number" value = "50" placeholder="DotsPerInchs">
+            <input type="number" class="form-control" name = "DotsPerInchs" id="number" value = "300" placeholder="DotsPerInchs">
           </div>
         </div>
         <!-- set the loading icon visible when the "generate" tSNE button is pressed  -->
         <input type="hidden" name="session" value="{{session_id}}">
         <input type="hidden" name="colors" value="{{colors}}">
         <div class="form-group">
-          <div class="col-sm-offset-4 col-sm-3">
-            <button type="submit" class="btn btn-success"  onclick= "setVisible()" onclick= "checkFolder()" onclick="generateTSNE()">Generate t-SNE</button>
+          <div class="col-sm-offset-4 col-sm-3" >
+            <button type="submit" class="btn btn-success" style="opacity: 0.7; border-width: 0px;" onclick= "setVisible()" onclick= "checkFolder()" onclick="generateTSNE()">Generate t-SNE</button>
           </div>
         </div>
+      </form>
+    </div>
 
-        <!-- code that doesnt work -->
- <!--       
-        <div class="form-group">
-        <div class="col-md-6">
-            <button type="submit" class="button" style="vertical-align:middle" onclick= "setVisible()" onclick= "checkFolder()" onclick="generateTSNE()"><span>Generate t-SNE Plots </span></button>
+
+    <div class = "col-md-6 rightside">
+      <svg class="svg-container" >
+        <!-- the flower loading icon -->
+        <symbol id="ei-spinner-icon" viewBox="0 0 50 50"><path d="M25 18c-.6 0-1-.4-1-1V9c0-.6.4-1 1-1s1 .4 1 1v8c0 .6-.4 1-1 1z"></path><path opacity=".3" d="M25 42c-.6 0-1-.4-1-1v-8c0-.6.4-1 1-1s1 .4 1 1v8c0 .6-.4 1-1 1z"></path><path opacity=".3" d="M29 19c-.2 0-.3 0-.5-.1-.4-.3-.6-.8-.3-1.3l4-6.9c.3-.4.8-.6 1.3-.3.4.3.6.8.3 1.3l-4 6.9c-.2.2-.5.4-.8.4z"></path><path opacity=".3" d="M17 39.8c-.2 0-.3 0-.5-.1-.4-.3-.6-.8-.3-1.3l4-6.9c.3-.4.8-.6 1.3-.3.4.3.6.8.3 1.3l-4 6.9c-.2.2-.5.4-.8.4z"></path><path opacity=".93" d="M21 19c-.3 0-.6-.2-.8-.5l-4-6.9c-.3-.4-.1-1 .3-1.3.4-.3 1-.1 1.3.3l4 6.9c.3.4.1 1-.3 1.3-.2.2-.3.2-.5.2z"></path><path opacity=".3" d="M33 39.8c-.3 0-.6-.2-.8-.5l-4-6.9c-.3-.4-.1-1 .3-1.3.4-.3 1-.1 1.3.3l4 6.9c.3.4.1 1-.3 1.3-.2.1-.3.2-.5.2z"></path><path opacity=".65" d="M17 26H9c-.6 0-1-.4-1-1s.4-1 1-1h8c.6 0 1 .4 1 1s-.4 1-1 1z"></path><path opacity=".3" d="M41 26h-8c-.6 0-1-.4-1-1s.4-1 1-1h8c.6 0 1 .4 1 1s-.4 1-1 1z"></path><path opacity=".86" d="M18.1 21.9c-.2 0-.3 0-.5-.1l-6.9-4c-.4-.3-.6-.8-.3-1.3.3-.4.8-.6 1.3-.3l6.9 4c.4.3.6.8.3 1.3-.2.3-.5.4-.8.4z"></path><path opacity=".3" d="M38.9 33.9c-.2 0-.3 0-.5-.1l-6.9-4c-.4-.3-.6-.8-.3-1.3.3-.4.8-.6 1.3-.3l6.9 4c.4.3.6.8.3 1.3-.2.3-.5.4-.8.4z"></path><path opacity=".44" d="M11.1 33.9c-.3 0-.6-.2-.8-.5-.3-.4-.1-1 .3-1.3l6.9-4c.4-.3 1-.1 1.3.3.3.4.1 1-.3 1.3l-6.9 4c-.1.2-.3.2-.5.2z"></path><path opacity=".3" d="M31.9 21.9c-.3 0-.6-.2-.8-.5-.3-.4-.1-1 .3-1.3l6.9-4c.4-.3 1-.1 1.3.3.3.4.1 1-.3 1.3l-6.9 4c-.2.2-.3.2-.5.2z"></path></symbol>
+        <symbol id="flower-icon" viewBox="0 0 65 98" fill="none" fill-rule="evenodd" stroke="#fff" stroke-width="2"><path d="M0.0434880207,0.660889225 C0.0434880207,0.660889225 38.4349751,22.2085462 38.4349744,96.8228805" id="Path-142"></path><path d="M62.0915607,5.40798425 C62.0915607,5.40798425 36.9588366,-4.08164371 28.3460397,24.8902199 C57.7428081,31.9172508 62.0915607,5.40798425 62.0915607,5.40798425 Z" id="Imported-Layers"></path></symbol>
+      </svg>
+
+
+      <section >
+        <section>
+          <!-- Plot displaying -->
+          {% if plot_exists %}
+          <div class="image">
+            <h1>Resulting t-SNE plot</h1>
+            <img id="tsne_plot" src="static/output/{{session_id}}/output.png?timestamp={{timestamp}}" style="width: 100%; max-height: 1000px; object-fit: contain;"> 
           </div>
-        </div>
-        <button type="submit" class="button" style="vertical-align:middle; visibility: hidden" onclick= "setVisible()" onclick="generateTSNE()"> <span>Generate t-SNE Plots </span></button>
-      -->
-    </form>
-  </div>
+          <!-- download image button -->
+          <a href="static/output/{{session_id}}/output.png" class="btn btn-warning text-center" id="btn-download" download="output.png" style="opacity: 0.7; border-width: 0px; display:inherit; margin: 15px">Save Image</a>
+          <!-- <button type="submit" id="btn-download" class="btn btn-success" style="opacity: 0.7; border-width: 0px;>Generate t-SNE</button> -->
 
 
-  <!-- the flower loading icon -->
-  <div class = "col-md-6"  style="background-color: #fff"   >
-    <svg class="svg-container" >
-      <symbol id="ei-spinner-icon" viewBox="0 0 50 50"><path d="M25 18c-.6 0-1-.4-1-1V9c0-.6.4-1 1-1s1 .4 1 1v8c0 .6-.4 1-1 1z"></path><path opacity=".3" d="M25 42c-.6 0-1-.4-1-1v-8c0-.6.4-1 1-1s1 .4 1 1v8c0 .6-.4 1-1 1z"></path><path opacity=".3" d="M29 19c-.2 0-.3 0-.5-.1-.4-.3-.6-.8-.3-1.3l4-6.9c.3-.4.8-.6 1.3-.3.4.3.6.8.3 1.3l-4 6.9c-.2.2-.5.4-.8.4z"></path><path opacity=".3" d="M17 39.8c-.2 0-.3 0-.5-.1-.4-.3-.6-.8-.3-1.3l4-6.9c.3-.4.8-.6 1.3-.3.4.3.6.8.3 1.3l-4 6.9c-.2.2-.5.4-.8.4z"></path><path opacity=".93" d="M21 19c-.3 0-.6-.2-.8-.5l-4-6.9c-.3-.4-.1-1 .3-1.3.4-.3 1-.1 1.3.3l4 6.9c.3.4.1 1-.3 1.3-.2.2-.3.2-.5.2z"></path><path opacity=".3" d="M33 39.8c-.3 0-.6-.2-.8-.5l-4-6.9c-.3-.4-.1-1 .3-1.3.4-.3 1-.1 1.3.3l4 6.9c.3.4.1 1-.3 1.3-.2.1-.3.2-.5.2z"></path><path opacity=".65" d="M17 26H9c-.6 0-1-.4-1-1s.4-1 1-1h8c.6 0 1 .4 1 1s-.4 1-1 1z"></path><path opacity=".3" d="M41 26h-8c-.6 0-1-.4-1-1s.4-1 1-1h8c.6 0 1 .4 1 1s-.4 1-1 1z"></path><path opacity=".86" d="M18.1 21.9c-.2 0-.3 0-.5-.1l-6.9-4c-.4-.3-.6-.8-.3-1.3.3-.4.8-.6 1.3-.3l6.9 4c.4.3.6.8.3 1.3-.2.3-.5.4-.8.4z"></path><path opacity=".3" d="M38.9 33.9c-.2 0-.3 0-.5-.1l-6.9-4c-.4-.3-.6-.8-.3-1.3.3-.4.8-.6 1.3-.3l6.9 4c.4.3.6.8.3 1.3-.2.3-.5.4-.8.4z"></path><path opacity=".44" d="M11.1 33.9c-.3 0-.6-.2-.8-.5-.3-.4-.1-1 .3-1.3l6.9-4c.4-.3 1-.1 1.3.3.3.4.1 1-.3 1.3l-6.9 4c-.1.2-.3.2-.5.2z"></path><path opacity=".3" d="M31.9 21.9c-.3 0-.6-.2-.8-.5-.3-.4-.1-1 .3-1.3l6.9-4c.4-.3 1-.1 1.3.3.3.4.1 1-.3 1.3l-6.9 4c-.2.2-.3.2-.5.2z"></path></symbol>
-      <symbol id="flower-icon" viewBox="0 0 65 98" fill="none" fill-rule="evenodd" stroke="#fff" stroke-width="2"><path d="M0.0434880207,0.660889225 C0.0434880207,0.660889225 38.4349751,22.2085462 38.4349744,96.8228805" id="Path-142"></path><path d="M62.0915607,5.40798425 C62.0915607,5.40798425 36.9588366,-4.08164371 28.3460397,24.8902199 C57.7428081,31.9172508 62.0915607,5.40798425 62.0915607,5.40798425 Z" id="Imported-Layers"></path></symbol>
-    </svg>
+          {% else %}
 
-
-    <section>
-      <section>
-        <!-- Plot displaying -->
-        {% if plot_exists %}
-        <div class="image">
-          <h1 style="color: black">t-SNE plot</h1>
-          <img id="tsne_plot" src="static/output/{{session_id}}/output.png?timestamp={{timestamp}}" style= "object-fit:cover" height="100%" width="100%" >
-        </div>
-        <!-- download image button -->
-        <a href="static/output/{{session_id}}/output.png" class="button" id="btn-download" download="output.png">Save Image</a>
-
-        {% else %}
-
-        <div class="page-loader-content" id = "loader" style= "visibility: hidden">
-          <div class="icon-loader">
-            <svg class="svg-icon-loader"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ei-spinner-icon"></use></svg>
+          <div class="page-loader-content" id = "loader" style= "visibility: hidden">
+            <div class="icon-loader">
+              <svg class="svg-icon-loader"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ei-spinner-icon"></use></svg>
+            </div>
+            <div class="icon-flower">
+              <svg class="svg-icon-flower"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#flower-icon"></use></svg>
+            </div>
           </div>
-          <div class="icon-flower">
-            <svg class="svg-icon-flower"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#flower-icon"></use></svg>
-          </div>
-        </div>
-        {% endif %}
+          {% endif %}
+        </section>
       </section>
-    </section>
 
+    </div>
   </div>
-<img id="tsne_plot" src="">
+
+    <!-- Footer -->
+    <div class="row" > 
+     <div class="footer col-md-12" style="background-color:#def4f6;">
+      <div class="text-center footer-content">
+        Made with ❤ in Toronto
+      </div>
+    </div>
+  </div>
+</body>
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -365,13 +308,3 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="static/js/bootstrap.min.js"></script>
 <script src="static/node_modules/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js" rel="stylesheet"></script>
-
-  <!-- HEADER -->
-  <div class="" > 
-   <div class="" style="background-color: #20b2bf">
-    footer
-   </div>
-  </div>
-
-</body>
-
