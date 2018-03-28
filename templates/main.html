@@ -54,7 +54,13 @@
     document.getElementById("tsne_plot").src = responseText
     console.log('done')
   }
+  function deleteArrow1(){
+    document.getElementById("arrow1").remove();
+  }
   function setVisible() {
+    document.getElementById("instruction").remove();
+    document.getElementById("arrow2").remove();
+    // set image data visible 
     document.getElementById("loader").style.visibility = "visible";
   }
   function checkFolder() {
@@ -103,7 +109,7 @@
 
 <body>
 
-  <!-- Modal -->
+  <!-- Modal for exceeding maximum number of images-->
   <div class="modal fade" id="modalTooManyImages" tabindex="-1" role="dialog" aria-labelledby="modalTooManyImagesLabel">
     <div class="modal-dialog" role="document" style="color:#333">
       <div class="modal-content">
@@ -124,7 +130,7 @@
     </div>
   </div>
 
-  <!-- Modal -->
+  <!-- Modal for exceeding max image size -->
   <div class="modal fade" id="modalImageTooBig" tabindex="-1" role="dialog" aria-labelledby="modalImageTooBigLabel">
     <div class="modal-dialog" role="document" style="color:#333">
       <div class="modal-content">
@@ -160,26 +166,30 @@
 
   <!-- Body -->
   <div class="row equal">
+
     <!-- left side of the layout -->
     <div class = "col-md-6 leftside" style="padding-left: 45px">
+      {% if not image_exists %}
+        <img class = "arrow1-position" id="arrow1" src="static/images/picture4.png"> 
+      {% else %}
+        <img class = "arrow2-position" id="arrow2" src="static/images/picture4.png"> 
+      {% endif %}
       <!-- upload images -->
       <h1>Upload New Images</h1>
+
       <form method=post enctype=multipart/form-data>
         Select images: (max. 100 images, max. 3 MB each)
         <input id=fileinput onchange="sanityCheckInputFiles()" type=file name=file accept="image/*" multiple style="opacity: .7;">
-
         <div id="cp" class="input-group colorpicker-component col-sm-4" title="Using input value">
           <input name="hexcolor" type="text" class="form-control input-lg " value="#196f90" style="height: 34px;font-size: 16px;" />
           <span class="input-group-addon" "><i></i></span>
         </div>
 
-
-        
-        <input type="submit" class="btn btn-primary" type=submit value=Upload style="opacity: 0.7; border-width: 0px;">
+        <input type="submit" class="btn btn-primary" type=submit value=Upload onclick= "deleteArrow1()" opacity: 0.7; border-width: 0px;">
       </form>
+
       {% for color in colors %}
       <div style="margin:4px 0px">
-
         {% for image in color.images %}
         <span id="input-images">
           <img class="input-image zoomed" src="{{ image }}" style= "object-fit:cover; border:5px solid #{{ color.hex }}" height="42" width="42"/>
@@ -189,10 +199,8 @@
       </div>
       {% endfor %}
 
-
-
+      <!-- parameters -->
       <form class="form-horizontal" action = '/tsne' >
-
         <h3 style="padding-top: 15px; border-top: 1px solid rgba(18, 65, 69, .07);" >Resizing Parameters </h3> 
         <span id="helpBlock" class="help-block">Values for the dimension of each image.</span>
         <div class="form-group">
@@ -247,7 +255,7 @@
         <input type="hidden" name="colors" value="{{colors}}">
         <div class="form-group">
           <div class="col-sm-offset-4 col-sm-3" >
-            <button type="submit" class="btn btn-success" style="opacity: 0.7; border-width: 0px;" onclick= "setVisible()" onclick= "checkFolder()" onclick="generateTSNE()">Generate t-SNE</button>
+            <button type="submit" class="btn btn-success" style="opacity: 0.7; border-width: 0px; z-index: 100;" onclick= "setVisible()" onclick= "checkFolder()" onclick="generateTSNE()">Generate t-SNE</button>
           </div>
         </div>
       </form>
@@ -264,8 +272,10 @@
 
       <section >
         <section>
+
           <!-- Plot displaying -->
           {% if plot_exists %}
+          <script>document.getElementById("arrow2").remove();</script>
           <div class="image">
             <h1>Resulting t-SNE plot</h1>
             <img id="tsne_plot" src="static/output/{{session_id}}/output.png?timestamp={{timestamp}}" style="width: 100%; max-height: 1000px; object-fit: contain;"> 
@@ -276,6 +286,24 @@
 
 
           {% else %}
+          
+          <div class="col-md-12 rightside" id = "instruction" style= "visibility: visible;">
+            <div class="">
+              <h1> Instructions</h1>
+              <br> </br>
+              <h4>Step 1: Select the input images that you wish to run the algorithm with</h4>
+              <br> </br>
+              <h4>Step 2: Add a marker to image sets by selecting the colour of the image border</h4>
+              <br> </br>
+              <h4>Step 3: Click the "Upload" button</h4>
+              <br> </br>
+              <h4>Step 4: Select the display parameters and algorithm parameters</h4>
+              <br> </br>
+              <h4>Step 5: Click the "Generate" button</h4>
+              <br> </br>
+              <h4>Step 6: Save the generated image with the "Save Image" button</h4>
+            </div>
+          </div>
 
           <div class="page-loader-content" id = "loader" style= "visibility: hidden">
             <div class="icon-loader">
@@ -285,6 +313,7 @@
               <svg class="svg-icon-flower"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#flower-icon"></use></svg>
             </div>
           </div>
+
           {% endif %}
         </section>
       </section>
