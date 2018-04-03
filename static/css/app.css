@@ -19,26 +19,27 @@ body {
 
 .arrow1-position {
     position: absolute;
-    top: -4px;
-    right: -72px;
+    top: 22px;
+    right: -10px;
     z-index: 90;
-    width: 47%;
+    width: 30%;
     min-height: 100px;
-    transform: rotate(150deg);
+    transform: rotate(20deg);
     object-fit: contain;
-    /* float: right; */
+    filter: brightness(1.6)contrast(5.4)hue-rotate(190deg)saturate(0.9);
 }
 
 .arrow2-position {
-    position: absolute;
-    top: 60px;
-    right: -235px;
-    z-index: 100;
-    width: 100%;
-    /* max-height: 100px; */
-    transform: rotate(60deg);
-    object-fit: contain;
-    /* float: right; */
+      position: absolute;
+      top: 263px;
+      right: -191px;
+      z-index: 100;
+      width: 80%;
+      /* max-height: 100px; */
+      transform: rotate(320deg);
+      object-fit: contain;
+      filter: brightness(1.6)contrast(100)hue-rotate(190deg)saturate(0.9);
+      /* float: right; */
 }
 
 .equal {

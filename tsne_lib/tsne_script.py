@@ -53,6 +53,7 @@ def tsne_images(session_id,colors_dict, res, perplexity, early_exaggeration, lea
 
   canvas = plot.image_scatter(vis_data[:, 0], vis_data[:, 1], images, colour,res, min_canvas_size=canvasSize )
   plt.imshow(canvas,origin='lower')
+  plt.axis('off')
   #plt.title('%s vs %s' % (x,y))
   #plt.xlabel('%s' % x)
   #plt.ylabel('%s' % y)

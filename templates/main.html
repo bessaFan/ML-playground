@@ -185,7 +185,7 @@
           <span class="input-group-addon" "><i></i></span>
         </div>
 
-        <input type="submit" class="btn btn-primary" type=submit value=Upload onclick= "deleteArrow1()" opacity: 0.7; border-width: 0px;">
+        <input type="submit" class="btn btn-primary" type=submit value=Upload onclick= "deleteArrow1()" style="opacity: 0.7; border-width: 0px;">
       </form>
 
       {% for color in colors %}
@@ -208,13 +208,6 @@
           <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary invert" data-toggle="tooltip" data-placement="right" title="The resolution of each image.">
           <div class="col-sm-4">
             <input type="number" class="form-control" name = "resolution" id="number" value = "200" placeholder="resolution">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputEmail3" class="col-sm-3 control-label">Canvas Size</label>
-          <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary invert" data-toggle="tooltip" data-placement="right" title="Size of the plot">
-          <div class="col-sm-4">
-            <input type="number" class="form-control"  name = "CanvasSize" id="number" value = "4000" placeholder="canvas size">
           </div>
         </div>
         <!-- tSNE Parameters form -->
@@ -250,12 +243,23 @@
             <input type="number" class="form-control" name = "DotsPerInchs" id="number" value = "300" placeholder="DotsPerInchs">
           </div>
         </div>
+        <div class="form-group">
+          <label for="inputEmail3" class="col-sm-3 control-label">Canvas Size</label>
+          <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary invert" data-toggle="tooltip" data-placement="right" title="Size of the plot">
+          <div class="col-sm-4">
+            <input type="number" class="form-control"  name = "CanvasSize" id="number" value = "4000" placeholder="canvas size">
+          </div>
+        </div>
         <!-- set the loading icon visible when the "generate" tSNE button is pressed  -->
         <input type="hidden" name="session" value="{{session_id}}">
         <input type="hidden" name="colors" value="{{colors}}">
         <div class="form-group">
           <div class="col-sm-offset-4 col-sm-3" >
-            <button type="submit" class="btn btn-success" style="opacity: 0.7; border-width: 0px; z-index: 100;" onclick= "setVisible()" onclick= "checkFolder()" onclick="generateTSNE()">Generate t-SNE</button>
+          {% if not image_exists %}
+            <button type="submit" class="btn btn-success" id= "generate_button" style="opacity: 0.7; border-width: 0px; z-index: 100;" onclick= "setVisible()" onclick= "checkFolder()" onclick="generateTSNE()" disabled>Generate t-SNE</button>
+          {% else %}
+            <button type="submit" class="btn btn-success" id= "generate_button" style="opacity: 0.7; border-width: 0px; z-index: 100;" onclick= "setVisible()" onclick= "checkFolder()" onclick="generateTSNE() ">Generate t-SNE</button>
+          {% endif %}
           </div>
         </div>
       </form>
@@ -278,7 +282,7 @@
           <script>document.getElementById("arrow2").remove();</script>
           <div class="image">
             <h1>Resulting t-SNE plot</h1>
-            <img id="tsne_plot" src="static/output/{{session_id}}/output.png?timestamp={{timestamp}}" style="width: 100%; max-height: 1000px; object-fit: contain;"> 
+            <img id="tsne_plot" src="static/output/{{session_id}}/output.png?timestamp={{timestamp}}" style="width: 100%; max-height: 1000px; object-fit: contain; border: 4px solid gainsboro"> 
           </div>
           <!-- download image button -->
           <a href="static/output/{{session_id}}/output.png" class="btn btn-warning text-center" id="btn-download" download="output.png" style="opacity: 0.7; border-width: 0px; display:inherit; margin: 15px">Save Image</a>
@@ -313,7 +317,6 @@
               <svg class="svg-icon-flower"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#flower-icon"></use></svg>
             </div>
           </div>
-
           {% endif %}
         </section>
       </section>
