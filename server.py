@@ -44,8 +44,9 @@ def main():
         images=list(glob.glob('static/uploads/%s/%s/*' % (session_id,color_name)))
         colors.append({'hex':color_name,'images':images})
 
+    image_exists = len(colors)
 
-    return render_template('main.html', colors=colors, session_id=session_id, plot_exists=plot_exists, timestamp=str(time.time()))
+    return render_template('main.html', colors=colors, session_id=session_id, plot_exists=plot_exists, image_exists=image_exists, timestamp=str(time.time()))
 
 
 @app.route("/tsne", methods=['POST', 'GET'])
