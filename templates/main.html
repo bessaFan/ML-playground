@@ -31,6 +31,43 @@
    });
 
 
+  function setVisible_step1(){
+    document.getElementById("fileinput").style.border = "2px dashed #2e7591";
+    document.getElementById("step2").style.border = "0px";
+    document.getElementById("step3").style.border = "0px";
+    document.getElementById("step4").style.border = "0px";
+    document.getElementById("generate_button").style.border = "0px";
+  }
+  function setVisible_step2(){
+    document.getElementById("fileinput").style.border = "0px";
+    document.getElementById("step2").style.border = "2px dashed #2e7591";
+    document.getElementById("step3").style.border = "0px";
+    document.getElementById("step4").style.border = "0px";
+    document.getElementById("generate_button").style.border = "0px";
+  }
+  function setVisible_step3(){
+    document.getElementById("fileinput").style.border = "0px";
+    document.getElementById("step2").style.border = "0px";
+    document.getElementById("step3").style.border = "2px dashed black";
+    document.getElementById("step4").style.border = "0px";
+    document.getElementById("generate_button").style.border = "0px";
+  }
+  function setVisible_step4(){
+    document.getElementById("fileinput").style.border = "0px";
+    document.getElementById("step2").style.border = "0px";
+    document.getElementById("step3").style.border = "0px";
+    document.getElementById("step4").style.border = "2px dashed #2e7591";
+    document.getElementById("generate_button").style.border = "0px";
+  }
+  function setVisible_step5(){
+    document.getElementById("fileinput").style.border = "0px";
+    document.getElementById("step2").style.border = "0px";
+    document.getElementById("step3").style.border = "0px";
+    document.getElementById("step4").style.border = "0px";
+    document.getElementById("generate_button").style.border = "2px dashed #2e7591";
+  }
+
+
     function generateTSNE() {
     // do ajax request to ask for what the location of the TSNE image is. Then use in in the following line.
     console.log('button pressed')
@@ -169,23 +206,22 @@
 
     <!-- left side of the layout -->
     <div class = "col-md-6 leftside" style="padding-left: 45px">
-      {% if not image_exists %}
+<!--       {% if not image_exists %}
         <img class = "arrow1-position" id="arrow1" src="static/images/picture4.png"> 
       {% else %}
         <img class = "arrow2-position" id="arrow2" src="static/images/picture4.png"> 
       {% endif %}
-      <!-- upload images -->
+ -->      <!-- upload images -->
       <h1>Upload New Images</h1>
-
       <form method=post enctype=multipart/form-data>
         Select images: (max. 100 images, max. 3 MB each)
-        <input id=fileinput onchange="sanityCheckInputFiles()" type=file name=file accept="image/*" multiple style="opacity: .7;">
+        <input id="fileinput" onchange="sanityCheckInputFiles()" type=file name=file accept="image/*" multiple style="    opacity: 0.7;">
         <div id="cp" class="input-group colorpicker-component col-sm-4" title="Using input value">
-          <input name="hexcolor" type="text" class="form-control input-lg " value="#196f90" style="height: 34px;font-size: 16px;" />
+          <input id= "step2" name="hexcolor" type="text" class="form-control input-lg " value="#196f90" style="height: 34px;font-size: 16px;" />
           <span class="input-group-addon" "><i></i></span>
         </div>
 
-        <input type="submit" class="btn btn-primary" type=submit value=Upload onclick= "deleteArrow1()" style="opacity: 0.7; border-width: 0px;">
+        <input id="step3" type="submit" class="btn btn-primary" type=submit value=Upload onclick= "deleteArrow1()" style="opacity: 0.7; border-width: 0px;">
       </form>
 
       {% for color in colors %}
@@ -200,7 +236,7 @@
       {% endfor %}
 
       <!-- parameters -->
-      <form class="form-horizontal" action = '/tsne' >
+      <form id="step4" class="form-horizontal" action = '/tsne' >
         <h3 style="padding-top: 15px; border-top: 1px solid rgba(18, 65, 69, .07);" >Resizing Parameters </h3> 
         <span id="helpBlock" class="help-block">Values for the dimension of each image.</span>
         <div class="form-group">
@@ -291,21 +327,14 @@
 
           {% else %}
           
-          <div class="col-md-12 rightside" id = "instruction" style= "visibility: visible;">
+          <div class="col-md-12 rightside" id = "instruction" style="visibility: visible;">
             <div class="">
               <h1> Instructions</h1>
-              <br> </br>
-              <h4>Step 1: Select the input images that you wish to run the algorithm with</h4>
-              <br> </br>
-              <h4>Step 2: Add a marker to image sets by selecting the colour of the image border</h4>
-              <br> </br>
-              <h4>Step 3: Click the "Upload" button</h4>
-              <br> </br>
-              <h4>Step 4: Select the display parameters and algorithm parameters</h4>
-              <br> </br>
-              <h4>Step 5: Click the "Generate" button</h4>
-              <br> </br>
-              <h4>Step 6: Save the generated image with the "Save Image" button</h4>
+              <button class="instruction_steps" onclick="setVisible_step1()">Step 1: Select the input images that you wish to run the algorithm with</button>
+              <button class="instruction_steps" onclick="setVisible_step2()">Step 2: Add a marker to image sets by selecting the colour of the image border</button>
+              <button class="instruction_steps" onclick="setVisible_step3()">Step 3: Upload the file</button>
+              <button class="instruction_steps" onclick="setVisible_step4()">Step 4: Select the display parameters and algorithm parameters</button>
+              <button class="instruction_steps" onclick="setVisible_step5()">Step 5: Generate t-SNE plot and save the generated image!</button>
             </div>
           </div>
 

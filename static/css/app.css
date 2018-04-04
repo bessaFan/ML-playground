@@ -16,6 +16,13 @@ body {
   color: #fff;
   background-color: #def4f6; 
 }
+.instruction_steps {
+    border: white;
+    text-align: left;
+    font-size: 20px;
+    padding: 35px 0px;
+    outline: none;
+}
 
 .arrow1-position {
     position: absolute;
@@ -412,3 +419,5 @@ body {
 .closebtn:hover {
   color: black;
 }
+
+
