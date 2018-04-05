@@ -1,5 +1,3 @@
-Inspiration from: https://onepagelove.com/isis-cocco
-
 ### Install
 
 ```
