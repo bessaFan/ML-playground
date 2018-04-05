@@ -16,6 +16,28 @@ body {
   color: #fff;
   background-color: #def4f6; 
 }
+
+.footer-link {
+  display: inline-block;
+  height: 30px;
+  padding: 0 10px;
+  margin: 10px 0;
+  font-size: 16px;
+  line-height: 30px;
+  vertical-align: middle;
+  color: #99bcbf;
+  text-decoration: none !important;
+}
+
+a {
+  color: #1bb5c2;
+}
+
+a:hover {
+  color: #1bb5c2;
+}
+
+
 .instruction_steps {
     border: white;
     text-align: left;
