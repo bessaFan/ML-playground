@@ -29,6 +29,14 @@
     $(function () {
      $('#cp').colorpicker();
    });
+    $(document).ready(function() { 
+        document.getElementById("fileinput").style.border = "2px dashed #2e7591";
+        document.getElementById("instruction_step1").style.border = "2px dashed #2e7591";
+      $(document).one('mousemove', function() {  
+        document.getElementById("fileinput").style.border = "0px";
+        document.getElementById("instruction_step1").style.border = "0px";
+      });
+    });
 
 
   function setVisible_step1(){
@@ -37,6 +45,12 @@
     document.getElementById("step3").style.border = "0px";
     document.getElementById("step4").style.border = "0px";
     document.getElementById("generate_button").style.border = "0px";
+
+    document.getElementById("instruction_step1").style.border = "2px dashed #2e7591";
+    document.getElementById("instruction_step2").style.border = "0px";
+    document.getElementById("instruction_step3").style.border = "0px";
+    document.getElementById("instruction_step4").style.border = "0px";
+    document.getElementById("instruction_step5").style.border = "0px";
   }
   function setVisible_step2(){
     document.getElementById("fileinput").style.border = "0px";
@@ -44,6 +58,12 @@
     document.getElementById("step3").style.border = "0px";
     document.getElementById("step4").style.border = "0px";
     document.getElementById("generate_button").style.border = "0px";
+
+    document.getElementById("instruction_step1").style.border = "0px";
+    document.getElementById("instruction_step2").style.border = "2px dashed #2e7591";
+    document.getElementById("instruction_step3").style.border = "0px";
+    document.getElementById("instruction_step4").style.border = "0px";
+    document.getElementById("instruction_step5").style.border = "0px";
   }
   function setVisible_step3(){
     document.getElementById("fileinput").style.border = "0px";
@@ -51,6 +71,12 @@
     document.getElementById("step3").style.border = "2px dashed black";
     document.getElementById("step4").style.border = "0px";
     document.getElementById("generate_button").style.border = "0px";
+
+    document.getElementById("instruction_step1").style.border = "0px";
+    document.getElementById("instruction_step2").style.border = "0px";
+    document.getElementById("instruction_step3").style.border = "2px dashed #2e7591";
+    document.getElementById("instruction_step4").style.border = "0px";
+    document.getElementById("instruction_step5").style.border = "0px";
   }
   function setVisible_step4(){
     document.getElementById("fileinput").style.border = "0px";
@@ -58,6 +84,12 @@
     document.getElementById("step3").style.border = "0px";
     document.getElementById("step4").style.border = "2px dashed #2e7591";
     document.getElementById("generate_button").style.border = "0px";
+
+    document.getElementById("instruction_step1").style.border = "0px";
+    document.getElementById("instruction_step2").style.border = "0px";
+    document.getElementById("instruction_step3").style.border = "0px";
+    document.getElementById("instruction_step4").style.border = "2px dashed #2e7591";
+    document.getElementById("instruction_step5").style.border = "0px";
   }
   function setVisible_step5(){
     document.getElementById("fileinput").style.border = "0px";
@@ -65,6 +97,12 @@
     document.getElementById("step3").style.border = "0px";
     document.getElementById("step4").style.border = "0px";
     document.getElementById("generate_button").style.border = "2px dashed #2e7591";
+
+    document.getElementById("instruction_step1").style.border = "0px";
+    document.getElementById("instruction_step2").style.border = "0px";
+    document.getElementById("instruction_step3").style.border = "0px";
+    document.getElementById("instruction_step4").style.border = "0px";
+    document.getElementById("instruction_step5").style.border = "2px dashed #2e7591";
   }
 
 
@@ -164,6 +202,7 @@
         </div>
       </div>
 
+
     </div>
   </div>
 
@@ -202,6 +241,7 @@
   </div>
 
   <!-- Body -->
+  <div class = "container">
   <div class="row equal">
 
     <!-- left side of the layout -->
@@ -221,7 +261,7 @@
           <span class="input-group-addon" "><i></i></span>
         </div>
 
-        <input id="step3" type="submit" class="btn btn-primary" type=submit value=Upload onclick= "deleteArrow1()" style="opacity: 0.7; border-width: 0px;">
+        <input id="step3" type="submit"  class="btn btn-primary" type=submit value=Upload onclick= "deleteArrow1()" style="opacity: 0.7; border-width: 0px;">
       </form>
 
       {% for color in colors %}
@@ -236,7 +276,7 @@
       {% endfor %}
 
       <!-- parameters -->
-      <form id="step4" class="form-horizontal" action = '/tsne' >
+      <form id="step4"  class="form-horizontal" action = '/tsne' >
         <h3 style="padding-top: 15px; border-top: 1px solid rgba(18, 65, 69, .07);" >Resizing Parameters </h3> 
         <span id="helpBlock" class="help-block">Values for the dimension of each image.</span>
         <div class="form-group">
@@ -329,12 +369,13 @@
           
           <div class="col-md-12 rightside" id = "instruction" style="visibility: visible;">
             <div class="">
-              <h1> Instructions</h1>
-              <button class="instruction_steps" onclick="setVisible_step1()">Step 1: Select the input images that you wish to run the algorithm with</button>
-              <button class="instruction_steps" onclick="setVisible_step2()">Step 2: Add a marker to image sets by selecting the colour of the image border</button>
-              <button class="instruction_steps" onclick="setVisible_step3()">Step 3: Upload the file</button>
-              <button class="instruction_steps" onclick="setVisible_step4()">Step 4: Select the display parameters and algorithm parameters</button>
-              <button class="instruction_steps" onclick="setVisible_step5()">Step 5: Generate t-SNE plot and save the generated image!</button>
+              <h1> Instructions</h1> <br>
+              <h4> Mouse over the instructions!</h4>
+              <button id="instruction_step1" class="instruction_steps" onmouseover="setVisible_step1()">Step 1: Select the input images that you wish to run the algorithm with</button>
+              <button id="instruction_step2" class="instruction_steps" onmouseover="setVisible_step2()">Step 2: Add a marker to image sets by selecting the colour of the image border</button>
+              <button id="instruction_step3" class="instruction_steps" onmouseover="setVisible_step3()">Step 3: Upload the file</button>
+              <button id="instruction_step4" class="instruction_steps" onmouseover="setVisible_step4()">Step 4: Select the display parameters and algorithm parameters</button>
+              <button id="instruction_step5" class="instruction_steps" onmouseover="setVisible_step5()">Step 5: Generate t-SNE plot and save the generated image!</button>
             </div>
           </div>
 
@@ -352,15 +393,20 @@
 
     </div>
   </div>
-
+  </div>
     <!-- Footer -->
     <div class="row" > 
-     <div class="footer col-md-12" style="background-color:#def4f6;">
+     <div class="footer col-md-12" style="background-color:#def4f6;"><br>
+      <div>
+      <h4 style="position: absolute; left: 120px;">Contact: hello@tsne.com</h4>
+      </div>
+      <a href="https://github.com/bessaFan/generate_tsne_plots_online"> <img style="opacity: 0.7;width:50px;height:50px;border:0; position:absolute; right:120px;" src="/static/images/github_icon.svg" alt="git hub link"></a><br><br>
       <div class="text-center footer-content">
         Made with ❤ in Toronto
       </div>
     </div>
   </div>
+
 </body>
 
 
