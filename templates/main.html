@@ -42,9 +42,9 @@
     function setVisible_step1(){
       document.getElementById("fileinput").style.border = "2px dashed #2e7591";
       document.getElementById("step2").style.border = "2px dashed rgba(0,0,0,0)";
-      document.getElementById("step3").style.border = "2px dashed #629cbf";
+      document.getElementById("step3").style.border = "2px dashed #337ab7";
       document.getElementById("step4").style.border = "2px dashed #f4f9fa";
-      document.getElementById("generate_button").style.border = "2px dashed #f4f9fa";
+      document.getElementById("generate_button").style.border = "2px dashed #5cb85c";
 
       document.getElementById("instruction_step1").style.border = "2px dashed #2e7591";
       document.getElementById("instruction_step2").style.border = "2px dashed rgba(0,0,0,0)";
@@ -55,9 +55,9 @@
     function setVisible_step2(){
       document.getElementById("fileinput").style.border = "2px dashed #f4f9fa";
       document.getElementById("step2").style.border = "2px dashed #2e7591";
-      document.getElementById("step3").style.border = "2px dashed #629cbf";
+      document.getElementById("step3").style.border = "2px dashed #337ab7";
       document.getElementById("step4").style.border = "2px dashed #f4f9fa";
-      document.getElementById("generate_button").style.border = "2px dashed #f4f9fa";
+      document.getElementById("generate_button").style.border = "2px dashed #5cb85c";
 
       document.getElementById("instruction_step1").style.border = "2px dashed rgba(0,0,0,0)";
       document.getElementById("instruction_step2").style.border = "2px dashed #2e7591";
@@ -70,7 +70,7 @@
       document.getElementById("step2").style.border = "2px dashed rgba(0,0,0,0)";
       document.getElementById("step3").style.border = "2px dashed black";
       document.getElementById("step4").style.border = "2px dashed #f4f9fa";
-      document.getElementById("generate_button").style.border = "2px dashed #f4f9fa";
+      document.getElementById("generate_button").style.border = "2px dashed #5cb85c";
 
       document.getElementById("instruction_step1").style.border = "2px dashed rgba(0,0,0,0)";
       document.getElementById("instruction_step2").style.border = "2px dashed rgba(0,0,0,0)";
@@ -81,9 +81,9 @@
     function setVisible_step4(){
       document.getElementById("fileinput").style.border = "2px dashed #f4f9fa";
       document.getElementById("step2").style.border = "2px dashed rgba(0,0,0,0)";
-      document.getElementById("step3").style.border = "2px dashed #629cbf";
+      document.getElementById("step3").style.border = "2px dashed #337ab7";
       document.getElementById("step4").style.border = "2px dashed #2e7591";
-      document.getElementById("generate_button").style.border = "2px dashed #f4f9fa";
+      document.getElementById("generate_button").style.border = "2px dashed #5cb85c";
 
       document.getElementById("instruction_step1").style.border = "2px dashed rgba(0,0,0,0)";
       document.getElementById("instruction_step2").style.border = "2px dashed rgba(0,0,0,0)";
@@ -94,9 +94,9 @@
     function setVisible_step5(){
       document.getElementById("fileinput").style.border = "2px dashed #f4f9fa";
       document.getElementById("step2").style.border = "2px dashed rgba(0,0,0,0)";
-      document.getElementById("step3").style.border = "2px dashed #629cbf";
+      document.getElementById("step3").style.border = "2px dashed #337ab7";
       document.getElementById("step4").style.border = "2px dashed #f4f9fa";
-      document.getElementById("generate_button").style.border = "2px dashed #2e7591";
+      document.getElementById("generate_button").style.border = "2px dashed #000";
 
       document.getElementById("instruction_step1").style.border = "2px dashed rgba(0,0,0,0)";
       document.getElementById("instruction_step2").style.border = "2px dashed rgba(0,0,0,0)";
@@ -128,9 +128,6 @@
     console.log(responseText)
     document.getElementById("tsne_plot").src = responseText
     console.log('done')
-  }
-  function deleteArrow1(){
-    document.getElementById("arrow1").remove();
   }
   function setVisible() {
     document.getElementById("instruction").remove();
@@ -288,7 +285,7 @@
         <span class="input-group-addon" "><i></i></span>
       </div>
 
-      <input id="step3" type="submit"  class="btn btn-primary" type=submit value=Upload onclick= "deleteArrow1()" style="opacity: 0.7; border-width: 0px;">
+      <input id="step3" type="submit" class="btn btn-primary" value="Upload" style="opacity: 0.7; border: 2px dashed  #337ab7;">
     </form>
 
     {% for color in colors %}
