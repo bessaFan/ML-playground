@@ -37,6 +37,9 @@ a:hover {
   color: #1bb5c2;
 }
 
+.tooltip {
+  width: 200px;
+}
 
 .instruction_steps {
     border: white;
