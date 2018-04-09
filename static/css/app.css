@@ -17,6 +17,14 @@ body {
   background-color: #def4f6; 
 }
 
+circle {
+    fill: none;
+    stroke: black;
+    stroke-width: 1px;
+    opacity: 0.7;
+
+}
+
 .footer-link {
   display: inline-block;
   height: 30px;
