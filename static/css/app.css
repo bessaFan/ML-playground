@@ -35,8 +35,8 @@ body {
   width: 100%;
   background-size: cover; 
   /*background-repeat: repeat;*/
-  color:  #0b475e  ;
-  /*color: black;*/
+  /*color:  #0b475e  ;*/
+  color: #f4f9fa;
   text-align: center;
   padding: 90px;
 }
@@ -52,7 +52,7 @@ body {
 }
 
 #try-btn {
-  color: #0b475e;
+  color: #f4f9fa;
   text-shadow: none;
   background-color: transparent;
   scroll-behavior: smooth;
