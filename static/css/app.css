@@ -17,6 +17,46 @@ body {
   background-color: #def4f6; 
 }
 
+.header {
+  /*filter: hue-rotate(180deg);*/
+  /*transform: rotate(90deg);*/
+  /*transform: rotate(180deg);*/
+  /*background: url(https://aigrant.org/img/space2.jpg) no-repeat bottom center scroll;*/
+  /*background: url(../images/pattern.jpg) no-repeat bottom center scroll;*/
+  background: url(https://images.pexels.com/photos/5439/earth-space.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940) no-repeat bottom center scroll;
+  /*background: url(https://images.unsplash.com/photo-1517052269751-4ae3ad86cc59?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9d3336608d2937d1fe1b8fffbba3993d&auto=format&fit=crop&w=2689&q=80) no-repeat bottom center scroll;*/
+  /*background: url(https://images.unsplash.com/photo-1516575448682-93a05df8bf59?ixlib=rb-0.3.5&s=bb615bec006e35311253919969b299e0&auto=format&fit=crop&w=2468&q=80) no-repeat bottom center scroll;*/
+  /*background: url(https://images.unsplash.com/photo-1479981280584-037818c1297d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=b8a589919b4e88c299a3e2c9d5244927&auto=format&fit=crop&w=1050&q=80) no-repeat bottom center scroll;*/
+  /*background: url(https://images.unsplash.com/photo-1515387784663-e2e29a23f69e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=2318a6f6c34bfe268eff6dd28ed4321f&auto=format&fit=crop&w=668&q=80) no-repeat bottom center scroll;*/
+  /*background: url(https://www.toptal.com/designers/subtlepatterns/patterns/pixel_weave.png) no-repeat bottom center scroll;*/
+  /*background: url(https://www.toptal.com/designers/subtlepatterns/patterns/tic-tac-toe.png) no-repeat bottom center scroll;*/
+  width: 100%;
+  background-size: cover; 
+  /*background-repeat: repeat;*/
+
+
+  color: white;
+  /*color: black;*/
+  text-align: center;
+  padding: 90px;
+}
+
+.header-title {
+  font-size: 36px;
+  font-weight: 777;
+  letter-spacing: 1px;
+}
+
+.header-subtitle {
+  padding: 50px 100px;
+}
+
+#try-btn {
+  color: white;
+  /*color: black;*/
+  background-color: transparent;
+}
+
 .footer-link {
   display: inline-block;
   height: 30px;
@@ -79,20 +119,6 @@ a:hover {
   display: flex;
   display: -webkit-flex;
   flex-wrap: wrap;
-}
-
-.header{
-  background-color:#20b2bf;
-  color: #00384d;
-  font-size: 20px;
-}
-.header-text{
-  padding: 20px 25px;
-  float:left;
-}
-.header-img{
-  margin: 15px 30px;
-  float:right;
 }
 
 .leftside {
