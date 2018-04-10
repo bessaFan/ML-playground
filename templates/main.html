@@ -403,54 +403,19 @@
 
     <section >
       <section>
-
-        <!-- Plot displaying -->
-        {% if plot_exists %}
-        <div class="image" id="the_result_plot">
-          <h1>Resulting t-SNE plot</h1>
-          <svg height="1000" width="585" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);">
-            <circle  cx="293" cy="455" r="350"  />
-            <circle  cx="293" cy="455" r="270"  />
-            <circle  cx="293" cy="455" r="200"  />
-            <circle  cx="293" cy="455" r="140"  />
-            <circle  cx="293" cy="455" r="90"  />
-            <circle  cx="293" cy="455" r="50"  />
-            <circle  cx="293" cy="455" r="20"  />
-          </svg> 
-          <img id="tsne_plot" src="static/output/{{session_id}}/output.png?timestamp={{timestamp}}" style="width: 100%; max-height: 1000px; object-fit: contain; /*border: 4px solid gainsboro*/"> 
-
-        </div>
-        <!-- download image button -->
-        <div>
-            <input type="checkbox" onclick="tweet_checkbox()" id="permission" name="subscribe" value="newsletter" style="opacity: 0.7;">
-            <label for="permission" style="font-size: 17px;" >Can we tweet your result? (for science!)</label>
-        </div>
-        <a href="static/output/{{session_id}}/output.png" class="btn btn-warning text-center" id="btn-download" download="output.png" style="opacity: 0.7; border-width: 0px; display:inherit; margin: 15px">Save Image</a>
-        <!-- <button type="submit" id="btn-download" class="btn btn-success" style="opacity: 0.7; border-width: 0px;>Generate t-SNE</button> -->
-
-        {% else %}
-
-        <div class="col-md-12 rightside" id = "instruction" style="visibility: visible;">
-          <div class="">
-            <h1> Instructions</h1> <br>
-            <h4> Mouse over the instructions!</h4>
-            <button id="instruction_step1" class="instruction_steps" onmouseover="setVisible_step1()">Step 1: Select the input images that you wish to run the algorithm with</button>
-            <button id="instruction_step2" class="instruction_steps" onmouseover="setVisible_step2()">Step 2: Add a marker to image sets by selecting the colour of the image border</button>
-            <button id="instruction_step3" class="instruction_steps" onmouseover="setVisible_step3()">Step 3: Upload the file</button>
-            <button id="instruction_step4" class="instruction_steps" onmouseover="setVisible_step4()">Step 4: Select the display parameters and algorithm parameters</button>
-            <button id="instruction_step5" class="instruction_steps" onmouseover="setVisible_step5()">Step 5: Generate t-SNE plot and save the generated image!</button>
-          </div>
-        </div>
-
-        {% endif %}
-        <div class="page-loader-content" id = "loader" style= "visibility: hidden;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);}">
+        <div class="page-loader-content" id = "loader" style= "visibility: visible;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);}">
           <div class="icon-loader">
             <svg class="svg-icon-loader"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ei-spinner-icon"></use></svg>
           </div>
           <div class="icon-flower">
             <svg class="svg-icon-flower"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#flower-icon"></use></svg>
           </div>
-          <h4 style= "visibility: hidden;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);"}>Hold tight! This may take a minute<h4>
+          <div style="position: absolute;right: -50px;top: 180px;left: 30px;color:#626d70;">
+            <h4>Hold tight!</h4>
+          </div>
+          <div style="position: absolute;right: -50px;top: 210px;left: -35px;color:#626d70;">
+            <h4 style="top: 40px;">This might take a minute...</h4><h4>
+          </h4></div>
         </div>
       </section>
     </section>
