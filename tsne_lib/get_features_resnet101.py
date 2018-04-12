@@ -42,7 +42,7 @@ def resnet(filenames):
     restorer = tf.train.Saver(restored_variables)
 
     with tf.Session() as sess:
-      img_net_path = '/home/dan/tensorflow_tests/models/resnet_v2_101.ckpt'
+      img_net_path = '../models/resnet_v2_101.ckpt'
       restorer.restore(sess, img_net_path)
       features = sess.run(model, feed_dict={in_images:images})
 

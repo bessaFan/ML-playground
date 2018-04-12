@@ -42,7 +42,7 @@ def vgg16(filenames):
     restorer = tf.train.Saver(restored_variables)
 
     with tf.Session() as sess:
-      img_net_path = '/home/dan/tensorflow_tests/models/vgg_16.ckpt'
+      img_net_path = '../models/vgg_16.ckpt'
       restorer.restore(sess, img_net_path)
       features = sess.run(fc7, feed_dict={in_images:images})
 
