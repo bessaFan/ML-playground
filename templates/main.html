@@ -261,7 +261,7 @@
 
 <!-- Header -->
 
-  <div class="row" > 
+  <div class="row" style="height: 100%"> 
     <div class="col-md-12" >
 
       <!-- Links at top of page -->
@@ -280,7 +280,7 @@
       </div>
 
       <!-- <div class=container> -->
-        <div class="header">
+        <div class="header" style="height: 100%">
           <div class="header-title">
             Deep Learning<br>Image Similarity<br>Web Tool
           </div>
@@ -482,11 +482,12 @@
         </div>
         <!-- download image button and tweet result-->
         <div>
-            <input type="checkbox" onclick="tweet_checkbox()" id="permission" name="subscribe" value="newsletter" style="opacity: 0.7; bottom: -230px; position: relative;left: 14px; ">
-            <label for="permission" style="font-size: 17px;  left: 20px; bottom: -230px; position: relative;" >Can we tweet your result? (for science!)</label>
+            <input type="checkbox" onclick="tweet_checkbox()" id="permission" name="subscribe" value="newsletter" style="opacity: 0.7;bottom: 80px;position: absolute;left: 34px;">
+            <label for="permission" style="font-size: 17px;  left: 60px; bottom: 70px; position: absolute;" >Can we tweet your result? (for science!)</label>
         </div>
 
-        <a href="static/output/{{session_id}}/output.png?timestamp={{timestamp}}" class="btn btn-warning text-center" id="btn-download" download="output.png" style="bottom: -250px; position: relative; opacity: 0.7; display:inherit; margin: 15px;">Save Image</a>
+        <a href="static/output/f6d761ef-5500-422e-a996-b51082bb0465/output.png?timestamp=1523566065.49" class="btn btn-warning text-center" id="btn-download" download="output.png" style="bottom: 0px;left: 20px;position: absolute;right: 400px;opacity: 0.7;display:inherit;margin: 15px;">Save Image</a>
+        <a href="static/output/f6d761ef-5500-422e-a996-b51082bb0465/output.csv?timestamp=1523566065.49" class="btn btn-info text-center" id="btn-download" download="output.csv" style="bottom: 0px;left: 390px;position: absolute;right: 20px;opacity: 0.7;display:inherit;margin: 15px;">Save Feature Vectors CSV</a>
         <!-- <button type="submit" id="btn-download" class="btn btn-success" style="opacity: 0.7; border-width: 0px;>Generate t-SNE</button> -->
 
         {% else %}

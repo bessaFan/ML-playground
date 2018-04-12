@@ -3,6 +3,9 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2' # disables warning: Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
 
 import time
+import utils 
+import csv
+import pandas as pd
 import glob
 import skimage
 import skimage.io
@@ -20,7 +23,7 @@ from sklearn.metrics import average_precision_score
 slim = tf.contrib.slim
 vgg = nets.vgg
 
-def vgg16(filenames):
+def vgg16(filenames, session_id):
   # Load images
   images = np.zeros((len(filenames), 224, 224, 3), dtype=np.float32)
   for i, imageName in enumerate(filenames): 
@@ -48,7 +51,30 @@ def vgg16(filenames):
 
   # Clean up model 
   tf.reset_default_graph()
-
   features = features.squeeze() # remove dimensions that are only 1 long
+
+
+  #csv stuff
+  features_1d = [None] * features.shape[0]
+  placeholder=""
+  for x in range(0, features.shape[0]):
+    for y in range(0, features.shape[1]):
+        placeholder+=str(features[x][y])+" "
+    features_1d[x]=placeholder
+    placeholder=""
+  
+
+
+  csv= 'static/output/%s/output.csv' % session_id
+
+  if os.path.isfile(csv):
+    df = utils.read_csv(csv)
+    df['VGG_features']=pd.Series (features_1d)
+  else:
+    df = pd.DataFrame (features_1d, columns=['VGG_features']) 
+  df.to_csv(csv, index=False)
+
+
+
   return features 
 

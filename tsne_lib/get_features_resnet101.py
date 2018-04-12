@@ -4,6 +4,9 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2' # disables warning: Your CPU supports i
 
 import time
 import glob
+import utils 
+import csv
+import pandas as pd
 import skimage
 import skimage.io
 import scipy
@@ -21,7 +24,7 @@ from sklearn.metrics import average_precision_score
 slim = tf.contrib.slim
 
 
-def resnet(filenames):
+def resnet(filenames, session_id):
   # Clean up model 
   tf.reset_default_graph()
 
@@ -53,4 +56,26 @@ def resnet(filenames):
   tf.reset_default_graph()
 
   features = features.squeeze() # remove dimensions that are only 1 long
+
+  #csv stuff
+  # features_1d=np.empty(features.shape[0])
+  features_1d = [None] * features.shape[0]
+  placeholder=""
+  for x in range(0, features.shape[0]):
+    for y in range(0, features.shape[1]):
+        placeholder+=str(features[x][y])+" "
+    features_1d[x]=placeholder
+    placeholder=""
+  
+
+
+  csv= 'static/output/%s/output.csv' % session_id
+
+  if os.path.isfile(csv):
+    df = utils.read_csv(csv)
+    df['Resnet_features']=pd.Series (features_1d)
+  else:
+    df = pd.DataFrame (features_1d, columns=['Resnet_features']) 
+  df.to_csv(csv, index=False)
+
   return features

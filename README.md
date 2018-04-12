@@ -63,12 +63,12 @@ sudo run-parts -v /etc/cron.daily
 
 ## Helpful Resources
 This website contains introsuction to multiple Manifold Learning Models 
- -   [http://scikit-learn.org/stable/modules/manifold.html#manifold](http://scikit-learn.org/stable/modules/manifold.html#manifold)
+-   [http://scikit-learn.org/stable/modules/manifold.html#manifold](http://scikit-learn.org/stable/modules/manifold.html#manifold)
 
 This website has a cool  t-SNE  visualization and discuss multiple misconceptions of t-sne 
 -   [https://distill.pub/2016/misread-tsne/](https://distill.pub/2016/misread-tsne/)
 
 
 More t-SNE reading!!
-- - https://indico.io/blog/visualizing-with-t-sne/
+-  	https://indico.io/blog/visualizing-with-t-sne/
 
