@@ -18,44 +18,40 @@ body {
 }
 
 .header {
-  background: url(https://images.pexels.com/photos/5439/earth-space.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940) no-repeat bottom center scroll;
   background: url('../images/6.jpg') ;
-  /*filter: hue-rotate(180deg);*/
-  /*transform: rotate(90deg);*/
-  /*transform: rotate(180deg);*/
-  /*background: url(https://aigrant.org/img/space2.jpg) no-repeat bottom center scroll;*/
-  /*background: url(../images/pattern.jpg) no-repeat bottom center scroll;*/
-
-  /*background: url(https://images.unsplash.com/photo-1517052269751-4ae3ad86cc59?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9d3336608d2937d1fe1b8fffbba3993d&auto=format&fit=crop&w=2689&q=80) no-repeat bottom center scroll;*/
-  /*background: url(https://images.unsplash.com/photo-1516575448682-93a05df8bf59?ixlib=rb-0.3.5&s=bb615bec006e35311253919969b299e0&auto=format&fit=crop&w=2468&q=80) no-repeat bottom center scroll;*/
-  /*background: url(https://images.unsplash.com/photo-1479981280584-037818c1297d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=b8a589919b4e88c299a3e2c9d5244927&auto=format&fit=crop&w=1050&q=80) no-repeat bottom center scroll;*/
-  /*background: url(https://images.unsplash.com/photo-1515387784663-e2e29a23f69e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=2318a6f6c34bfe268eff6dd28ed4321f&auto=format&fit=crop&w=668&q=80) no-repeat bottom center scroll;*/
-  /*background: url(https://www.toptal.com/designers/subtlepatterns/patterns/pixel_weave.png) no-repeat bottom center scroll;*/
-  /*background: url(https://www.toptal.com/designers/subtlepatterns/patterns/tic-tac-toe.png) no-repeat bottom center scroll;*/
   width: 100%;
   background-size: cover; 
-  /*background-repeat: repeat;*/
-  /*color:  #0b475e  ;*/
+  background-color: #000;
   color: #f4f9fa;
   text-align: center;
-  padding: 90px;
+  padding: 250px 100px;
 }
 
 .header-title {
-  font-size: 36px;
+  font-size: 66px;
   font-weight: 777;
   letter-spacing: 1px;
+  text-shadow: 2px 2px black;
 }
 
 .header-subtitle {
-  padding: 50px 100px;
+  font-size: 25px;
+  padding: 100px 100px;
 }
 
 #try-btn {
+  padding: 12px 24px;
+  border: 2px solid;
+  font-size: 25px;
+  border-color: #ccc;
   color: #f4f9fa;
   text-shadow: none;
   background-color: transparent;
   scroll-behavior: smooth;
+}
+
+#try-btn:hover {
+  border-color: #eee;
 }
 
 circle {
@@ -141,7 +137,7 @@ a:hover {
 
 .footer{
   color: #6d9498;
-
+  background-color: #def4f6;
 }
 
 .footer-content{

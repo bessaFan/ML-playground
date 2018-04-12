@@ -26,7 +26,11 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 plt.switch_backend('agg')
 
-def tsne_images(session_id,colors_dict, res, perplexity, early_exaggeration, learning_rate, dpi, canvasSize,colour):
+#from get_features_resnet101 import resnet
+#from get_features_vgg16 import vgg16
+
+ 
+def tsne_images(session_id,colors_dict, res, perplexity, early_exaggeration, learning_rate, dpi, canvasSize,colour, model_name):
 
   l = [c['images'] for c in colors_dict]  # pull out image names into list of lists
   filenames = [item for sublist in l for item in sublist] # flatten list
@@ -47,8 +51,14 @@ def tsne_images(session_id,colors_dict, res, perplexity, early_exaggeration, lea
     x_value[count,:] = image1d # add a row of values
     count += 1
 
+  if model_name:
+    if model_name == 'ResNet V2 101':
+      x_value = resnet(filenames) 
+    if model_name == 'VGG 16':
+      x_value = vgg16(filenames) 
+
   # vis_data = bh_sne(x_value,perplexity=perplexity)# tsne embedding
-  tsne = manifold.TSNE( init='pca', random_state=0, early_exaggeration=early_exaggeration, learning_rate=learning_rate,perplexity=perplexity)
+  tsne = manifold.TSNE(init='pca', random_state=0, early_exaggeration=early_exaggeration, learning_rate=learning_rate,perplexity=perplexity)
   vis_data = tsne.fit_transform(x_value)
 
   canvas = plot.image_scatter(vis_data[:, 0], vis_data[:, 1], images, colour,res, min_canvas_size=canvasSize )
@@ -57,7 +67,7 @@ def tsne_images(session_id,colors_dict, res, perplexity, early_exaggeration, lea
   #plt.title('%s vs %s' % (x,y))
   #plt.xlabel('%s' % x)
   #plt.ylabel('%s' % y)
-  #patches=[]
+  #patches=[]  
   #plt.legend(handles=patches,bbox_to_anchor=(1.04,0.5), loc="center left", borderaxespad=0, frameon=False)
   save_location = 'static/output/%s/output.png' % session_id
   plt.savefig(save_location,dpi=dpi,pad_inches=1,bbox_inches='tight')

@@ -258,9 +258,8 @@
     <div class="col-md-12" >
       <!-- <div class=container> -->
         <div class="header">
-        <br> <br> <br>
-          <div class="header-title" style="text-shadow: 1px 1px black;">
-            Deep Learning<br>Image Simiarity<br>Web Tool
+          <div class="header-title">
+            Deep Learning<br>Image Similarity<br>Web Tool
           </div>
           <div class="header-subtitle">
             Our web app provides a "No code. No installation" platform for researchers to upload images and compare clustering results with popular machine learning models and manifold learning algorithms, making experimenting and prototyping with ML less time-consuming. There’s currently no existing app that allows fast organization and visualization of data
@@ -268,7 +267,6 @@
           <a href="#try" >
             <button class="btn btn-default" id="try-btn">TRY NOW</button>
           </a>
-          <br> <br> <br> <br> <br><br> <br>
 
         </div>
       <!-- </div> -->
@@ -408,17 +406,19 @@
         <!-- Plot displaying -->
         {% if plot_exists %}
         <div class="image" id="the_result_plot">
-          <h1>Resulting t-SNE plot</h1>
-          <svg height="1000" width="585" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);">
-            <circle  cx="293" cy="455" r="350"  />
-            <circle  cx="293" cy="455" r="270"  />
-            <circle  cx="293" cy="455" r="200"  />
-            <circle  cx="293" cy="455" r="140"  />
-            <circle  cx="293" cy="455" r="90"  />
-            <circle  cx="293" cy="455" r="50"  />
-            <circle  cx="293" cy="455" r="20"  />
-          </svg> 
-          <img id="tsne_plot" src="static/output/{{session_id}}/output.png?timestamp={{timestamp}}" style="width: 100%; max-height: 1000px; object-fit: contain; /*border: 4px solid gainsboro*/"> 
+          <h1>Result</h1>
+          <div>
+            <svg height="1000" width="100%" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%); opacity: .2;">
+              <circle  cx="50%" cy="50%" r="350"  />
+              <circle  cx="50%" cy="50%" r="270"  />
+              <circle  cx="50%" cy="50%" r="200"  />
+              <circle  cx="50%" cy="50%" r="140"  />
+              <circle  cx="50%" cy="50%" r="90"  />
+              <circle  cx="50%" cy="50%" r="50"  />
+              <circle  cx="50%" cy="50%" r="20"  />
+            </svg> 
+            <img id="tsne_plot" src="static/output/{{session_id}}/output.png?timestamp={{timestamp}}" style="width: 100%; max-height: 1000px; object-fit: contain; /*border: 4px solid gainsboro*/"> 
+          </div>
 
         </div>
         <!-- download image button -->
@@ -426,7 +426,8 @@
             <input type="checkbox" onclick="tweet_checkbox()" id="permission" name="subscribe" value="newsletter" style="opacity: 0.7;">
             <label for="permission" style="font-size: 17px;" >Can we tweet your result? (for science!)</label>
         </div>
-        <a href="static/output/{{session_id}}/output.png" class="btn btn-warning text-center" id="btn-download" download="output.png" style="opacity: 0.7; border-width: 0px; display:inherit; margin: 15px">Save Image</a>
+
+        <a href="static/output/{{session_id}}/output.png?timestamp={{timestamp}}" class="btn btn-warning text-center" id="btn-download" download="output.png" style="opacity: 0.7; border-width: 0px; display:inherit; margin: 15px">Save Image</a>
         <!-- <button type="submit" id="btn-download" class="btn btn-success" style="opacity: 0.7; border-width: 0px;>Generate t-SNE</button> -->
 
         {% else %}
@@ -442,7 +443,6 @@
             <button id="instruction_step5" class="instruction_steps" onmouseover="setVisible_step5()">Step 5: Generate t-SNE plot and save the generated image!</button>
           </div>
         </div>
-
         {% endif %}
         <div class="page-loader-content" id = "loader" style= "visibility: hidden;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);}">
           <div class="icon-loader">
@@ -451,10 +451,10 @@
           <div class="icon-flower">
             <svg class="svg-icon-flower"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#flower-icon"></use></svg>
           </div>
-          <div style="position: absolute;right: -50px;top: 180px;left: 30px;color:#626d70;">
+          <div style="position: absolute;right: -50px;top: 180px;left: 30px;color:#626d70; opacity: .8;">
             <h4>Hold tight!</h4>
           </div>
-          <div style="position: absolute;right: -50px;top: 210px;left: -35px;color:#626d70;">
+          <div style="position: absolute;right: -50px;top: 210px;left: -35px;color:#626d70; opacity: .8;">
             <h4 style="top: 40px;">This might take a minute...</h4><h4>
           </h4></div>
         </div>
@@ -466,20 +466,20 @@
 <!-- Footer -->
 <div class = "container" style="padding-top: 30px;
 padding-bottom: 30px;">
-<div class="row" >
-  <div class="footer col-sm-6" style="background-color:#def4f6;">
+<div class="row footer" >
+  <div class="col-sm-6">
     <a class="footer-link" href="mailto:danielsnider12@gmail.com; bessaFan01@gmail.com" target="_blank">Contact</a>
     <a class="footer-link" href="https://github.com/bessaFan/generate_tsne_plots_online" target="_blank" >Documentation</a>
   </div>
-  <div class="footer col-sm-6" style="background-color:#def4f6;">
-    <div class="" style="float:right">
+  <div class="col-sm-6">
+    <div style="float:right">
       <a href="https://github.com/bessaFan/generate_tsne_plots_online" target="_blank">
         <img style="opacity: 0.7;width:50px;" src="/static/images/github_icon.svg">
       </a>
     </div>
   </div>
 </div>
-<div class="row" >
+<div class="row footer">
   <div class="text-center footer-content" style="color: #6d9498;">Made with ❤ in Toronto</div>
 </div>
 </div>
