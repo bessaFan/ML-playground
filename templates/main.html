@@ -441,13 +441,13 @@
           </div>
 
         </div>
-        <!-- download image button -->
+        <!-- download image button and tweet result-->
         <div>
-            <input type="checkbox" onclick="tweet_checkbox()" id="permission" name="subscribe" value="newsletter" style="opacity: 0.7;">
-            <label for="permission" style="font-size: 17px;" >Can we tweet your result? (for science!)</label>
+            <input type="checkbox" onclick="tweet_checkbox()" id="permission" name="subscribe" value="newsletter" style="opacity: 0.7; bottom: -230px; position: relative;left: 14px; ">
+            <label for="permission" style="font-size: 17px;  left: 20px; bottom: -230px; position: relative;" >Can we tweet your result? (for science!)</label>
         </div>
 
-        <a href="static/output/{{session_id}}/output.png?timestamp={{timestamp}}" class="btn btn-warning text-center" id="btn-download" download="output.png" style="opacity: 0.7; border-width: 0px; display:inherit; margin: 15px">Save Image</a>
+        <a href="static/output/{{session_id}}/output.png?timestamp={{timestamp}}" class="btn btn-warning text-center" id="btn-download" download="output.png" style="bottom: -250px; position: relative; opacity: 0.7; display:inherit; margin: 15px;">Save Image</a>
         <!-- <button type="submit" id="btn-download" class="btn btn-success" style="opacity: 0.7; border-width: 0px;>Generate t-SNE</button> -->
 
         {% else %}
