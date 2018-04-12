@@ -22,6 +22,9 @@ slim = tf.contrib.slim
 
 
 def resnet(filenames):
+  # Clean up model 
+  tf.reset_default_graph()
+
   # Load images
   images = np.zeros((len(filenames), 224, 224, 3), dtype=np.float32)
   for i, imageName in enumerate(filenames): 
@@ -42,7 +45,7 @@ def resnet(filenames):
     restorer = tf.train.Saver(restored_variables)
 
     with tf.Session() as sess:
-      img_net_path = '../models/resnet_v2_101.ckpt'
+      img_net_path = 'models/resnet_v2_101.ckpt'
       restorer.restore(sess, img_net_path)
       features = sess.run(model, feed_dict={in_images:images})
 

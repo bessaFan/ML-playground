@@ -20,6 +20,13 @@
   <link href="static/css/bootstrap.min.css" rel="stylesheet">
   <link href="static/node_modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.css" rel="stylesheet">
   <link rel="stylesheet" href="./static/css/app.css">
+  <script src="./node_modules/bootstrap-select/dist/css/bootstrap-select.min.css"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+  <!-- (Optional) Latest compiled and minified JavaScript translation files -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/i18n/defaults-*.min.js"></script>
+
 
   <script>
     $(function () {
@@ -356,18 +363,14 @@
       <span id="helpBlock" class="help-block">Choose a pre-trained machine learning model for feature extraction.</span>
       <div class="form-group">
         <label for="exampleDropdownForm" class="col-sm-4 control-label">Model</label>
-
-        <select class="selectpicker show-tick">
-          <option>Mustard</option>
-          <option>Ketchup</option>
-          <option>Relish</option>
+        <select class="selectpicker show-tick col-xs-6" name = "model_name">
+          <option>None</option>
+          <option>ResNet V2 101</option>
+          <option>VGG 16</option>
         </select>
-
         <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary invert" data-toggle="tooltip" data-placement="right" title="The ML model">
-        <div class="col-sm-6">
-          <input type="text" class="form-control" name = "resolution" id="number" value = "200" placeholder="resolution">
-        </div>
       </div> 
+
       <!-- tSNE Parameters form -->
       <h3 style="padding-top: 15px; border-top: 1px solid rgba(18, 65, 69, .07);">t-SNE Parameters</h3> 
       <span id="helpBlock" class="help-block">Different values result in different result</span>
@@ -454,13 +457,13 @@
           </div>
 
         </div>
-        <!-- download image button -->
+        <!-- download image button and tweet result-->
         <div>
-            <input type="checkbox" onclick="tweet_checkbox()" id="permission" name="subscribe" value="newsletter" style="opacity: 0.7;">
-            <label for="permission" style="font-size: 17px;" >Can we tweet your result? (for science!)</label>
+            <input type="checkbox" onclick="tweet_checkbox()" id="permission" name="subscribe" value="newsletter" style="opacity: 0.7; bottom: -230px; position: relative;left: 14px; ">
+            <label for="permission" style="font-size: 17px;  left: 20px; bottom: -230px; position: relative;" >Can we tweet your result? (for science!)</label>
         </div>
 
-        <a href="static/output/{{session_id}}/output.png?timestamp={{timestamp}}" class="btn btn-warning text-center" id="btn-download" download="output.png" style="opacity: 0.7; border-width: 0px; display:inherit; margin: 15px">Save Image</a>
+        <a href="static/output/{{session_id}}/output.png?timestamp={{timestamp}}" class="btn btn-warning text-center" id="btn-download" download="output.png" style="bottom: -250px; position: relative; opacity: 0.7; display:inherit; margin: 15px;">Save Image</a>
         <!-- <button type="submit" id="btn-download" class="btn btn-success" style="opacity: 0.7; border-width: 0px;>Generate t-SNE</button> -->
 
         {% else %}

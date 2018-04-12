@@ -62,9 +62,7 @@ def tsne():
     resolution = int( request.args.get('resolution'))
     CanvasSize = int (request.args.get('CanvasSize'))
     DotsPerInchs = int (request.args.get('DotsPerInchs'))
-    model_name = 'ResNet V2 101'
-    model_name = 'VGG 16'
-    model_name = None
+    model_name = request.args.get('model_name')
 
     # Get colors and images information
     colors_text = request.args.get('colors')
@@ -84,7 +82,7 @@ def tsne():
 
     print 'creating tsne plot'
     tsne_data = tsne_script.tsne_images(session_id, colors_dict, resolution, perplexity,early_exaggeration, learning_rate, DotsPerInchs,CanvasSize, colors, model_name)
-    return redirect('/?session=%s' % session_id)
+    return redirect('/?session=%s#try' % session_id)
 
 def allowed_file(filename):
     return '.' in filename and \
