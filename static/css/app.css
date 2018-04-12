@@ -81,6 +81,11 @@ a:hover {
   color: #1bb5c2;
 }
 
+.row {
+  margin-right: 0px;
+
+}
+
 .tooltip {
   width: 200px;
 }
