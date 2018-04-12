@@ -26,8 +26,8 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 plt.switch_backend('agg')
 
-#from get_features_resnet101 import resnet
-#from get_features_vgg16 import vgg16
+from get_features_resnet101 import resnet
+from get_features_vgg16 import vgg16
 
  
 def tsne_images(session_id,colors_dict, res, perplexity, early_exaggeration, learning_rate, dpi, canvasSize,colour, model_name):
@@ -51,7 +51,7 @@ def tsne_images(session_id,colors_dict, res, perplexity, early_exaggeration, lea
     x_value[count,:] = image1d # add a row of values
     count += 1
 
-  if model_name:
+  if model_name != 'None':
     if model_name == 'ResNet V2 101':
       x_value = resnet(filenames) 
     if model_name == 'VGG 16':
