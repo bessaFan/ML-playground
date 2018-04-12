@@ -34,6 +34,8 @@ layout:
 ```
 sudo pip install flask
 sudo pip install gunicorn
+npm install bootstrap-select
+
 ```
 
 ### Run

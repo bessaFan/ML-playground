@@ -336,7 +336,22 @@
         </div>
       </div>
 
+      <h3 style="padding-top: 15px; border-top: 1px solid rgba(18, 65, 69, .07);" >Feature Extraction</h3> 
+      <span id="helpBlock" class="help-block">Choose a pre-trained machine learning model for feature extraction.</span>
+      <div class="form-group">
+        <label for="exampleDropdownForm" class="col-sm-4 control-label">Model</label>
 
+        <select class="selectpicker show-tick">
+          <option>Mustard</option>
+          <option>Ketchup</option>
+          <option>Relish</option>
+        </select>
+
+        <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary invert" data-toggle="tooltip" data-placement="right" title="The ML model">
+        <div class="col-sm-6">
+          <input type="text" class="form-control" name = "resolution" id="number" value = "200" placeholder="resolution">
+        </div>
+      </div> 
       <!-- tSNE Parameters form -->
       <h3 style="padding-top: 15px; border-top: 1px solid rgba(18, 65, 69, .07);">t-SNE Parameters</h3> 
       <span id="helpBlock" class="help-block">Different values result in different result</span>
