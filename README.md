@@ -24,7 +24,7 @@ Our web app provides a **"No code. No installation"** platform for researchers t
 layout:
 <p align="center">
 
-<img src="https://github.com/bessaFan/generate_tsne_plots_online/blob/master/static/images/MLplayground.jpg?raw=true" alt="Website" height="700px">
+<img src="https://github.com/bessaFan/generate_tsne_plots_online/blob/master/static/images/MLplayground.jpg?raw=true" alt="Website" >
 </p>
 
 ## Set up
