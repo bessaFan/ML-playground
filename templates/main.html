@@ -11,7 +11,7 @@
   </script>
 
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <title>Generate t-SNE</title>
+  <title>Image Similarity Tool</title>
   <link rel="shortcut icon" href="static/favicon.ico">
   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -263,6 +263,22 @@
 
   <div class="row" > 
     <div class="col-md-12" >
+
+      <!-- Links at top of page -->
+      <div class="topbar" >
+        <a class="topbar-link" href="mailto:danielsnider12@gmail.com; bessaFan01@gmail.com" target="_blank">Contact</a>
+        <a class="topbar-link" href="https://github.com/bessaFan/ML-playground" target="_blank" >Documentation</a>
+        <a class="topbar-link" onclick="tweet_checkbox()">Support Us</a>
+      </div>
+      <div style="position: absolute; right: 30px; top: 10px">
+        
+        <div style="">
+          <a href="https://github.com/bessaFan/ML-playground" target="_blank">
+            <img style="opacity: 0.7;width:50px; filter: invert(100%);" src="/static/images/github_icon.svg">
+          </a>
+        </div>
+      </div>
+
       <!-- <div class=container> -->
         <div class="header">
           <div class="header-title">
@@ -509,23 +525,21 @@
 <!-- Footer -->
 <div class = "container" style="padding-top: 30px;
 padding-bottom: 30px;">
-<div class="row footer" >
-  <div class="col-sm-6">
-    <a class="footer-link" href="mailto:danielsnider12@gmail.com; bessaFan01@gmail.com" target="_blank">Contact</a>
-    <a class="footer-link" href="https://github.com/bessaFan/generate_tsne_plots_online" target="_blank" >Documentation</a>
-    <a class="footer-link" onclick="tweet_checkbox()">Support Us</a>
-  </div>
-  <div class="col-sm-6">
-    <div style="float:right">
-      <a href="https://github.com/bessaFan/generate_tsne_plots_online" target="_blank">
-        <img style="opacity: 0.7;width:50px;" src="/static/images/github_icon.svg">
-      </a>
+  <div class="row footer" >
+    <div class="col-sm-12">
+      <a class="footer-link" href="mailto:danielsnider12@gmail.com; bessaFan01@gmail.com" target="_blank">Contact</a>
+      <a class="footer-link" href="https://github.com/bessaFan/ML-playground" target="_blank" >Documentation</a>
+      <a class="footer-link" onclick="tweet_checkbox()">Support Us</a>
+      <div style="position: absolute;right: 30px; top:0px">
+        <a href="https://github.com/bessaFan/ML-playground" target="_blank">
+          <img style="opacity: 0.7;width:50px;" src="/static/images/github_icon.svg">
+        </a>
+      </div>
     </div>
   </div>
-</div>
-<div class="row footer">
-  <div class="text-center footer-content" style="color: #6d9498;">Made with ❤ in Toronto</div>
-</div>
+  <div class="row footer">
+    <div class="text-center footer-content" style="color: #6d9498;">Made with ❤ in Toronto</div>
+  </div>
 </div>
 
 </body>
