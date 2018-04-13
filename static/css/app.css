@@ -17,6 +17,21 @@ body {
   background-color: #def4f6; 
 }
 
+* {box-sizing: border-box;}
+
+.img-magnifier-container {
+  position: relative;
+}
+
+.img-magnifier-glass {
+  position: absolute;
+  border: 3px solid #000;
+  border-radius: 50%;
+  cursor: none;
+  /*Set the size of the magnifier glass:*/
+  width: 150px;
+  height: 150px;
+}
 .header {
   background: url('../images/6.jpg') ;
   width: 100%;
