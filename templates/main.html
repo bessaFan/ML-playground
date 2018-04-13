@@ -120,7 +120,6 @@
       document.getElementById("instruction_step5").style.border = "2px dashed rgb(46, 117, 145, 0.3)";
     }
 
-
     function generateTSNE() {
     // do ajax request to ask for what the location of the TSNE image is. Then use in in the following line.
     console.log('button pressed')
@@ -379,9 +378,9 @@
       <div class="form-group">
         <label for="exampleDropdownForm" class="col-sm-4 control-label">Model</label>
         <select class="selectpicker show-tick col-xs-6" name = "model_name">
-          <option>None</option>
-          <option>ResNet V2 101</option>
-          <option>VGG 16</option>
+          <option ">None</option>
+          <option ">ResNet V2 101</option>
+          <option ">VGG 16</option>
           <option disabled>Inception V3</option>
           <option disabled>Inception V4</option>
           <option disabled>Inception-ResNet-v2</option>
@@ -499,11 +498,13 @@
             <input type="checkbox" onclick="tweet_checkbox()" id="permission" name="subscribe" value="newsletter" style="opacity: 0.7;bottom: 130px;position: absolute;left: 34px;">
             <label for="permission" style="font-size: 17px;  left: 60px; bottom: 120px; position: absolute;" >Can we tweet your result? (for science!)</label>
         </div>
+        {% if featureCSV_exists %}
+          <button href="static/output/{{session_id}}/FeatureVectors.csv?timestamp=1523566065.49" class="btn btn-info text-center" id="feature_download" download="FeatureVectors.csv" style="bottom: 60px;left: 20px;position: absolute;right: 390px;opacity: 0.7;display:inherit;margin: 15px;" >Save Feature Vectors CSV</button>
+        {% else %}
+          <button href="static/output/{{session_id}}/FeatureVectors.csv?timestamp=1523566065.49" class="btn btn-info text-center" id="feature_download" download="FeatureVectors.csv" style="bottom: 60px;left: 20px;position: absolute;right: 390px;opacity: 0.7;display:inherit;margin: 15px;" disabled>Save Feature Vectors CSV</button>
+        {% endif %}
 
-
-        <a href="static/output/f6d761ef-5500-422e-a996-b51082bb0465/FeatureVectors.csv?timestamp=1523566065.49" class="btn btn-info text-center" id="btn-download" download="FeatureVectors.csv" style="bottom: 60px;left: 20px;position: absolute;right: 390px;opacity: 0.7;display:inherit;margin: 15px;">Save Feature Vectors CSV</a>
-
-        <a href="static/output/f6d761ef-5500-422e-a996-b51082bb0465/ReducedFeatures.csv?timestamp=1523566065.49" class="btn btn-info text-center" id="btn-download" download="ReducedFeatures.csv" style="bottom: 60px;left: 390px;position: absolute;right: 20px;opacity: 0.7;display:inherit;margin: 15px;">Save Reduced Features CSV</a>
+        <a href="static/output/{{session_id}}/ReducedFeatures.csv?timestamp=1523566065.49" class="btn btn-info text-center" id="btn-download" download="ReducedFeatures.csv" style="bottom: 60px;left: 390px;position: absolute;right: 20px;opacity: 0.7;display:inherit;margin: 15px;">Save Reduced Features CSV</a>
 
         <a href="static/output/f6d761ef-5500-422e-a996-b51082bb0465/output.png?timestamp=1523566065.49" class="btn btn-warning text-center" id="btn-download" download="output.png" style="bottom: 0px;left: 20px;position: absolute;right: 20px;opacity: 0.7;display:inherit;margin: 15px;">Save Image</a>
 

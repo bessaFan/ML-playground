@@ -45,8 +45,8 @@ def main():
         colors.append({'hex':color_name,'images':images})
 
     image_exists = len(colors)
-
-    return render_template('main.html', colors=colors, session_id=session_id, plot_exists=plot_exists, image_exists=image_exists, timestamp=str(time.time()))
+    featureCSV_exists = os.path.exists('static/output/%s/FeatureVectors.csv' % session_id)
+    return render_template('main.html', colors=colors, session_id=session_id, plot_exists=plot_exists, featureCSV_exists=featureCSV_exists, image_exists=image_exists, timestamp=str(time.time()))
 
 
 @app.route("/tsne", methods=['POST', 'GET'])
