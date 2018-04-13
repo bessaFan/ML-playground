@@ -30,6 +30,69 @@
   <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
 
   <script>
+
+
+  function magnify(imgID, topFile, zoom) {
+  var img, glass, w, h, bw, top;
+
+  img = document.getElementById(imgID);
+  top = document.getElementById(topFile);
+  /*create magnifier glass:*/
+  glass = document.createElement("DIV");
+  glass.setAttribute("class", "img-magnifier-glass");
+
+  /*insert magnifier glass:*/
+  img.parentElement.insertBefore(glass, img);
+
+  /*set background properties for the magnifier glass:*/
+  glass.style.backgroundImage = "url('" + img.src + "')";
+  glass.style.backgroundRepeat = "no-repeat";
+  glass.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
+  bw = 3;
+  w = glass.offsetWidth / 2;
+  h = glass.offsetHeight / 2;
+
+  /*execute a function when someone moves the magnifier glass over the image:*/
+  glass.addEventListener("mousemove", moveMagnifier);
+  top.addEventListener("mousemove", moveMagnifier);
+
+  /*and also for touch screens:*/
+  glass.addEventListener("touchmove", moveMagnifier);
+  top.addEventListener("touchmove", moveMagnifier);
+  function moveMagnifier(e) {
+    var pos, x, y;
+    /*prevent any other actions that may occur when moving over the image*/
+    e.preventDefault();
+    /*get the cursor's x and y positions:*/
+    pos = getCursorPos(e);
+    x = pos.x;
+    y = pos.y;
+    /*prevent the magnifier glass from being positioned outside the image:*/
+    if (x > img.width - (w / zoom)) {x = img.width - (w / zoom);}
+    if (x < w / zoom) {x = w / zoom;}
+    if (y > img.height - (h / zoom)) {y = img.height - (h / zoom);}
+    if (y < h / zoom) {y = h / zoom;}
+    /*set the position of the magnifier glass:*/
+    glass.style.left = (x - w) + "px";
+    glass.style.top = (y - h) + "px";
+    /*display what the magnifier glass "sees":*/
+    glass.style.backgroundPosition = "-" + ((x * zoom) - w + bw) + "px -" + ((y * zoom) - h + bw) + "px";
+  }
+
+  function getCursorPos(e) {
+    var a, x = 0, y = 0;
+    e = e || window.event;
+    /*get the x and y positions of the image:*/
+    a = img.getBoundingClientRect();
+    /*calculate the cursor's x and y coordinates, relative to the image:*/
+    x = e.pageX - a.left;
+    y = e.pageY - a.top;
+    /*consider any page scrolling:*/
+    x = x - window.pageXOffset;
+    y = y - window.pageYOffset;
+    return {x : x, y : y};
+  }
+}
     $(function () {
       $('[data-toggle="tooltip"]').tooltip()
     })
@@ -547,7 +610,7 @@
         <div class="image" id="the_result_plot">
           <h1>Result</h1>
           <div>
-            <svg height="1000" width="100%" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%); opacity: .2;">
+            <svg id="circles"height="1000" width="100%" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%); opacity: .2;">
               <circle  cx="50%" cy="50%" r="350"  />
               <circle  cx="50%" cy="50%" r="270"  />
               <circle  cx="50%" cy="50%" r="200"  />
@@ -555,8 +618,12 @@
               <circle  cx="50%" cy="50%" r="90"  />
               <circle  cx="50%" cy="50%" r="50"  />
               <circle  cx="50%" cy="50%" r="20"  />
-            </svg> 
-            <img id="tsne_plot" src="static/output/{{session_id}}/output.png?timestamp={{timestamp}}" style="width: 100%; max-height: 1000px; object-fit: contain; /*border: 4px solid gainsboro*/"> 
+            </svg>  
+            <img id="tsne_plot" src="{{plot_name}}" style="width: 100%;"> 
+
+            <!-- <img id="tsne_plot" src="static/output/{{session_id}}/ResultPlot_ModelName:{{model_name}}__Resolution:{{resolution}}_Perplexity:{{perplexity}}_EarlyExaggeration:{{early_exaggeration}}_LearningRate:{{learning_rate}}_DPI:{{DotsPerInchs}}.png" style="width: 100%;"> -->
+
+            <!-- <img id="tsne_plot" src="static/output/{{session_id}}/ResultPlot_ModelName:{{model_name}}__Resolution:{{resolution}}_Perplexity:{{perplexity}}_EarlyExaggeration:{{early_exaggeration}}_LearningRate:{{learning_rate}}_DPI:{{DotsPerInchs}}.png?timestamp={{timestamp}}" style="width: 100%; max-height: 1000px; object-fit: contain; /*border: 4px solid gainsboro*/">  -->
           </div>
 
         </div>
@@ -566,14 +633,14 @@
             <label for="permission" style="font-size: 17px;  left: 60px; bottom: 120px; position: absolute;" >Can we tweet your result? (for science!)</label>
         </div>
         {% if featureCSV_exists %}
-          <button href="static/output/{{session_id}}/FeatureVectors.csv?timestamp=1523566065.49" class="btn btn-info text-center" id="feature_download" download="FeatureVectors.csv" style="bottom: 60px;left: 20px;position: absolute;right: 390px;opacity: 0.7;display:inherit;margin: 15px;" >Save Feature Vectors CSV</button>
+          <button href="static/output/b8f713d4-1dc1-4d98-b414-a4c5dda0a2e7/FeatureVectors.csv?timestamp=1523566065.49" class="btn btn-info text-center" id="btn_download" download="FeatureVectors.csv" style="bottom: 60px;width: 320px;left: 20px;position: absolute;/opacity: 0.7;display:inherit;margin: 15px;">Save Feature Vectors CSV</button>
         {% else %}
-          <button href="static/output/{{session_id}}/FeatureVectors.csv?timestamp=1523566065.49" class="btn btn-info text-center" id="feature_download" download="FeatureVectors.csv" style="bottom: 60px;left: 20px;position: absolute;right: 390px;opacity: 0.7;display:inherit;margin: 15px;" disabled>Save Feature Vectors CSV</button>
+          <button href="static/output/{{session_id}}/FeatureVectors.csv?timestamp=1523566065.49" class="btn btn-info text-center" id="btn_download" download="FeatureVectors.csv" style="bottom: 60px;left: 20px;position: absolute; width: 320px;opacity: 0.7;display:inherit;margin: 15px;" disabled>Save Feature Vectors CSV</button>
         {% endif %}
 
-        <a href="static/output/{{session_id}}/ReducedFeatures.csv?timestamp=1523566065.49" class="btn btn-info text-center" id="btn-download" download="ReducedFeatures.csv" style="bottom: 60px;left: 390px;position: absolute;right: 20px;opacity: 0.7;display:inherit;margin: 15px;">Save Reduced Features CSV</a>
+        <a href="static/output/{{session_id}}/ReducedFeatures.csv?timestamp=1523566065.49" class="btn btn-info text-center" id="btn-download" download="ReducedFeatures.csv" style="bottom: 60px;width: 320px; position: absolute;right: 20px;opacity: 0.7;display:inherit;margin: 15px;">Save Reduced Features CSV</a>
 
-        <a href="static/output/f6d761ef-5500-422e-a996-b51082bb0465/output.png?timestamp=1523566065.49" class="btn btn-warning text-center" id="btn-download" download="output.png" style="bottom: 0px;left: 20px;position: absolute;right: 20px;opacity: 0.7;display:inherit;margin: 15px;">Save Image</a>
+        <a href="{{plot_name}}?timestamp=1523566065.49" class="btn btn-warning text-center" id="btn-download" download="{{plot_name_no_dir}}" style="bottom: 0px;left: 20px;position: absolute;right: 20px;opacity: 0.7;display:inherit;margin: 15px;">Save Image</a>
 
         <!-- <button type="submit" id="btn-download" class="btn btn-success" style="opacity: 0.7; border-width: 0px;>Generate t-SNE</button> -->
 
@@ -630,7 +697,9 @@
     <div class="text-center footer-content" style="color: #6d9498;">Made with ❤ in Toronto</div>
   </div>
 </div>
-
+<script>
+    magnify("tsne_plot", "circles", 3);
+</script>
 </body>
 
 

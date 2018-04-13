@@ -65,7 +65,9 @@ def tsne_images(session_id,colors_dict, res, perplexity, early_exaggeration, lea
   canvas = plot.image_scatter(vis_data[:, 0], vis_data[:, 1], images, colour,res, min_canvas_size=canvasSize )
   plt.imshow(canvas,origin='lower')
   plt.axis('off')
-  save_location = 'static/output/%s/output.png' % session_id
+  # save_location = 'static/output/%s/output.png' % session_id
+  save_location = 'static/output/%s/ResultPlot_ModelName:%s__Resolution:%d_Perplexity:%d_EarlyExaggeration:%d_LearningRate:%d_DPI:%d.png' % (session_id,model_name, res,perplexity, early_exaggeration, learning_rate, dpi)
+
   plt.savefig(save_location,dpi=dpi,pad_inches=1,bbox_inches='tight')
   print('Saved image scatter to %s' % save_location)
 
