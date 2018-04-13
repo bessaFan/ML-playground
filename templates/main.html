@@ -488,8 +488,12 @@
               <circle  cx="50%" cy="50%" r="90"  />
               <circle  cx="50%" cy="50%" r="50"  />
               <circle  cx="50%" cy="50%" r="20"  />
-            </svg> 
-            <img id="tsne_plot" src="static/output/{{session_id}}/output.png?timestamp={{timestamp}}" style="width: 100%; max-height: 1000px; object-fit: contain; /*border: 4px solid gainsboro*/"> 
+            </svg>  
+            <img id="tsne_plot" src="{{plot_name}}" style="width: 100%;"> 
+
+            <!-- <img id="tsne_plot" src="static/output/{{session_id}}/ResultPlot_ModelName:{{model_name}}__Resolution:{{resolution}}_Perplexity:{{perplexity}}_EarlyExaggeration:{{early_exaggeration}}_LearningRate:{{learning_rate}}_DPI:{{DotsPerInchs}}.png" style="width: 100%;"> -->
+
+            <!-- <img id="tsne_plot" src="static/output/{{session_id}}/ResultPlot_ModelName:{{model_name}}__Resolution:{{resolution}}_Perplexity:{{perplexity}}_EarlyExaggeration:{{early_exaggeration}}_LearningRate:{{learning_rate}}_DPI:{{DotsPerInchs}}.png?timestamp={{timestamp}}" style="width: 100%; max-height: 1000px; object-fit: contain; /*border: 4px solid gainsboro*/">  -->
           </div>
 
         </div>
@@ -499,14 +503,14 @@
             <label for="permission" style="font-size: 17px;  left: 60px; bottom: 120px; position: absolute;" >Can we tweet your result? (for science!)</label>
         </div>
         {% if featureCSV_exists %}
-          <button href="static/output/{{session_id}}/FeatureVectors.csv?timestamp=1523566065.49" class="btn btn-info text-center" id="feature_download" download="FeatureVectors.csv" style="bottom: 60px;left: 20px;position: absolute;right: 390px;opacity: 0.7;display:inherit;margin: 15px;" >Save Feature Vectors CSV</button>
+          <button href="static/output/{{session_id}}/FeatureVectors.csv?timestamp=1523566065.49" class="btn btn-info text-center" id="btn_download" download="FeatureVectors.csv" style="bottom: 60px;left: 20px;position: absolute;right: 400px;opacity: 0.7;display:inherit;margin: 15px;" >Save Feature Vectors CSV</button>
         {% else %}
-          <button href="static/output/{{session_id}}/FeatureVectors.csv?timestamp=1523566065.49" class="btn btn-info text-center" id="feature_download" download="FeatureVectors.csv" style="bottom: 60px;left: 20px;position: absolute;right: 390px;opacity: 0.7;display:inherit;margin: 15px;" disabled>Save Feature Vectors CSV</button>
+          <button href="static/output/{{session_id}}/FeatureVectors.csv?timestamp=1523566065.49" class="btn btn-info text-center" id="btn_download" download="FeatureVectors.csv" style="bottom: 60px;left: 20px;position: absolute;right: 400px;opacity: 0.7;display:inherit;margin: 15px;" disabled>Save Feature Vectors CSV</button>
         {% endif %}
 
         <a href="static/output/{{session_id}}/ReducedFeatures.csv?timestamp=1523566065.49" class="btn btn-info text-center" id="btn-download" download="ReducedFeatures.csv" style="bottom: 60px;left: 390px;position: absolute;right: 20px;opacity: 0.7;display:inherit;margin: 15px;">Save Reduced Features CSV</a>
 
-        <a href="static/output/f6d761ef-5500-422e-a996-b51082bb0465/output.png?timestamp=1523566065.49" class="btn btn-warning text-center" id="btn-download" download="output.png" style="bottom: 0px;left: 20px;position: absolute;right: 20px;opacity: 0.7;display:inherit;margin: 15px;">Save Image</a>
+        <a href="{{plot_name}}?timestamp=1523566065.49" class="btn btn-warning text-center" id="btn-download" download="{{plot_name_no_dir}}" style="bottom: 0px;left: 20px;position: absolute;right: 20px;opacity: 0.7;display:inherit;margin: 15px;">Save Image</a>
 
         <!-- <button type="submit" id="btn-download" class="btn btn-success" style="opacity: 0.7; border-width: 0px;>Generate t-SNE</button> -->
 

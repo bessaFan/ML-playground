@@ -34,7 +34,15 @@ def main():
         os.makedirs('static/uploads/%s/' % session_id)
 
     # Check if plot exists, the front-end will display different things
-    plot_exists = os.path.exists('static/output/%s/output.png' % session_id)
+    # plot_exists = os.path.exists('static/output/%s/*.png' % session_id)
+    plot_exists = False
+    plot_name=""
+    plot_name_no_dir=""
+    files = list(glob.glob('static/output/%s/*.png' % session_id))
+    if (len(files)!=0):
+      plot_exists=True
+      plot_name= max(files, key=os.path.getctime).encode('ascii','ignore')    #getting the name of the newest file
+      plot_name_no_dir=plot_name[51:]
 
     # Create list of files organized by colors
     colors = []
@@ -46,7 +54,7 @@ def main():
 
     image_exists = len(colors)
     featureCSV_exists = os.path.exists('static/output/%s/FeatureVectors.csv' % session_id)
-    return render_template('main.html', colors=colors, session_id=session_id, plot_exists=plot_exists, featureCSV_exists=featureCSV_exists, image_exists=image_exists, timestamp=str(time.time()))
+    return render_template('main.html', colors=colors, session_id=session_id, plot_exists=plot_exists, featureCSV_exists=featureCSV_exists, image_exists=image_exists, timestamp=str(time.time()), plot_name=plot_name, plot_name_no_dir=plot_name_no_dir)
 
 
 @app.route("/tsne", methods=['POST', 'GET'])
@@ -112,7 +120,7 @@ def upload_file():
 
         # Check if number of images exceeds the limit
         new_num_images = len(files)
-        existing_num_images = len(list(glob.glob('static/uploads/%s/**/*' % session_id)))
+        existing_num_images = len(list(glob.glob('static/uploads/%s/*' % session_id)))
         if new_num_images + existing_num_images > NUM_IMAGES_LIMIT:
           return redirect(request.url)  # TODO: Warn user that this has happened
 
