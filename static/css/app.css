@@ -17,6 +17,24 @@ body {
   background-color: #def4f6; 
 }
 
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.linegrow {  
+  /* This section calls the slideInFromLeft animation we defined above */
+  animation: 1s ease-out 0s 1 slideInFromLeft;
+  
+  background: #333;
+  padding: 30px;
+}
+
+
 .header {
   background: url('../images/6.jpg') ;
   width: 100%;
@@ -501,3 +519,64 @@ a:hover {
   position: absolute;
 }
 
+
+
+/* Bottom left text */
+.bottom-left {
+  color: white;
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+}
+
+/* Top left text */
+.top-left {
+  color: white;
+    position: absolute;
+    top: 8px;
+    left: 16px;
+}
+
+/* Top right text */
+.top-right {
+  color: white;
+    position: absolute;
+    top: 8px;
+    right: 16px;
+}
+
+/* Bottom right text */
+.bottom-right {
+  color: white;
+  position: absolute;
+  bottom: 8px;
+  right: 16px;
+}
+
+/* Centered text */
+.centered {
+  color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.left-center {
+  color: white;
+  position: absolute;
+  bottom: 50%;
+  left: 0%;
+  font-size: 33px;
+}
+
+.bottom-center {
+  color: white;
+  position: absolute;
+  bottom: 0%;
+  left: 50%;
+  font-size: 33px;
+  text-align: center;
+  transform: translate(-50%, -50%);
+
+}
