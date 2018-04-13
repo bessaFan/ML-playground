@@ -496,12 +496,17 @@
         </div>
         <!-- download image button and tweet result-->
         <div>
-            <input type="checkbox" onclick="tweet_checkbox()" id="permission" name="subscribe" value="newsletter" style="opacity: 0.7;bottom: 80px;position: absolute;left: 34px;">
-            <label for="permission" style="font-size: 17px;  left: 60px; bottom: 70px; position: absolute;" >Can we tweet your result? (for science!)</label>
+            <input type="checkbox" onclick="tweet_checkbox()" id="permission" name="subscribe" value="newsletter" style="opacity: 0.7;bottom: 130px;position: absolute;left: 34px;">
+            <label for="permission" style="font-size: 17px;  left: 60px; bottom: 120px; position: absolute;" >Can we tweet your result? (for science!)</label>
         </div>
 
-        <a href="static/output/f6d761ef-5500-422e-a996-b51082bb0465/output.png?timestamp=1523566065.49" class="btn btn-warning text-center" id="btn-download" download="output.png" style="bottom: 0px;left: 20px;position: absolute;right: 400px;opacity: 0.7;display:inherit;margin: 15px;">Save Image</a>
-        <a href="static/output/f6d761ef-5500-422e-a996-b51082bb0465/output.csv?timestamp=1523566065.49" class="btn btn-info text-center" id="btn-download" download="output.csv" style="bottom: 0px;left: 390px;position: absolute;right: 20px;opacity: 0.7;display:inherit;margin: 15px;">Save Feature Vectors CSV</a>
+
+        <a href="static/output/f6d761ef-5500-422e-a996-b51082bb0465/FeatureVectors.csv?timestamp=1523566065.49" class="btn btn-info text-center" id="btn-download" download="FeatureVectors.csv" style="bottom: 60px;left: 20px;position: absolute;right: 390px;opacity: 0.7;display:inherit;margin: 15px;">Save Feature Vectors CSV</a>
+
+        <a href="static/output/f6d761ef-5500-422e-a996-b51082bb0465/ReducedFeatures.csv?timestamp=1523566065.49" class="btn btn-info text-center" id="btn-download" download="ReducedFeatures.csv" style="bottom: 60px;left: 390px;position: absolute;right: 20px;opacity: 0.7;display:inherit;margin: 15px;">Save Reduced Features CSV</a>
+
+        <a href="static/output/f6d761ef-5500-422e-a996-b51082bb0465/output.png?timestamp=1523566065.49" class="btn btn-warning text-center" id="btn-download" download="output.png" style="bottom: 0px;left: 20px;position: absolute;right: 20px;opacity: 0.7;display:inherit;margin: 15px;">Save Image</a>
+
         <!-- <button type="submit" id="btn-download" class="btn btn-success" style="opacity: 0.7; border-width: 0px;>Generate t-SNE</button> -->
 
         {% else %}

@@ -69,7 +69,7 @@ def resnet(filenames, session_id):
   
 
 
-  csv= 'static/output/%s/output.csv' % session_id
+  csv= 'static/output/%s/FeatureVectors.csv' % session_id
 
   if os.path.isfile(csv):
     df = utils.read_csv(csv)
