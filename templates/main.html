@@ -36,23 +36,32 @@
     $(function () {
      $('#cp').colorpicker();
    });
+
+
+    // Smooth scrolling when clicking href links
+    $(document).on('click', 'a[href^="#"]', function (event) {
+        event.preventDefault();
+
+        $('html, body').animate({
+            scrollTop: $($.attr(this, 'href')).offset().top
+        }, 500);
+    });
+
+    // On page load
     $(document).ready(function() { 
-      document.getElementById("fileinput").style.border = "2px dashed #2e7591";
-      document.getElementById("instruction_step1").style.border = "2px dashed #2e7591";
-      $(document).one('mousemove', function() {  
-        document.getElementById("fileinput").style.border = "2px dashed #f4f9fa";
-        document.getElementById("instruction_step1").style.border = "2px dashed #f4f9fa";
-      });
+      // Highlight first step
+      document.getElementById("fileinput").style.border = "2px dashed rgb(46, 117, 145, 0.3)";
+      document.getElementById("instruction_step1").style.border = "2px dashed rgb(46, 117, 145, 0.3)";
     });
 
     function setVisible_step1(){
-      document.getElementById("fileinput").style.border = "2px dashed #2e7591";
+      document.getElementById("fileinput").style.border = "2px dashed rgb(46, 117, 145, 0.3)";
       document.getElementById("step2").style.border = "2px dashed rgba(0,0,0,0)";
       document.getElementById("step3").style.border = "2px dashed #337ab7";
       document.getElementById("step4").style.border = "2px dashed #f4f9fa";
       document.getElementById("generate_button").style.border = "2px dashed #5cb85c";
 
-      document.getElementById("instruction_step1").style.border = "2px dashed #2e7591";
+      document.getElementById("instruction_step1").style.border = "2px dashed rgb(46, 117, 145, 0.3)";
       document.getElementById("instruction_step2").style.border = "2px dashed rgba(0,0,0,0)";
       document.getElementById("instruction_step3").style.border = "2px dashed rgba(0,0,0,0)";
       document.getElementById("instruction_step4").style.border = "2px dashed rgba(0,0,0,0)";
@@ -60,13 +69,13 @@
     }
     function setVisible_step2(){
       document.getElementById("fileinput").style.border = "2px dashed #f4f9fa";
-      document.getElementById("step2").style.border = "2px dashed #2e7591";
+      document.getElementById("step2").style.border = "2px dashed rgb(46, 117, 145, 0.3)";
       document.getElementById("step3").style.border = "2px dashed #337ab7";
       document.getElementById("step4").style.border = "2px dashed #f4f9fa";
       document.getElementById("generate_button").style.border = "2px dashed #5cb85c";
 
       document.getElementById("instruction_step1").style.border = "2px dashed rgba(0,0,0,0)";
-      document.getElementById("instruction_step2").style.border = "2px dashed #2e7591";
+      document.getElementById("instruction_step2").style.border = "2px dashed rgb(46, 117, 145, 0.3)";
       document.getElementById("instruction_step3").style.border = "2px dashed rgba(0,0,0,0)";
       document.getElementById("instruction_step4").style.border = "2px dashed rgba(0,0,0,0)";
       document.getElementById("instruction_step5").style.border = "2px dashed rgba(0,0,0,0)";
@@ -80,7 +89,7 @@
 
       document.getElementById("instruction_step1").style.border = "2px dashed rgba(0,0,0,0)";
       document.getElementById("instruction_step2").style.border = "2px dashed rgba(0,0,0,0)";
-      document.getElementById("instruction_step3").style.border = "2px dashed #2e7591";
+      document.getElementById("instruction_step3").style.border = "2px dashed rgb(46, 117, 145, 0.3)";
       document.getElementById("instruction_step4").style.border = "2px dashed rgba(0,0,0,0)";
       document.getElementById("instruction_step5").style.border = "2px dashed rgba(0,0,0,0)";
     }
@@ -88,13 +97,13 @@
       document.getElementById("fileinput").style.border = "2px dashed #f4f9fa";
       document.getElementById("step2").style.border = "2px dashed rgba(0,0,0,0)";
       document.getElementById("step3").style.border = "2px dashed #337ab7";
-      document.getElementById("step4").style.border = "2px dashed #2e7591";
+      document.getElementById("step4").style.border = "2px dashed rgb(46, 117, 145, 0.3)";
       document.getElementById("generate_button").style.border = "2px dashed #5cb85c";
 
       document.getElementById("instruction_step1").style.border = "2px dashed rgba(0,0,0,0)";
       document.getElementById("instruction_step2").style.border = "2px dashed rgba(0,0,0,0)";
       document.getElementById("instruction_step3").style.border = "2px dashed rgba(0,0,0,0)";
-      document.getElementById("instruction_step4").style.border = "2px dashed #2e7591";
+      document.getElementById("instruction_step4").style.border = "2px dashed rgb(46, 117, 145, 0.3)";
       document.getElementById("instruction_step5").style.border = "2px dashed rgba(0,0,0,0)";
     }
     function setVisible_step5(){
@@ -108,7 +117,7 @@
       document.getElementById("instruction_step2").style.border = "2px dashed rgba(0,0,0,0)";
       document.getElementById("instruction_step3").style.border = "2px dashed rgba(0,0,0,0)";
       document.getElementById("instruction_step4").style.border = "2px dashed rgba(0,0,0,0)";
-      document.getElementById("instruction_step5").style.border = "2px dashed #2e7591";
+      document.getElementById("instruction_step5").style.border = "2px dashed rgb(46, 117, 145, 0.3)";
     }
 
 
@@ -261,8 +270,8 @@
 
 <!-- Header -->
 
-  <div class="row" style="height: 100%"> 
-    <div class="col-md-12" >
+  <div class="row" > 
+    <div class="col-md-12" style=" padding-right: 0px;" >
 
       <!-- Links at top of page -->
       <div class="topbar" >
@@ -314,6 +323,8 @@
 
   <!-- Body -->
 <!-- <div class = "container" > -->
+    <div class="row mydivider" style="height:3px; background-color: #1b9eb245;"></div>
+
     <div class="row equal" id="try">
 
       <!-- left side of the layout -->
@@ -327,7 +338,7 @@
     <h1>Upload New Images</h1>
     <form method=post enctype=multipart/form-data>
       Select images: (max. 100 images, max. 3 MB each)
-      <input id="fileinput" onchange="sanityCheckInputFiles()" type=file name=file accept="image/*" multiple style="    opacity: 0.7;">
+      <input id="fileinput" onchange="sanityCheckInputFiles()" type=file name=file accept="image/*" multiple style="border-radius: 10px; opacity: 0.7;">
       <div id="cp" class="input-group colorpicker-component col-sm-4" title="Using input value">
         <input id= "step2" name="hexcolor" type="text" class="form-control input-lg " value="#196f90" style="height: 34px;font-size: 16px;" />
         <span class="input-group-addon" "><i></i></span>
@@ -348,8 +359,10 @@
     {% endfor %}
 
     <!-- parameters -->
-    <form id="step4"  class="form-horizontal" action = '/tsne' >
-      <h3 style="padding-top: 15px; border-top: 1px solid rgba(18, 65, 69, .07);" >Resizing Parameters </h3> 
+    <form id="step4"  class="form-horizontal" action = '/tsne' style="margin-top:15px; border-radius: 10px;" >
+      <div style="border-top: 1px solid rgba(18, 65, 69, .07);">
+        
+      <h3 >Resizing Parameters </h3> 
       <span id="helpBlock" class="help-block">Values for the dimension of each image.</span>
       <div class="form-group">
         <label for="inputEmail3" class="col-sm-4 control-label">Resolution</label>
@@ -357,6 +370,7 @@
         <div class="col-sm-6">
           <input type="number" class="form-control" name = "resolution" id="number" value = "200" placeholder="resolution">
         </div>
+      </div>
       </div>
 
       <!-- Machine Learning Parameters -->
@@ -495,12 +509,12 @@
         <div class="col-md-12 rightside" id = "instruction" style="visibility: visible;">
           <div class="">
             <h1> Instructions</h1> <br>
-            <h4> Mouse over the instructions!</h4>
-            <button id="instruction_step1" class="instruction_steps" onmouseover="setVisible_step1()">Step 1: Select the input images that you wish to run the algorithm with</button>
-            <button id="instruction_step2" class="instruction_steps" onmouseover="setVisible_step2()">Step 2: Add a marker to image sets by selecting the colour of the image border</button>
-            <button id="instruction_step3" class="instruction_steps" onmouseover="setVisible_step3()">Step 3: Upload the file</button>
-            <button id="instruction_step4" class="instruction_steps" onmouseover="setVisible_step4()">Step 4: Select the display parameters and algorithm parameters</button>
-            <button id="instruction_step5" class="instruction_steps" onmouseover="setVisible_step5()">Step 5: Generate t-SNE plot and save the generated image!</button>
+            <!-- <h4> Mouse over the instructions!</h4> -->
+            <button id="instruction_step1" class="instruction_steps" onmouseover="setVisible_step1()">Step 1: Select the input images that you wish to run the algorithm with</button><br>
+            <button id="instruction_step2" class="instruction_steps" onmouseover="setVisible_step2()">Step 2: Add a marker to image sets by selecting the colour of the image border</button><br>
+            <button id="instruction_step3" class="instruction_steps" onmouseover="setVisible_step3()">Step 3: Upload the file</button><br>
+            <button id="instruction_step4" class="instruction_steps" onmouseover="setVisible_step4()">Step 4: Select the display parameters and algorithm parameters</button><br>
+            <button id="instruction_step5" class="instruction_steps" onmouseover="setVisible_step5()">Step 5: Generate t-SNE plot and save the generated image!</button><br>
           </div>
         </div>
         {% endif %}
@@ -524,14 +538,15 @@
 </div>
 <!-- </div> -->
 <!-- Footer -->
-<div class = "container" style="padding-top: 30px;
-padding-bottom: 30px;">
+<div class="row mydivider" style="height:3px; background-color: #1b9eb245;"></div>
+
+<div style="padding: 30px;">
   <div class="row footer" >
     <div class="col-sm-12">
       <a class="footer-link" href="mailto:danielsnider12@gmail.com; bessaFan01@gmail.com" target="_blank">Contact</a>
       <a class="footer-link" href="https://github.com/bessaFan/ML-playground" target="_blank" >Documentation</a>
       <a class="footer-link" onclick="tweet_checkbox()">Support Us</a>
-      <div style="position: absolute;right: 30px; top:0px">
+      <div style="position: absolute;right: 0px; top:0px">
         <a href="https://github.com/bessaFan/ML-playground" target="_blank">
           <img style="opacity: 0.7;width:50px;" src="/static/images/github_icon.svg">
         </a>
