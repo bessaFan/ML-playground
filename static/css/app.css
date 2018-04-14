@@ -47,8 +47,8 @@ body {
   border-radius: 50%;
   cursor: none;
   /*Set the size of the magnifier glass:*/
-  width: 250px;
-  height: 250px;
+  width: 300px;
+  height: 300px;
 }
 
 .header {
