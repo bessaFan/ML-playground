@@ -67,7 +67,8 @@ def tsne():
     perplexity = int (request.args.get('perplexity'))
     early_exaggeration = int (request.args.get('early_exaggeration'))
     learning_rate = int (request.args.get('learning_rate'))
-    resolution = int( request.args.get('resolution'))
+    # resolution = int( request.args.get('resolution'))
+    resolution = 200 # hard coded this to simplify front-end
     CanvasSize = int (request.args.get('CanvasSize'))
     DotsPerInchs = int (request.args.get('DotsPerInchs'))
     model_name = request.args.get('model_name')

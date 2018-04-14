@@ -1,6 +1,5 @@
 *.pyc
 uploads
 output
-*old*
 *.ckpt
 
