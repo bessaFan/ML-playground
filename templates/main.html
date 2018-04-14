@@ -510,7 +510,7 @@
       <div class="form-group">
         <label for="exampleDropdownForm" class="col-sm-4 control-label">Model</label>
         <select class="selectpicker show-tick col-xs-6" name = "model_name">
-          <option ">None</option>
+          <option data-subtext="Passthrough pixels to Dimension Reduction">None</option>
           <option ">ResNet V2 101</option>
           <option ">VGG 16</option>
           <option disabled>Inception V3</option>
@@ -527,16 +527,16 @@
       <div class="form-group">
         <label for="exampleDropdownForm" class="col-sm-4 control-label">Model</label>
         <select class="selectpicker show-tick col-xs-6" name = "model_name">
-          <option>t-SNE</option>
-          <option disabled>LTSA</option>
-          <option disabled>Modified LLE</option>
-          <option disabled>MDS</option>
+          <option data-subtext="t-distributed Stochastic Neighbor Embedding">t-SNE</option>
+          <option data-subtext="Local Tangent Space Alignment" disabled>LTSA</option>
+          <option data-subtext="Modified Locally Linear Embedding" disabled>Modified LLE</option>
+          <option data-subtext="Multi-dimensional Scalingdisabled" disabled>MDS</option>
           <option disabled>Isomap</option>
           <option disabled>Locally Linear Embedding</option>
           <option disabled>Spectral Embedding</option>
           <option disabled>Hessian Eigenmapping</option>
         </select>
-        <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary invert" data-toggle="tooltip" data-placement="right" title="Select the Manifold Learning model here! t-SNE is t-distributed Stochastic Neighbor Embedding; LTSA is Local Tangent Space Alignment; Modified LLE is Modified Locally Linear Embedding; MDS is Multi-dimensional Scaling.">
+        <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary invert" data-toggle="tooltip" data-placement="right" title="Select the Manifold Learning model here!">
       </div> 
 
       <!-- tSNE Parameters form -->
