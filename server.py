@@ -17,7 +17,7 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 app.config['MAX_CONTENT_LENGTH'] = 300 * 1024 * 1024 # Allow 300 MiB maximum upload for all images at once
 FILE_SIZE_LIMIT = 3 * 1024 * 1024 # 3 MiB
-NUM_IMAGES_LIMIT = 100
+NUM_IMAGES_LIMIT = 60
 
 @app.route("/")
 def main():
