@@ -129,7 +129,7 @@
 
     function setVisible_step1(){
       document.getElementById("fileinput").style.border = "2px dashed rgb(46, 117, 145, 0.3)";
-      document.getElementById("step2").style.border = "2px dashed rgba(0,0,0,0)";
+      document.getElementById("step2").style.border = "1px solid #ccc";
       document.getElementById("step3").style.border = "2px dashed #337ab7";
       document.getElementById("step4").style.border = "2px dashed #f4f9fa";
       document.getElementById("generate_button").style.border = "2px dashed #5cb85c";
@@ -155,7 +155,7 @@
     }
     function setVisible_step3(){
       document.getElementById("fileinput").style.border = "2px dashed #f4f9fa";
-      document.getElementById("step2").style.border = "2px dashed rgba(0,0,0,0)";
+      document.getElementById("step2").style.border = "1px solid #ccc";
       document.getElementById("step3").style.border = "2px dashed black";
       document.getElementById("step4").style.border = "2px dashed #f4f9fa";
       document.getElementById("generate_button").style.border = "2px dashed #5cb85c";
@@ -168,7 +168,7 @@
     }
     function setVisible_step4(){
       document.getElementById("fileinput").style.border = "2px dashed #f4f9fa";
-      document.getElementById("step2").style.border = "2px dashed rgba(0,0,0,0)";
+      document.getElementById("step2").style.border = "1px solid #ccc";
       document.getElementById("step3").style.border = "2px dashed #337ab7";
       document.getElementById("step4").style.border = "2px dashed rgb(46, 117, 145, 0.3)";
       document.getElementById("generate_button").style.border = "2px dashed #5cb85c";
@@ -181,7 +181,7 @@
     }
     function setVisible_step5(){
       document.getElementById("fileinput").style.border = "2px dashed #f4f9fa";
-      document.getElementById("step2").style.border = "2px dashed rgba(0,0,0,0)";
+      document.getElementById("step2").style.border = "1px solid #ccc";
       document.getElementById("step3").style.border = "2px dashed #337ab7";
       document.getElementById("step4").style.border = "2px dashed #f4f9fa";
       document.getElementById("generate_button").style.border = "2px dashed #000";
@@ -346,7 +346,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-          <h4 class="modal-title" id="modalTooManyImagesLabel">Sorry! This feature is yet to be implemented</h4>
+          <h4 class="modal-title" id="modalTooManyImagesLabel">Sorry! This feature is not yet implemented</h4>
         </div>
         <div class="modal-footer">
           <button class="btn btn-default" data-dismiss="modal">Ok</button>
@@ -485,28 +485,60 @@
         <img class="arrow2-position" id="arrow2" src="static/images/picture4.png"> 
       {% endif %}
     -->      <!-- upload images -->
-    <h1>Upload New Images</h1>
-    <form method=post enctype=multipart/form-data>
-      Select images: (max. 100 images, max. 3 MB each)
-      <input id="fileinput" onchange="sanityCheckInputFiles()" type=file name=file accept="image/*" multiple style="border-radius: 10px; opacity: 0.7;">
-      <div id="cp" class="input-group colorpicker-component col-sm-4" title="Using input value">
-        <input id= "step2" name="hexcolor" type="text" class="form-control input-lg " value="#196f90" style="height: 34px;font-size: 16px;" />
-        <span class="input-group-addon" "><i></i></span>
+    <h1>Upload Images</h1>
+    <form method=post enctype=multipart/form-data class='form-horizontal'>
+
+      <div class="form-group">
+        <label class="col-sm-4 control-label">Choose up to 50 images </label>
+        <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary invert" data-toggle="tooltip" data-placement="right" title="These images you select will be processed by our system and the result will be an image similarity visualization.">
+        <div class="col-sm-6">
+          <input id="fileinput" onchange="sanityCheckInputFiles()" type=file name=file accept="image/*" multiple style="border-radius: 10px; opacity: 0.7; padding: 3px">
+        </div>
+      </div> 
+
+      <div class="form-group">
+        <label class="col-sm-4 control-label">Color label for images</label>
+        <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary invert" data-toggle="tooltip" data-placement="right" title="Click on the colored square to choose a color. The color that you choose will be drawn around the image in the result plot.">
+        <div class="col-sm-6">
+          <!-- Select Label Color:  -->
+          <div id="cp" class="input-group colorpicker-component" title="Using input value">
+            <input id= "step2" name="hexcolor" type="text" class="form-control input " value="#196f90" style="height: 34px;font-size: 16px;" />
+            <span class="input-group-addon" "><i></i></span>
+          </div>
+        </div>
+      </div> 
+
+      <div class="form-group">
+        <div class="col-sm-offset-4 col-sm-3" >
+          <input id="step3" type="submit" class="btn btn-primary" value="Upload" style="opacity: 0.7; border: 2px dashed  #337ab7; margin-top: 8px;margin-bottom: 4px">
+        </div>
       </div>
 
-      <input id="step3" type="submit" class="btn btn-primary" value="Upload" style="opacity: 0.7; border: 2px dashed  #337ab7;">
+
+      <div class="form-group">
+        <label for="inputEmail3" class="col-sm-4 control-label">Your Image Set</label>
+        <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary invert" data-toggle="tooltip" data-placement="right" title="Preview your images.">
+        <div class="col-sm-6">
+          {% if not colors %}
+            <img class="input-image zoomed" src="./static/images/placeholder-cat.png" style= "object-fit:cover; border:5px solid " height="42" width="42"/>
+          {% endif %}
+          {% for color in colors %}
+          <div style="margin:4px 0px">
+            {% for image in color.images %}
+            <span id="input-images">
+              <img class="input-image zoomed" src="{{ image }}" style= "object-fit:cover; border:5px solid #{{ color.hex }}" height="42" width="42"/>
+
+            </span>
+            {% endfor %}
+          </div>
+          {% endfor %}
+        </div>
+      </div> 
+
+
     </form>
 
-    {% for color in colors %}
-    <div style="margin:4px 0px">
-      {% for image in color.images %}
-      <span id="input-images">
-        <img class="input-image zoomed" src="{{ image }}" style= "object-fit:cover; border:5px solid #{{ color.hex }}" height="42" width="42"/>
 
-      </span>
-      {% endfor %}
-    </div>
-    {% endfor %}
 
     <!-- parameters -->
     <form id="step4"  class="form-horizontal" action='/tsne' style="margin-top:15px; border-radius: 10px;" >
@@ -608,11 +640,11 @@
       <input type="hidden" name="session" value="{{session_id}}">
       <input type="hidden" name="colors" value="{{colors}}">
       <div class="form-group">
-        <div class="col-sm-offset-4 col-sm-3" >
+        <div class="col-sm-offset-4 col-sm-3" style="padding-bottom: 20px">
           {% if not image_exists %}
-          <button type="submit" class="btn btn-success" id= "generate_button" style="opacity: 0.7; border-width: 0px; z-index: 100;" onclick= "setVisible()" onclick= "checkFolder()" onclick="generateTSNE()" disabled>Generate t-SNE</button>
+          <button type="submit" class="btn btn-success btn-lg" id= "generate_button" style="opacity: 0.7; border-width: 0px; z-index: 100;" onclick= "setVisible()" onclick= "checkFolder()" onclick="generateTSNE()" disabled>Generate Plot</button>
           {% else %}
-          <button type="submit" class="btn btn-success" id= "generate_button" style="opacity: 0.7; border-width: 0px; z-index: 100;" onclick= "setVisible()" onclick= "checkFolder()" onclick="generateTSNE() ">Generate t-SNE</button>
+          <button type="submit" class="btn btn-success btn-lg" id= "generate_button" style="opacity: 0.7; border-width: 0px; z-index: 100;" onclick= "setVisible()" onclick= "checkFolder()" onclick="generateTSNE() ">Generate Plot</button>
           {% endif %}
         </div>
       </div>
