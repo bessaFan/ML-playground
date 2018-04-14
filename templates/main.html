@@ -124,7 +124,18 @@
 
       // Highlight first step
       document.getElementById("fileinput").style.border = "2px dashed rgb(46, 117, 145, 0.3)";
-      document.getElementById("instruction_step1").style.border = "2px dashed rgb(46, 117, 145, 0.3)";
+      elem = document.getElementById("instruction_step1");
+      if (elem) {
+        elem.style.border = "2px dashed rgb(46, 117, 145, 0.3)";
+      }
+
+      // Enable magnifier glass (after it loads)
+      $("#tsne_plot").on('load', function() {
+          magnify("tsne_plot", "circles", 3);
+      }).each(function() {
+         if($(this).prop('complete')) $(this).load();
+      });
+
     });
 
     function setVisible_step1(){
@@ -755,9 +766,6 @@
     <div class="text-center footer-content" style="color: #6d9498;">Made with ❤ in Toronto</div>
   </div>
 </div>
-<script>
-    magnify("tsne_plot", "circles", 3);
-</script>
 </body>
 
 
