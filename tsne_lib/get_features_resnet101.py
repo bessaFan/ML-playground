@@ -43,7 +43,7 @@ def resnet(filenames, session_id):
   in_images = tf.placeholder(tf.float32, images.shape)
 
   with slim.arg_scope(resnet_v2.resnet_arg_scope()):
-    model, intermed = resnet_v2.resnet_v2_101(in_images, 1001, is_training=False)
+    model, intermed = resnet_v2.resnet_v2_101(in_images, None, is_training=False)
     restored_variables = tf.contrib.framework.get_variables_to_restore()
     restorer = tf.train.Saver(restored_variables)
 
