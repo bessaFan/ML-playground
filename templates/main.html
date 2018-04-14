@@ -49,8 +49,8 @@
   glass.style.backgroundRepeat = "no-repeat";
   glass.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
   bw = 3;
-  w = glass.offsetWidth / 2;
-  h = glass.offsetHeight / 2;
+  w = glass.offsetWidth / 3;
+  h = glass.offsetHeight / 3;
 
   /*execute a function when someone moves the magnifier glass over the image:*/
   glass.addEventListener("mousemove", moveMagnifier);
@@ -124,7 +124,18 @@
 
       // Highlight first step
       document.getElementById("fileinput").style.border = "2px dashed rgb(46, 117, 145, 0.3)";
-      document.getElementById("instruction_step1").style.border = "2px dashed rgb(46, 117, 145, 0.3)";
+      elem = document.getElementById("instruction_step1");
+      if (elem) {
+        elem.style.border = "2px dashed rgb(46, 117, 145, 0.3)";
+      }
+
+      // Enable magnifier glass (after it loads)
+      $("#tsne_plot").on('load', function() {
+          magnify("tsne_plot", "circles", 3);
+      }).each(function() {
+         if($(this).prop('complete')) $(this).load();
+      });
+
     });
 
     function setVisible_step1(){
@@ -257,7 +268,7 @@
 
 
     // Check if number of files exceed limit
-    num_image_limit = 50;
+    num_image_limit = 60;
     existing_images = document.getElementsByClassName('input-image');
     num_existing_images = existing_images.length;
     if (num_existing_images + files.length > num_image_limit){
@@ -316,7 +327,7 @@
           <h4 class="modal-title" id="modalTooManyImagesLabel">Too Many Image Files</h4>
         </div>
         <div class="modal-body">
-          <p>Sorry, you have exeeded the maximum number of images that can be uploaded which is 50. The images that you have selected have been ignored.</p>
+          <p>Sorry, you have exeeded the maximum number of images that can be uploaded which is 60. The images that you have selected have been ignored.</p>
         </div>
         <div class="modal-footer">
           <button class="btn btn-default" data-dismiss="modal">Ok</button>
@@ -518,7 +529,7 @@
     <span id="helpBlock" class="help-block">Please upload 3 to 50 images for analysis. </span>
 
       <div class="form-group">
-        <label class="col-sm-4 control-label">Choose up to 50 images </label>
+        <label class="col-sm-4 control-label">Choose up to 60 images </label>
         <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary invert" data-toggle="tooltip" data-placement="right" title="These images you select will be processed by our system and the result will be an image similarity visualization.">
         <div class="col-sm-6">
           <input id="fileinput" onchange="sanityCheckInputFiles()" type=file name=file accept="image/*" multiple style="border-radius: 10px; opacity: 0.7; padding: 3px">
@@ -578,8 +589,8 @@
         <label for="exampleDropdownForm" class="col-sm-4 control-label">Deep Learning Model</label>
         <select id="model_name" data-show-subtext="true" class="selectpicker show-tick col-xs-6" name="model_name" onchange="ModelSelectChange()">
           <option data-subtext="Passthrough pixels to feature reduction">None</option>
-          <option selected>ResNet V2 101</option>   model_name
-          <option >VGG 16</option>
+          <option >ResNet V2 101</option>   model_name
+          <option selected >VGG 16</option>
           <option disabled>Inception V3</option>
           <option disabled>Inception V4</option>
           <option disabled>Inception-ResNet-v2</option>
@@ -784,9 +795,6 @@
     <div class="text-center footer-content" style="color: #6d9498;">Made with ❤ in Toronto</div>
   </div>
 </div>
-<script>
-    magnify("tsne_plot", "circles", 3);
-</script>
 </body>
 
 
