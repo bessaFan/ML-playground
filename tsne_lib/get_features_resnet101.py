@@ -12,6 +12,7 @@ import skimage.io
 import scipy
 import numpy as np
 import mahotas as mh
+import utils
 import tensorflow as tf
 import tensorflow.contrib.slim.nets as nets
 from tensorflow.contrib.slim.nets import resnet_v2
@@ -57,25 +58,6 @@ def resnet(filenames, session_id):
 
   features = features.squeeze() # remove dimensions that are only 1 long
 
-  #csv stuff
-  # features_1d=np.empty(features.shape[0])
-  features_1d = [None] * features.shape[0]
-  placeholder=""
-  for x in range(0, features.shape[0]):
-    for y in range(0, features.shape[1]):
-        placeholder+=str(features[x][y])+" "
-    features_1d[x]=placeholder
-    placeholder=""
-  
-
-
-  csv= 'static/output/%s/FeatureVectors.csv' % session_id
-
-  if os.path.isfile(csv):
-    df = utils.read_csv(csv)
-    df['Resnet_features']=pd.Series (features_1d)
-  else:
-    df = pd.DataFrame (features_1d, columns=['Resnet_features']) 
-  df.to_csv(csv, index=False)
+  utils.save_features_to_csv_file(features, filenames, session_id, 'Resnet_features')
 
   return features

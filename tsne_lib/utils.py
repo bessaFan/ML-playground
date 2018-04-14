@@ -73,3 +73,34 @@ def get_colors(n, cmap='gist_rainbow'):
 
     print color_list
     return color_list
+
+
+def save_features_to_csv_file(features, filenames, session_id, feature_name):
+  #csv stuff
+  ## preparing feature list
+  features_csv = [None] * features.shape[0]
+  placeholder=""
+  for x in range(0, features.shape[0]):
+    for y in range(0, features.shape[1]):
+        placeholder+=str(features[x][y])+" "
+    features_csv[x]=placeholder
+    placeholder=""
+  ## preparing colour list
+  colours_csv = [None] * len(filenames) #create empty list 
+  for x in range (0, len(filenames)): #create a list of colours in the order of the files
+    colours_csv[x] =filenames[x][52:58]
+  ## preparing filename list
+  filenames_csv = [None] * len(filenames) #create empty list 
+  for x in range (0, len(filenames)): #create a list of filenames in the order of the files
+    filenames_csv[x] =filenames[x][59:]
+
+  csv= 'static/output/%s/FeatureVectors.csv' % session_id # name the csv
+  # if os.path.isfile(csv):
+  #   df = utils.read_csv(csv)
+  #   df['File Name']=pd.Series (filenames_csv)
+  # else:
+  df = pd.DataFrame (filenames_csv, columns=["File Name"]) 
+
+  df['Colour (in Hex)']=pd.Series (colours_csv)
+  df[feature_name]=pd.Series (features_csv)
+  df.to_csv(csv, index=False)

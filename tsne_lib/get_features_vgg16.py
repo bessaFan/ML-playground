@@ -14,6 +14,7 @@ import numpy as np
 import mahotas as mh
 import tensorflow as tf
 import tensorflow.contrib.slim.nets as nets
+import utils
 
 from PIL import Image
 from IPython import embed
@@ -53,35 +54,7 @@ def vgg16(filenames, session_id):
   tf.reset_default_graph()
   features = features.squeeze() # remove dimensions that are only 1 long
 
-
-  #csv stuff
-  ## preparing feature list
-  features_csv = [None] * features.shape[0]
-  placeholder=""
-  for x in range(0, features.shape[0]):
-    for y in range(0, features.shape[1]):
-        placeholder+=str(features[x][y])+" "
-    features_csv[x]=placeholder
-    placeholder=""
-  ## preparing colour list
-  colours_csv = [None] * len(filenames) #create empty list 
-  for x in range (0, len(filenames)): #create a list of colours in the order of the files
-    colours_csv[x] =filenames[x][52:58]
-  ## preparing filename list
-  filenames_csv = [None] * len(filenames) #create empty list 
-  for x in range (0, len(filenames)): #create a list of filenames in the order of the files
-    filenames_csv[x] =filenames[x][59:]
-
-  csv= 'static/output/%s/FeatureVectors.csv' % session_id # name the csv
-  if os.path.isfile(csv):
-    df = utils.read_csv(csv)
-    df['File Name']=pd.Series (filenames_csv)
-  else:
-    df = pd.DataFrame (filenames_csv, columns=["File Name"]) 
-
-  df['Colour (in Hex)']=pd.Series (colours_csv)
-  df['VGG16_features']=pd.Series (features_csv)
-  df.to_csv(csv, index=False)
+  utils.save_features_to_csv_file(features, filenames, session_id, 'VGG16_features')
 
   return features 
 
