@@ -529,7 +529,7 @@
     -->      <!-- upload images -->
     <h1>Upload Images</h1>
     <form method=post enctype=multipart/form-data class='form-horizontal' action='?session={{session_id}}#try'>
-    <span id="helpBlock" class="help-block">Please upload 3 to 50 images for analysis. </span>
+    <!-- <span id="helpBlock" class="help-block">Please upload 3 to 60 images for analysis. </span> -->
 
       <div class="form-group">
         <label class="col-sm-4 control-label">Choose up to 60 images </label>
@@ -621,10 +621,10 @@
         </div>
       </div> 
 
-      <h3 style="padding-top: 15px; border-top: 1px solid rgba(18, 65, 69, .07);" >Feature Reduction</h3> 
-      <span id="helpBlock" class="help-block">Choose a Manifold Learning algorithm to perform dimensionality reduction so that we can plot extracted features in a 2D plot</span>
+      <h3 style="padding-top: 15px; border-top: 1px solid rgba(18, 65, 69, .07);" >Dimensionality Reduction</h3> 
+      <span id="helpBlock" class="help-block" style="padding-right:16%">Choose a manifold learning algorithm to perform dimensionality reduction on the features extracted by the machine learning model. This will embed each image into two dimensional space so that it can be plotted. The dimensional reduction result is still representitive of the differences in the high dimenional feature space.</span>
       <div class="form-group">
-        <label for="exampleDropdownForm" class="col-sm-4 control-label">Model</label>
+        <label for="exampleDropdownForm" class="col-sm-4 control-label">Algorithm</label>
         <select class="selectpicker show-tick col-xs-6" name = "model_name">
           <option data-subtext="t-distributed Stochastic Neighbor Embedding">t-SNE</option>
           <option data-subtext="Local Tangent Space Alignment" disabled>LTSA</option>
@@ -640,17 +640,17 @@
 
       <!-- tSNE Parameters form -->
       <h3 style="padding-top: 15px; border-top: 1px solid rgba(18, 65, 69, .07);">t-SNE Parameters</h3> 
-      <span id="helpBlock" class="help-block">Different values result in different result</span>
+      <span id="helpBlock" class="help-block">Settings that control the dimensionality reduction.</span>
       <div class="form-group">
         <label for="inputEmail3" class="col-sm-4 control-label">Perplexity</label>
-        <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary invert" data-toggle="tooltip" data-placement="right" title="The perplexity is related to the number of nearest neighbors that is used in other manifold learning algorithms. Larger datasets usually require a larger perplexity. Consider selecting a value between 5 and 50. The choice is not extremely critical since t-SNE is quite insensitive to this parameter.">
+        <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary invert" data-toggle="tooltip" data-placement="right" title="The perplexity is loosely how to balance attention between local and global aspects of your data. The parameter is, in a sense, a guess about the number of close neighbors each point has. The perplexity value has a complex effect on the resulting pictures. Consider selecting a value between 5 and 50.">
         <div class="col-sm-6">
           <input type="number" class="form-control"  name="perplexity" value="15" placeholder="perplexity">
         </div>
       </div>
       <div class="form-group">
         <label for="inputEmail3" class="col-sm-4 control-label">Early Exaggeration</label>
-        <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary invert" data-toggle="tooltip" data-placement="right" title="Controls how tight natural clusters in the original space are in the embedded space and how much space will be between them. For larger values, the space between natural clusters will be larger in the embedded space. Again, the choice of this parameter is not very critical. If the cost function increases during initial optimization, the early exaggeration factor or the learning rate might be too high.">
+        <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary invert" data-toggle="tooltip" data-placement="right" title="Controls how tight natural clusters in the original space are in the embedded space and how much space will be between them. For larger values, the space between natural clusters will be larger in the embedded space. The choice of this parameter is not very critical.">
         <div class="col-sm-6">
           <input type="number" class="form-control"  name="early_exaggeration" value="12" placeholder="early_exaggeration">
         </div>
@@ -663,7 +663,7 @@
         </div>
       </div>
       <h3 style="padding-top: 15px; border-top: 1px solid rgba(18, 65, 69, .07);">Plot Parameters</h3> 
-      <span id="helpBlock" class="help-block">The resolution of the image</span>
+      <span id="helpBlock" class="help-block">Settings that control quality and spacing of the visualization.</span>
       <div class="form-group">
         <label for="inputEmail3" class="col-sm-4 control-label">Dots Per Inchs</label>
         <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary invert" data-toggle="tooltip" data-placement="right" title="The resolution of the final plot. The bigger the value, the better the image quality. However, the plot generating speed increases as the resolution gets higher.">
@@ -673,7 +673,7 @@
       </div>
       <div class="form-group">
         <label for="inputEmail3" class="col-sm-4 control-label">Canvas Size</label>
-        <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary invert" data-toggle="tooltip" data-placement="right" title="Size of the plot">
+        <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary invert" data-toggle="tooltip" data-placement="right" title="The smaller the canvas the more likely images will overlap. A larger canvas size will make images appear futher apart but also smaller.">
         <div class="col-sm-6">
           <input type="number" class="form-control"  name="CanvasSize" value="4000" placeholder="canvas size">
         </div>
