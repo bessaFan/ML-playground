@@ -62,15 +62,15 @@ body {
 }
 
 .header-title {
-  font-size: 66px;
+  font-size: 56px;
   font-weight: 777;
   letter-spacing: 1px;
   text-shadow: 2px 2px black;
 }
 
 .header-subtitle {
-  font-size: 25px;
-  padding: 100px 100px;
+  font-size: 20px;
+  padding: 60px 100px;
 }
 
 #try-btn {
