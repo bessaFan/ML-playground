@@ -8,12 +8,21 @@ from flask import Flask, request, redirect, url_for, render_template
 from werkzeug.utils import secure_filename
 import uuid
 from IPython import embed
+from flask_thumbnails import Thumbnail
 
 
  
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 app = Flask(__name__)
+thumb = Thumbnail(app)
+app.config['THUMBNAIL_MEDIA_ROOT'] = os.getcwd() + ''
+app.config['THUMBNAIL_MEDIA_URL'] = ''
+app.config['THUMBNAIL_MEDIA_THUMBNAIL_ROOT'] = os.getcwd() + ''
+app.config['THUMBNAIL_MEDIA_THUMBNAIL_URL'] = ''
+app.config['THUMBNAIL_STORAGE_BACKEND'] = 'flask_thumbnails.storage_backends.FilesystemStorageBackend'
+app.config['THUMBNAIL_DEFAUL_FORMAT'] = 'JPEG'
+
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 app.config['MAX_CONTENT_LENGTH'] = 300 * 1024 * 1024 # Allow 300 MiB maximum upload for all images at once
 FILE_SIZE_LIMIT = 3 * 1024 * 1024 # 3 MiB
