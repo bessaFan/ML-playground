@@ -44,12 +44,12 @@ def resnet(filenames, session_id):
   in_images = tf.placeholder(tf.float32, images.shape)
 
   with slim.arg_scope(resnet_v2.resnet_arg_scope()):
-    model, intermed = resnet_v2.resnet_v2_101(in_images, None, is_training=False)
+    model, intermed = resnet_v2.resnet_v2_152(in_images, None, is_training=False)
     restored_variables = tf.contrib.framework.get_variables_to_restore()
     restorer = tf.train.Saver(restored_variables)
 
     with tf.Session() as sess:
-      img_net_path = 'models/resnet_v2_101.ckpt'
+      img_net_path = 'models/resnet_v2_152.ckpt'
       restorer.restore(sess, img_net_path)
       features = sess.run(model, feed_dict={in_images:images})
 

@@ -293,7 +293,7 @@
     model_name_elem = document.getElementById('model_name');
     model_name = model_name_elem.value;
 
-    if (model_name == 'ResNet V2 101') {
+    if (model_name == 'ResNet V2 152') {
       model_layer = 'Pool 5 (Last Hidden Layer)';
       num_features = '2048';
     } else if (model_name == 'VGG 16') {
@@ -592,7 +592,7 @@
         <label for="exampleDropdownForm" class="col-sm-4 control-label">Deep Learning Model</label>
         <select id="model_name" data-show-subtext="true" class="selectpicker show-tick col-xs-6" name="model_name" onchange="ModelSelectChange()">
           <option data-subtext="Passthrough pixels to feature reduction">None</option>
-          <option >ResNet V2 101</option>   model_name
+          <option >ResNet V2 152</option>
           <option selected >VGG 16</option>
           <option disabled>Inception V3</option>
           <option disabled>Inception V4</option>
@@ -618,7 +618,7 @@
         <label for="inputEmail3" class="col-sm-4 control-label">Number of Features</label>
         <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary invert" data-toggle="tooltip" data-placement="right" title="The number of features extracted from the image.">
         <div class="col-sm-6">
-          <input readonly id="num_features" class="form-control" name="resolution" value="2048" style="background-color: hsla(0, 0%, 97%, 1);">
+          <input readonly id="num_features" class="form-control" name="resolution" value="4096" style="background-color: hsla(0, 0%, 97%, 1);">
         </div>
       </div> 
 
@@ -671,7 +671,7 @@
         <label for="inputEmail3" class="col-sm-4 control-label">Dots Per Inchs</label>
         <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary invert" data-toggle="tooltip" data-placement="right" title="The resolution of the final plot. The bigger the value, the better the image quality. However, the plot generating speed increases as the resolution gets higher.">
         <div class="col-sm-6">
-          <input type="number" class="form-control" name="DotsPerInchs" value="300" placeholder="DotsPerInchs">
+          <input type="number" class="form-control" name="DotsPerInchs" value="500" placeholder="DotsPerInchs">
         </div>
       </div>
       <div class="form-group">

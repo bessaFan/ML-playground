@@ -28,7 +28,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 plt.switch_backend('agg')
 
-from get_features_resnet101 import resnet
+from get_features_resnet152 import resnet
 from get_features_vgg16 import vgg16
 
  
@@ -53,7 +53,7 @@ def tsne_images(session_id,colors_dict, res, perplexity, early_exaggeration, lea
     count += 1
 
   if model_name != 'None':
-    if model_name == 'ResNet V2 101':
+    if model_name == 'ResNet V2 152':
       x_value = resnet(filenames= filenames, session_id=session_id) 
     if model_name == 'VGG 16':
       x_value = vgg16(filenames=filenames, session_id=session_id) 
