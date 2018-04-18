@@ -136,6 +136,12 @@
          if($(this).prop('complete')) $(this).load();
       });
 
+      $("#tsne_example").on('load', function() {
+          magnify("tsne_example", "tsne_example_cover", 3);
+      }).each(function() {
+         if($(this).prop('complete')) $(this).load();
+      });
+
     });
 
     function setVisible_step1(){
@@ -438,9 +444,9 @@
           <br>
             <div class="example-result" id="example-result" style="visibility: hidden; position: relative; width: 100%; margin-left: auto; margin-right: auto;">
               <!-- <img src="/static/images/cell-tsne.png" style="position: absolute; top: 0px; right: 0px; width:100%;"> -->
-              <img src="/static/images/cell-tsne2.png" style="position: relative; top: 0px; right: 0px; width:100%;">
+              <img src="/static/images/cell-tsne2.png" id="tsne_example" style="position: relative; z-index:-1; top: 0px; right: 0px; width:100%;">
 
-              <svg style='position:absolute; top: 0; right: 0; position:absolute; top: 0; right: 0; height:100%; width:100%; overflow: visible;' version="1.1" xmlns="http://www.w3.org/2000/svg">
+              <svg id="tsne_example_cover" style='position:absolute; top: 0; right: 0; position:absolute; top: 0; right: 0; height:100%; width:100%; overflow: visible;' version="1.1" xmlns="http://www.w3.org/2000/svg">
                 <line id="xaxis-line" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="90%" y2="90%" />
                 <line id="yaxis-line" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="10%" y2="10%" />
                 <text x="91%" y="91.5%" font-size="2em" fill="white" text-anchor="left">
