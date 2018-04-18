@@ -429,7 +429,7 @@
           <div class="header-subtitle" style="padding-top: 50px">
             <!-- No install. No code. Instant Visualization.  -->
             <!-- Use our web tool to experiment with popular ML models and visualization techniques designed to expose similarities, trends, differences, and outliers in your image set. Built at the SickKids Research Institute for cell biology research. -->
-            Our web app provides a "No code—No installation" platform for you to upload images and compare popular machine learning models and manifold learning algorithms. Pick from the options and we'll generate a 2D plot where similar images are placed close together and dissimilar images are far apart. Find similarities, trends, differences, and outliers in your image set. While this is not a classification tool, you can apply colored labels to indiviual images at the time of uploading. Lastly, you can download feature vectors to CSV and do your own analysis.
+            Our open source web app provides a "No code—No installation" platform for you to upload images and compare popular machine learning models and manifold learning algorithms. Pick from the options and we'll generate a 2D plot where similar images are placed close together and dissimilar images are far apart. Find similarities, trends, differences, and outliers in your image set. While this is not a classification tool, you can apply colored labels to indiviual images at the time of uploading. Lastly, you can download feature vectors to CSV and do your own analysis.
             <!-- Our web app provides a "No code. No installation" platform for researchers to upload images and compare clustering results with popular machine learning models and manifold learning algorithms, making experimenting and prototyping with ML less time-consuming. There’s currently no existing app that allows fast organization and visualization of data -->
           </div>
           <a href="#try" >
@@ -599,6 +599,7 @@
           <option disabled>Inception-ResNet-v2</option>
           <option disabled>NASNet-A_Large_331</option>
           <option disabled>PNASNet-5_Large_331</option>
+          <option disabled>Compare All</option>
         </select>
         <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary invert" data-toggle="tooltip" data-placement="right" title="Select the Machine Learning model here!">
       </div>
@@ -622,11 +623,12 @@
       </div> 
 
       <h3 style="padding-top: 15px; border-top: 1px solid rgba(18, 65, 69, .07);" >Dimensionality Reduction</h3> 
-      <span id="helpBlock" class="help-block" style="padding-right:16%">Choose a manifold learning algorithm to perform dimensionality reduction on the features extracted by the machine learning model. This will embed each image into two dimensional space so that it can be plotted. The dimensional reduction result is still representitive of the differences in the high dimenional feature space.</span>
+      <span id="helpBlock" class="help-block" style="padding-right:16%">Choose a non-linear manifold learning algorithm to perform dimensionality reduction on the features extracted by the machine learning model. This will embed each image into two dimensional space so that they can be plotted. The result is still representitive of the differences in the higher dimenional feature space.</span>
       <div class="form-group">
         <label for="exampleDropdownForm" class="col-sm-4 control-label">Algorithm</label>
         <select class="selectpicker show-tick col-xs-6" name = "model_name">
           <option data-subtext="t-distributed Stochastic Neighbor Embedding">t-SNE</option>
+          <option data-subtext="Uniform Manifold Approximation and Projection" disabled>UMAP</option>
           <option data-subtext="Local Tangent Space Alignment" disabled>LTSA</option>
           <option data-subtext="Modified Locally Linear Embedding" disabled>Modified LLE</option>
           <option data-subtext="Multi-dimensional Scalingdisabled" disabled>MDS</option>
@@ -634,6 +636,7 @@
           <option disabled>Locally Linear Embedding</option>
           <option disabled>Spectral Embedding</option>
           <option disabled>Hessian Eigenmapping</option>
+          <option disabled>Compare All</option>
         </select>
         <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary invert" data-toggle="tooltip" data-placement="right" title="Select the Manifold Learning model here!">
       </div> 
