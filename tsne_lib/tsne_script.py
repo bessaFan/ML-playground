@@ -5,7 +5,6 @@ import csv
 import numpy as np
 import pylab
 import mahotas as mh
-import glob
 import watershed # label image by calling watershed.py
 import utils # crop cell by calling utils.py
 import plot

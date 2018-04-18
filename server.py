@@ -59,6 +59,7 @@ def main():
     for color_name in color_names:
         color_name = os.path.basename(color_name) # get just the color name, not a long folder path including static/uploads
         images=list(glob.glob('static/uploads/%s/%s/*' % (session_id,color_name)))
+        images=[ x for x in images if "100x100" not in x ] # remove thumbnails from list, they will be generated
         colors.append({'hex':color_name,'images':images})
 
     image_exists = len(colors)
