@@ -114,11 +114,24 @@
 
       // Reveal example result when user scrolls to it
       window.sr = ScrollReveal();
+
       function animateExampleResult( element ){
-        document.getElementById("xaxis-line").style.webkitAnimationPlayState = "running";
-        document.getElementById("yaxis-line").style.webkitAnimationPlayState = "running";
+      document.getElementById("xaxis-line").style.webkitAnimationPlayState = "running";
+      document.getElementById("yaxis-line").style.webkitAnimationPlayState = "running";
       }
       sr.reveal('#example-result', { duration: 2000, afterReveal: animateExampleResult});
+
+      function animateExampleResult2( element ){
+      document.getElementById("xaxis-line2").style.webkitAnimationPlayState = "running";
+      document.getElementById("yaxis-line2").style.webkitAnimationPlayState = "running";
+      }
+      sr.reveal('#example-result2', { duration: 2000, afterReveal: animateExampleResult2});
+
+      function animateExampleResult3( element ){
+      document.getElementById("xaxis-line3").style.webkitAnimationPlayState = "running";
+      document.getElementById("yaxis-line3").style.webkitAnimationPlayState = "running";
+      }
+      sr.reveal('#example-result3', { duration: 2000, afterReveal: animateExampleResult3});
 
       // Highlight first step
       document.getElementById("fileinput").style.border = "2px dashed rgb(46, 117, 145, 0.3)";
@@ -136,6 +149,18 @@
 
       $("#tsne_example").on('load', function() {
         magnify("tsne_example", "tsne_example_cover", 3);
+      }).each(function() {
+       if($(this).prop('complete')) $(this).load();
+     });
+
+      $("#tsne_example2").on('load', function() {
+        magnify("tsne_example2", "tsne_example_cover2", 3);
+      }).each(function() {
+       if($(this).prop('complete')) $(this).load();
+     });
+
+      $("#tsne_example3").on('load', function() {
+        magnify("tsne_example3", "tsne_example_cover3", 3);
       }).each(function() {
        if($(this).prop('complete')) $(this).load();
      });
@@ -514,6 +539,11 @@
         </div>
       </div>
 
+
+
+
+
+
       <!-- <div class=container> -->
       <div class="header" style="height: 100%; padding: 150px 100px 40px 100px;">
         <div class="header-title">
@@ -582,6 +612,51 @@
         }
       </style>
       <!-- <img src="/static/images/cell-tsne2.png" style="position: absolute; top: 0px; right: 0px; width:100%;"> -->
+
+        <div class="header" style="height: 100%; padding: 150px 100px 40px 100px;">
+          <div class="header-title">
+            Deep Learning<br>Image Similarity<br>Web Tool
+          </div>
+          <div>
+            <!-- <img src="/static/images/cell-tsne-transparent.png" style="height:500px; padding-top:50px; filter: invert(100%)"> -->
+          </div>
+          <div class="header-subtitle" style="padding-top: 50px">
+            <!-- No install. No code. Instant Visualization.  -->
+            <!-- Use our web tool to experiment with popular ML models and visualization techniques designed to expose similarities, trends, differences, and outliers in your image set. Built at the SickKids Research Institute for cell biology research. -->
+            Our open source web app provides a "No code—No installation" platform for you to upload images and compare popular machine learning models and manifold learning algorithms. Pick from the options and we'll generate a 2D plot where similar images are placed close together and dissimilar images are far apart. Find similarities, trends, differences, and outliers in your image set. While this is not a classification tool, you can apply colored labels to indiviual images at the time of uploading. Lastly, you can download feature vectors to CSV and do your own analysis.
+            <!-- Our web app provides a "No code. No installation" platform for researchers to upload images and compare clustering results with popular machine learning models and manifold learning algorithms, making experimenting and prototyping with ML less time-consuming. There’s currently no existing app that allows fast organization and visualization of data -->
+          </div>
+          <a href="#try" >
+            <button class="btn btn-default" id="try-btn">TRY NOW</button>
+          </a>
+          <br>
+            <div class="example-result" id="example-result" style="visibility: hidden; position: relative; width: 100%; margin-left: auto; margin-right: auto;">
+              <img src="/static/images/cell-tsne2.png" id="tsne_example" style="position: relative; z-index:-1; top: 0px; right: 0px; width:100%;">
+              <svg id="tsne_example_cover" style='position:absolute; top: 0; right: 0; position:absolute; top: 0; right: 0; height:100%; width:100%; overflow: visible;' version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <line id="xaxis-line" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="90%" y2="90%" />
+                <line id="yaxis-line" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="10%" y2="10%" />
+                <text x="91%" y="91.5%" font-size="2em" fill="white" text-anchor="left">
+                   t-SNE1
+                 </text>
+                <text x="10%" y="7%" font-size="2em" fill="white" text-anchor="middle">
+                   t-SNE2
+                 </text>
+                 <rect x="11%" y="81.3%" width="1.5%" height="3%" style="fill:#066fd5;stroke-width:0" />
+                <text x="13.5%" y="83.7%" font-size="1em" fill="white" text-anchor="left">
+                   Cervical Cancer (SiHa cells)
+                 </text>
+                 <rect x="11%" y="85.3%" width="1.5%" height="3%" style="fill:#ff0000;stroke-width:0" />
+                <text x="13.5%" y="87.7%" font-size="1em" fill="white" text-anchor="left">
+                   Li–Fraumeni Cancer Predisposition Syndrome (Fibroblast cells)
+                 </text>
+              </svg>
+            <!-- <img src="/static/images/spindly.png" style="position: absolute; top: 20px; right: 20px; width:30%;">
+            <img src="/static/images/foci.png" style="position: absolute; top: 30px; right: 30px; width:30%;">
+            <img src="/static/images/round.png" style="position: absolute; top: 40px; right: 40px; width:30%;">
+             -->  
+            </div>
+
+        </div>
     </div>
 
   </div>
@@ -590,6 +665,65 @@
 </div>
 
 <!-- Old Header -->
+
+        <div style="background-color: black">
+          <br>
+            <div class="example-result" id="example-result2" style="visibility: hidden; position: relative; width: 100%; margin-left: auto; margin-right: auto;">
+              <img src="/static/images/example3.png" id="tsne_example2" style="position: relative; z-index:-1; top: 0px; right: 0px; max-height: 1000px;margin-left: auto; margin-right: auto;display:block;">
+              <svg id="tsne_example_cover2" style='position:absolute; top: 0; right: 0; position:absolute; top: 0; right: 0; height:100%; width:100%; overflow: visible;' version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <line id="xaxis-line2" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="90%" y2="90%" />
+                <line id="yaxis-line2" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="10%" y2="10%" />
+                <text x="91%" y="91.5%" font-size="2em" fill="white" text-anchor="left">
+                   t-SNE1
+                 </text>
+                <text x="10%" y="7%" font-size="2em" fill="white" text-anchor="middle">
+                   t-SNE2
+                 </text>
+                 <rect x="11%" y="81.3%" width="1.5%" height="3%" style="fill:#066fd5;stroke-width:0" />
+                <text x="13.5%" y="83.7%" font-size="1em" fill="white" text-anchor="left">
+                   Cervical Cancer (SiHa cells)
+                 </text>
+                 <rect x="11%" y="85.3%" width="1.5%" height="3%" style="fill:#ff0000;stroke-width:0" />
+                <text x="13.5%" y="87.7%" font-size="1em" fill="white" text-anchor="left">
+                   Li–Fraumeni Cancer Predisposition Syndrome (Fibroblast cells)
+                 </text>
+              </svg>
+            <!-- <img src="/static/images/spindly.png" style="position: absolute; top: 20px; right: 20px; width:30%;">
+            <img src="/static/images/foci.png" style="position: absolute; top: 30px; right: 30px; width:30%;">
+            <img src="/static/images/round.png" style="position: absolute; top: 40px; right: 40px; width:30%;">
+             -->  
+            </div>
+
+          
+          <br>
+            <div class="example-result" id="example-result3" style="visibility: hidden; position: relative; width: 100%; margin-left: auto; margin-right: auto;">
+              <img src="/static/images/example1.png" id="tsne_example3" style="position: relative; z-index:-1; top: 0px; right: 0px; max-height: 1000px;">
+              <svg id="tsne_example_cover3" style='position:absolute; top: 0; right: 0; position:absolute; top: 0; right: 0; height:100%; width:100%; overflow: visible;' version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <line id="xaxis-line3" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="50%" y2="90%" />
+                <line id="yaxis-line3" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="10%" y2="10%" />
+                <text x="51%" y="91.5%" font-size="2em" fill="white" text-anchor="left">
+                   t-SNE1
+                 </text>
+                <text x="10%" y="7%" font-size="2em" fill="white" text-anchor="middle">
+                   t-SNE2
+                 </text>
+                 <rect x="11%" y="81.3%" width="1.5%" height="3%" style="fill:#066fd5;stroke-width:0" />
+                <text x="13.5%" y="83.7%" font-size="1em" fill="white" text-anchor="left">
+                   Cervical Cancer (SiHa cells)
+                 </text>
+                 <rect x="11%" y="85.3%" width="1.5%" height="3%" style="fill:#ff0000;stroke-width:0" />
+                <text x="13.5%" y="87.7%" font-size="1em" fill="white" text-anchor="left">
+                   Li–Fraumeni Cancer Predisposition Syndrome (Fibroblast cells)
+                 </text>
+              </svg>
+            <!-- <img src="/static/images/spindly.png" style="position: absolute; top: 20px; right: 20px; width:30%;">
+            <img src="/static/images/foci.png" style="position: absolute; top: 30px; right: 30px; width:30%;">
+            <img src="/static/images/round.png" style="position: absolute; top: 40px; right: 40px; width:30%;">
+             -->  
+            </div>
+        </div>
+
+  <!-- Old Header -->
 <!-- 
   <div class="row" > 
     <div class="header col-md-12" >
@@ -808,19 +942,22 @@
         <h1>Result</h1>
         <div style="position: relative">
 
-
+<!-- deleted id="tsne_plot" -->
           <div class="slideshow-container">
              <div class="mySlides fade">
               <div class="numbertext">1 / 3</div>
-              <img id="tsne_plot" src="{{files[0]}}?timestamp={{timestamp}}" style="width: 100%;"> 
+              <img src="{{files[0]}}?timestamp={{timestamp}}" style="width: 100%;"> 
               <div class="text">Caption Text</div>
             </div>
 
             <div class="mySlides fade">
               <div class="numbertext">2 / 3</div>
-              <img id="tsne_plot" src="{{files[1]}}?timestamp={{timestamp}}" style="width: 100%;"> 
+              <img  src="{{files[1]}}?timestamp={{timestamp}}" style="width: 100%;"> 
               <div class="text">Caption Two</div>
             </div>
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
           </div>
           <div style="text-align:center">
             <span class="dot" onclick="currentSlide(1)"></span> 
@@ -857,7 +994,8 @@
                 }
             </script>
           </div>
-                    <svg id="circles" height="1000" width="100%" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%); opacity: .2;">
+          <!-- circles -->
+<!--            <svg id="circles" height="1000" width="100%" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%); opacity: .2;">
             <circle  cx="50%" cy="50%" r="350"  />
             <circle  cx="50%" cy="50%" r="270"  />
             <circle  cx="50%" cy="50%" r="200"  />
@@ -865,7 +1003,7 @@
             <circle  cx="50%" cy="50%" r="90"  />
             <circle  cx="50%" cy="50%" r="50"  />
             <circle  cx="50%" cy="50%" r="20"  />
-          </svg>  
+          </svg>   -->
         </div>
 
 
