@@ -47,7 +47,11 @@ def main():
     plot_exists = False
     plot_name=""
     plot_name_no_dir=""
+    # files = list(glob.glob('static/output/%s/*.png' % session_id).encode('ascii','ignore') )
     files = list(glob.glob('static/output/%s/*.png' % session_id))
+    for x in range(0,len(files)):
+      files[x]=files[x].encode('ascii','ignore');
+
     if (len(files)!=0):
       plot_exists=True
       plot_name= max(files, key=os.path.getctime).encode('ascii','ignore')    #getting the name of the newest file
@@ -64,7 +68,7 @@ def main():
 
     image_exists = len(colors)
     featureCSV_exists = os.path.exists('static/output/%s/FeatureVectors.csv' % session_id)
-    return render_template('main.html', colors=colors, session_id=session_id, plot_exists=plot_exists, featureCSV_exists=featureCSV_exists, image_exists=image_exists, timestamp=str(time.time()), plot_name=plot_name, plot_name_no_dir=plot_name_no_dir)
+    return render_template('main.html', files=files, colors=colors, session_id=session_id, plot_exists=plot_exists, featureCSV_exists=featureCSV_exists, image_exists=image_exists, timestamp=str(time.time()), plot_name=plot_name, plot_name_no_dir=plot_name_no_dir)
 
 
 @app.route("/tsne", methods=['POST', 'GET'])
