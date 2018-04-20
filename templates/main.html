@@ -26,9 +26,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
   <!-- (Optional) Latest compiled and minified JavaScript translation files -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/i18n/defaults-*.min.js"></script>
-
   <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
-
   <script>
 
 
@@ -130,11 +128,11 @@
       }
 
       // Enable magnifier glass (after it loads)
-      $("#tsne_plot").on('load', function() {
-        magnify("tsne_plot", "circles", 3);
-      }).each(function() {
-       if($(this).prop('complete')) $(this).load();
-     });
+     //  $("#tsne_plot").on('load', function() {
+     //    magnify("tsne_plot", "circles", 3);
+     //  }).each(function() {
+     //   if($(this).prop('complete')) $(this).load();
+     // });
 
       $("#tsne_example").on('load', function() {
         magnify("tsne_example", "tsne_example_cover", 3);
@@ -316,6 +314,98 @@
 
 </script>
 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    * {box-sizing: border-box}
+    body {font-family: Verdana, sans-serif; margin:0}
+    .mySlides {display: none}
+    img {vertical-align: middle;}
+
+    /* Slideshow container */
+    .slideshow-container {
+      max-width: 1000px;
+      position: relative;
+      margin: auto;
+    }
+
+    /* Next & previous buttons */
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      padding: 16px;
+      margin-top: -22px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.6s ease;
+      border-radius: 0 3px 3px 0;
+    }
+
+    /* Position the "next button" to the right */
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+
+    /* On hover, add a black background color with a little bit see-through */
+    .prev:hover, .next:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    /* Caption text */
+    .text {
+      color: #f2f2f2;
+      font-size: 15px;
+      padding: 8px 12px;
+      position: absolute;
+      bottom: 8px;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* Number text (1/3 etc) */
+    .numbertext {
+      color: #f2f2f2;
+      font-size: 12px;
+      padding: 8px 12px;
+      position: absolute;
+      top: 0;
+    }
+
+    /* The dots/bullets/indicators */
+    .dot {
+      cursor: pointer;
+      height: 15px;
+      width: 15px;
+      margin: 0 2px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.6s ease;
+    }
+
+    .active, .dot:hover {
+      background-color: #717171;
+    }
+
+    /* Fading animation; --> but theres no animation because the images fade away after the animation... deleted the transition and made the animation 10h long (so that the image stays:'))*/
+    .fade {
+      animation-name: fade;
+      animation-duration: 36000s;
+    }
+
+    @keyframes fade {
+      from {opacity: 1} 
+      to {opacity: 1}
+    }
+
+    /* On smaller screens, decrease text size */
+    @media only screen and (max-width: 300px) {
+      .prev, .next,.text {font-size: 11px}
+    }
+  </style>
 </head>
 
 
@@ -445,61 +535,61 @@
 
         <div class="example-result" id="example-result" style="visibility: hidden; position: relative; width: 100%; margin-left: auto; margin-right: auto;">
           <!-- <img src="/static/images/cell-tsne.png" style="position: absolute; top: 0px; right: 0px; width:100%;"> -->
-            <img src="/static/images/cell-tsne2.png" id="tsne_example" style="position: relative; z-index:-1; top: 0px; right: 0px; width:100%;">
-            <svg id="tsne_example_cover" style='position:absolute; top: 0; right: 0; position:absolute; top: 0; right: 0; height:100%; width:100%; overflow: visible;' version="1.1" xmlns="http://www.w3.org/2000/svg">
-              <line id="xaxis-line" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="90%" y2="90%" />
-              <line id="yaxis-line" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="10%" y2="10%" />
-              <text x="91%" y="91.5%" font-size="2em" fill="white" text-anchor="left">
-               t-SNE1
-             </text>
-             <text x="10%" y="7%" font-size="2em" fill="white" text-anchor="middle">
-               t-SNE2
-             </text>
-             <text x="10%" y="7%" font-size="2em" fill="white" text-anchor="middle">
-               t-SNE2
-             </text>
-             <rect x="11%" y="81.3%" width="1.5%" height="3%" style="fill:#066fd5;stroke-width:0" />
-             <text x="13.5%" y="83.7%" font-size="1em" fill="white" text-anchor="left">
-               Cervical Cancer (SiHa cells)
-             </text>
-             <rect x="11%" y="85.3%" width="1.5%" height="3%" style="fill:#ff0000;stroke-width:0" />
-             <text x="13.5%" y="87.7%" font-size="1em" fill="white" text-anchor="left">
-               Li–Fraumeni Cancer Predisposition Syndrome (Fibroblast cells)
-             </text>
-           </svg>
-         </div>
+          <img src="/static/images/cell-tsne2.png" id="tsne_example" style="position: relative; z-index:-1; top: 0px; right: 0px; width:100%;">
+          <svg id="tsne_example_cover" style='position:absolute; top: 0; right: 0; position:absolute; top: 0; right: 0; height:100%; width:100%; overflow: visible;' version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <line id="xaxis-line" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="90%" y2="90%" />
+            <line id="yaxis-line" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="10%" y2="10%" />
+            <text x="91%" y="91.5%" font-size="2em" fill="white" text-anchor="left">
+             t-SNE1
+           </text>
+           <text x="10%" y="7%" font-size="2em" fill="white" text-anchor="middle">
+             t-SNE2
+           </text>
+           <text x="10%" y="7%" font-size="2em" fill="white" text-anchor="middle">
+             t-SNE2
+           </text>
+           <rect x="11%" y="81.3%" width="1.5%" height="3%" style="fill:#066fd5;stroke-width:0" />
+           <text x="13.5%" y="83.7%" font-size="1em" fill="white" text-anchor="left">
+             Cervical Cancer (SiHa cells)
+           </text>
+           <rect x="11%" y="85.3%" width="1.5%" height="3%" style="fill:#ff0000;stroke-width:0" />
+           <text x="13.5%" y="87.7%" font-size="1em" fill="white" text-anchor="left">
+             Li–Fraumeni Cancer Predisposition Syndrome (Fibroblast cells)
+           </text>
+         </svg>
+       </div>
 
-          <style>
-            #xaxis-line{
-              stroke: white;
-              stroke-width: 2;
-              animation: offset 6s ease forwards;
-              /*animation-delay: 2s;*/
-              animation-play-state: paused;
-            }
-            #yaxis-line{
-              stroke: white;
-              stroke-width: 2;
-              animation: offset 10s ease forwards;
-              /*animation-delay: 2s;*/
-              animation-play-state: paused;
-            }
+       <style>
+        #xaxis-line{
+          stroke: white;
+          stroke-width: 2;
+          animation: offset 6s ease forwards;
+          /*animation-delay: 2s;*/
+          animation-play-state: paused;
+        }
+        #yaxis-line{
+          stroke: white;
+          stroke-width: 2;
+          animation: offset 10s ease forwards;
+          /*animation-delay: 2s;*/
+          animation-play-state: paused;
+        }
 
-            @keyframes offset {
-              to {
-                stroke-dashoffset: 0;
-              }
-            }
-          </style>
-          <!-- <img src="/static/images/cell-tsne2.png" style="position: absolute; top: 0px; right: 0px; width:100%;"> -->
-        </div>
-
-      </div>
-      <!-- </div> -->
+        @keyframes offset {
+          to {
+            stroke-dashoffset: 0;
+          }
+        }
+      </style>
+      <!-- <img src="/static/images/cell-tsne2.png" style="position: absolute; top: 0px; right: 0px; width:100%;"> -->
     </div>
-  </div>
 
-  <!-- Old Header -->
+  </div>
+  <!-- </div> -->
+</div>
+</div>
+
+<!-- Old Header -->
 <!-- 
   <div class="row" > 
     <div class="header col-md-12" >
@@ -713,10 +803,61 @@
 
       <!-- Plot displaying -->
       {% if plot_exists %}
+
       <div class="image" id="the_result_plot">
         <h1>Result</h1>
         <div style="position: relative">
-          <svg id="circles" height="1000" width="100%" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%); opacity: .2;">
+
+
+          <div class="slideshow-container">
+             <div class="mySlides fade">
+              <div class="numbertext">1 / 3</div>
+              <img id="tsne_plot" src="{{files[0]}}?timestamp={{timestamp}}" style="width: 100%;"> 
+              <div class="text">Caption Text</div>
+            </div>
+
+            <div class="mySlides fade">
+              <div class="numbertext">2 / 3</div>
+              <img id="tsne_plot" src="{{files[1]}}?timestamp={{timestamp}}" style="width: 100%;"> 
+              <div class="text">Caption Two</div>
+            </div>
+          </div>
+          <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1)"></span> 
+            <span class="dot" onclick="currentSlide(2)"></span> 
+          </div>
+
+          <script>
+            var slideIndex = 1;
+            showSlides(slideIndex);
+
+            function plusSlides(n) {
+              showSlides(slideIndex += n);
+            }
+
+            function currentSlide(n) {
+              showSlides(slideIndex = n);
+            }
+
+            function showSlides(n) {
+              var i;
+              var slides = document.getElementsByClassName("mySlides");
+              var dots = document.getElementsByClassName("dot");
+              if (n > slides.length) {slideIndex = 1}    
+                if (n < 1) {slideIndex = slides.length}
+                  for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";  
+                  }
+                  for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                  }
+                  slides[slideIndex-1].style.display = "block";  
+                  dots[slideIndex-1].className += " active";
+
+                }
+            </script>
+          </div>
+                    <svg id="circles" height="1000" width="100%" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%); opacity: .2;">
             <circle  cx="50%" cy="50%" r="350"  />
             <circle  cx="50%" cy="50%" r="270"  />
             <circle  cx="50%" cy="50%" r="200"  />
@@ -725,66 +866,92 @@
             <circle  cx="50%" cy="50%" r="50"  />
             <circle  cx="50%" cy="50%" r="20"  />
           </svg>  
-          {% for file in files %}
+        </div>
+
+
+
+
+
+          <!-- 
+
+          <div class="mySlides fade" style="display: none;">
+            <div class="numbertext">3 / 3</div>
+            <img src="../static/images/3.jpg" style="width:100%">
+            <div class="text">Caption Three</div>
+           </div>
+          <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            <img id="tsne_plot" src="{{files[1]}}?timestamp={{timestamp}}" style="width: 100%;">  -->
+
+<!--           {% for file in files %}
+          <div class="slideshow-container">
             <span id="input-images">
-             <img id="tsne_plot" src="{{file}}?timestamp={{timestamp}}" style="width: 100%;"> 
-           </span>
-         {% endfor %}
+              <div class="mySlides fade">
+                <img id="tsne_plot" src="{{file}}?timestamp={{timestamp}}" style="width: 100%;"> 
+                <div class="text">{{file}}</div>
+              </div>
+            </span>
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+          </div>
+          {% endfor %} -->
+
+
 
           <!-- <img id="tsne_plot" src="static/output/{{session_id}}/ResultPlot_ModelName:{{model_name}}__Resolution:{{resolution}}_Perplexity:{{perplexity}}_EarlyExaggeration:{{early_exaggeration}}_LearningRate:{{learning_rate}}_DPI:{{DotsPerInchs}}.png" style="width: 100%;"> -->
 
           <!-- <img id="tsne_plot" src="static/output/{{session_id}}/ResultPlot_ModelName:{{model_name}}__Resolution:{{resolution}}_Perplexity:{{perplexity}}_EarlyExaggeration:{{early_exaggeration}}_LearningRate:{{learning_rate}}_DPI:{{DotsPerInchs}}.png?timestamp={{timestamp}}" style="width: 100%; max-height: 1000px; object-fit: contain; /*border: 4px solid gainsboro*/">  -->
+
+
+        
+        <!-- download image button and tweet result-->
+        <div>
+          <input type="checkbox" onclick="tweet_checkbox()" id="permission" name="subscribe" value="newsletter" style="opacity: 0.7;bottom: 130px;position: absolute;left: 34px;">
+          <label for="permission" style="font-size: 17px;  left: 60px; bottom: 120px; position: absolute;" >Can we tweet your result? (for science!)</label>
         </div>
+        {% if featureCSV_exists %}
+        <a href="static/output/{{session_id}}/FeatureVectors.csv?timestamp={{timestamp}}" class="btn btn-info text-center" id="btn-download" download="FeatureVectors.csv" style="bottom: 60px;width: 320px;left: 20px;position: absolute;opacity: 0.7;display:inherit;margin: 15px;">Save Feature Vectors CSV</a>
+        {% else %}
+        <a href="static/output/{{session_id}}/FeatureVectors.csv?timestamp={{timestamp}}" class="btn btn-info text-center" id="btn-download" download="FeatureVectors.csv" style="bottom: 60px;left: 20px;position: absolute; width: 320px;opacity: 0.7;display:inherit;margin: 15px;" disabled>Save Feature Vectors CSV</a>
+        {% endif %}
 
-      </div>
-      <!-- download image button and tweet result-->
-      <div>
-        <input type="checkbox" onclick="tweet_checkbox()" id="permission" name="subscribe" value="newsletter" style="opacity: 0.7;bottom: 130px;position: absolute;left: 34px;">
-        <label for="permission" style="font-size: 17px;  left: 60px; bottom: 120px; position: absolute;" >Can we tweet your result? (for science!)</label>
-      </div>
-      {% if featureCSV_exists %}
-      <a href="static/output/{{session_id}}/FeatureVectors.csv?timestamp={{timestamp}}" class="btn btn-info text-center" id="btn-download" download="FeatureVectors.csv" style="bottom: 60px;width: 320px;left: 20px;position: absolute;opacity: 0.7;display:inherit;margin: 15px;">Save Feature Vectors CSV</a>
-      {% else %}
-      <a href="static/output/{{session_id}}/FeatureVectors.csv?timestamp={{timestamp}}" class="btn btn-info text-center" id="btn-download" download="FeatureVectors.csv" style="bottom: 60px;left: 20px;position: absolute; width: 320px;opacity: 0.7;display:inherit;margin: 15px;" disabled>Save Feature Vectors CSV</a>
-      {% endif %}
+        <a href="static/output/{{session_id}}/ReducedFeatures.csv?timestamp={{timestamp}}" class="btn btn-info text-center" id="btn-download" download="ReducedFeatures.csv" style="bottom: 60px;width: 320px; position: absolute;right: 20px;opacity: 0.7;display:inherit;margin: 15px;">Save Reduced Features CSV</a>
 
-      <a href="static/output/{{session_id}}/ReducedFeatures.csv?timestamp={{timestamp}}" class="btn btn-info text-center" id="btn-download" download="ReducedFeatures.csv" style="bottom: 60px;width: 320px; position: absolute;right: 20px;opacity: 0.7;display:inherit;margin: 15px;">Save Reduced Features CSV</a>
+        <a href="{{plot_name}}?timestamp={{timestamp}}" class="btn btn-warning text-center" id="btn-download" download="{{plot_name_no_dir}}" style="bottom: 0px;left: 20px;position: absolute;right: 20px;opacity: 0.7;display:inherit;margin: 15px;">Save Image</a>
 
-      <a href="{{plot_name}}?timestamp={{timestamp}}" class="btn btn-warning text-center" id="btn-download" download="{{plot_name_no_dir}}" style="bottom: 0px;left: 20px;position: absolute;right: 20px;opacity: 0.7;display:inherit;margin: 15px;">Save Image</a>
+        <!-- <button type="submit" id="btn-download" class="btn btn-success" style="opacity: 0.7; border-width: 0px;>Generate t-SNE</button> -->
 
-      <!-- <button type="submit" id="btn-download" class="btn btn-success" style="opacity: 0.7; border-width: 0px;>Generate t-SNE</button> -->
+        {% else %}
 
-      {% else %}
-
-      <div class="col-md-12 rightside" id="instruction" style="visibility: visible;">
-        <div class="">
-          <h1> Instructions</h1> <br>
-          <!-- <h4> Mouse over the instructions!</h4> -->
-          <button id="instruction_step1" class="instruction_steps" onmouseover="setVisible_step1()">Step 1: Select the input images that you wish to run the algorithm with</button><br>
-          <button id="instruction_step2" class="instruction_steps" onmouseover="setVisible_step2()">Step 2: Add a marker to image sets by selecting the color of the image border</button><br>
-          <button id="instruction_step3" class="instruction_steps" onmouseover="setVisible_step3()">Step 3: Upload the images</button><br>
-          <button id="instruction_step4" class="instruction_steps" onmouseover="setVisible_step4()">Step 4: Select the display parameters and algorithm parameters</button><br>
-          <button id="instruction_step5" class="instruction_steps" onmouseover="setVisible_step5()">Step 5: Generate t-SNE plot and save the generated image!</button><br>
+        <div class="col-md-12 rightside" id="instruction" style="visibility: visible;">
+          <div class="">
+            <h1> Instructions</h1> <br>
+            <!-- <h4> Mouse over the instructions!</h4> -->
+            <button id="instruction_step1" class="instruction_steps" onmouseover="setVisible_step1()">Step 1: Select the input images that you wish to run the algorithm with</button><br>
+            <button id="instruction_step2" class="instruction_steps" onmouseover="setVisible_step2()">Step 2: Add a marker to image sets by selecting the color of the image border</button><br>
+            <button id="instruction_step3" class="instruction_steps" onmouseover="setVisible_step3()">Step 3: Upload the images</button><br>
+            <button id="instruction_step4" class="instruction_steps" onmouseover="setVisible_step4()">Step 4: Select the display parameters and algorithm parameters</button><br>
+            <button id="instruction_step5" class="instruction_steps" onmouseover="setVisible_step5()">Step 5: Generate t-SNE plot and save the generated image!</button><br>
+          </div>
         </div>
-      </div>
-      {% endif %}
-      <div class="page-loader-content" id="loader" style= "visibility: hidden;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);}">
-        <div class="icon-loader">
-          <svg class="svg-icon-loader"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ei-spinner-icon"></use></svg>
+        {% endif %}
+        <div class="page-loader-content" id="loader" style= "visibility: hidden;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);}">
+          <div class="icon-loader">
+            <svg class="svg-icon-loader"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ei-spinner-icon"></use></svg>
+          </div>
+          <div class="icon-flower">
+            <svg class="svg-icon-flower"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#flower-icon"></use></svg>
+          </div>
+          <div style="position: absolute;right: -50px;top: 180px;left: 30px;color:#626d70; opacity: .8;">
+            <h4>Hold tight!</h4>
+          </div>
+          <div style="position: absolute;right: -50px;top: 210px;left: -35px;color:#626d70; opacity: .8;">
+            <h4 style="top: 40px;">This might take a minute...</h4><h4>
+          </h4></div>
         </div>
-        <div class="icon-flower">
-          <svg class="svg-icon-flower"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#flower-icon"></use></svg>
-        </div>
-        <div style="position: absolute;right: -50px;top: 180px;left: 30px;color:#626d70; opacity: .8;">
-          <h4>Hold tight!</h4>
-        </div>
-        <div style="position: absolute;right: -50px;top: 210px;left: -35px;color:#626d70; opacity: .8;">
-          <h4 style="top: 40px;">This might take a minute...</h4><h4>
-        </h4></div>
-      </div>
+      </section>
     </section>
-  </section>
-</div>
+  </div>
 </div>
 <!-- </div> -->
 <!-- Footer -->
@@ -815,39 +982,3 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="static/js/bootstrap.min.js"></script>
 <script src="static/node_modules/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js" rel="stylesheet"></script>
-
-<div style="text-align:center">
-  <span class="dot" onclick="currentSlide(1)"></span> 
-  <span class="dot" onclick="currentSlide(2)"></span> 
-  <span class="dot" onclick="currentSlide(3)"></span> 
-</div>
-
-
-<script>
-  var slideIndex = 1;
-  showSlides(slideIndex);
-
-  function plusSlides(n) {
-    showSlides(slideIndex += n);
-  }
-
-  function currentSlide(n) {
-    showSlides(slideIndex = n);
-  }
-
-  function showSlides(n) {
-    var i;
-    var slides = document.getElementsByClassName("mySlides");
-    var dots = document.getElementsByClassName("dot");
-    if (n > slides.length) {slideIndex = 1}    
-      if (n < 1) {slideIndex = slides.length}
-        for (i = 0; i < slides.length; i++) {
-          slides[i].style.display = "none";  
-        }
-        for (i = 0; i < dots.length; i++) {
-          dots[i].className = dots[i].className.replace(" active", "");
-        }
-        slides[slideIndex-1].style.display = "block";  
-        dots[slideIndex-1].className += " active";
-      }
-    </script>
