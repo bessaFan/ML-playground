@@ -116,11 +116,24 @@
 
       // Reveal example result when user scrolls to it
       window.sr = ScrollReveal();
+
       function animateExampleResult( element ){
-        document.getElementById("xaxis-line").style.webkitAnimationPlayState = "running";
-        document.getElementById("yaxis-line").style.webkitAnimationPlayState = "running";
+      document.getElementById("xaxis-line").style.webkitAnimationPlayState = "running";
+      document.getElementById("yaxis-line").style.webkitAnimationPlayState = "running";
       }
       sr.reveal('#example-result', { duration: 2000, afterReveal: animateExampleResult});
+
+      function animateExampleResult2( element ){
+      document.getElementById("xaxis-line2").style.webkitAnimationPlayState = "running";
+      document.getElementById("yaxis-line2").style.webkitAnimationPlayState = "running";
+      }
+      sr.reveal('#example-result2', { duration: 2000, afterReveal: animateExampleResult2});
+
+      function animateExampleResult3( element ){
+      document.getElementById("xaxis-line3").style.webkitAnimationPlayState = "running";
+      document.getElementById("yaxis-line3").style.webkitAnimationPlayState = "running";
+      }
+      sr.reveal('#example-result3', { duration: 2000, afterReveal: animateExampleResult3});
 
       // Highlight first step
       document.getElementById("fileinput").style.border = "2px dashed rgb(46, 117, 145, 0.3)";
@@ -443,17 +456,12 @@
           </a>
           <br>
             <div class="example-result" id="example-result" style="visibility: hidden; position: relative; width: 100%; margin-left: auto; margin-right: auto;">
-              <!-- <img src="/static/images/cell-tsne.png" style="position: absolute; top: 0px; right: 0px; width:100%;"> -->
               <img src="/static/images/cell-tsne2.png" id="tsne_example" style="position: relative; z-index:-1; top: 0px; right: 0px; width:100%;">
-
               <svg id="tsne_example_cover" style='position:absolute; top: 0; right: 0; position:absolute; top: 0; right: 0; height:100%; width:100%; overflow: visible;' version="1.1" xmlns="http://www.w3.org/2000/svg">
                 <line id="xaxis-line" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="90%" y2="90%" />
                 <line id="yaxis-line" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="10%" y2="10%" />
                 <text x="91%" y="91.5%" font-size="2em" fill="white" text-anchor="left">
                    t-SNE1
-                 </text>
-                <text x="10%" y="7%" font-size="2em" fill="white" text-anchor="middle">
-                   t-SNE2
                  </text>
                 <text x="10%" y="7%" font-size="2em" fill="white" text-anchor="middle">
                    t-SNE2
@@ -467,41 +475,73 @@
                    Li–Fraumeni Cancer Predisposition Syndrome (Fibroblast cells)
                  </text>
               </svg>
-                
             <!-- <img src="/static/images/spindly.png" style="position: absolute; top: 20px; right: 20px; width:30%;">
             <img src="/static/images/foci.png" style="position: absolute; top: 30px; right: 30px; width:30%;">
             <img src="/static/images/round.png" style="position: absolute; top: 40px; right: 40px; width:30%;">
              -->  
-
-              <style>
-              #xaxis-line{
-                  stroke: white;
-                  stroke-width: 2;
-                  animation: offset 6s ease forwards;
-                  /*animation-delay: 2s;*/
-                  animation-play-state: paused;
-              }
-              #yaxis-line{
-                  stroke: white;
-                  stroke-width: 2;
-                  animation: offset 10s ease forwards;
-                  /*animation-delay: 2s;*/
-                  animation-play-state: paused;
-              }
-
-              @keyframes offset {
-                to {
-                  stroke-dashoffset: 0;
-                }
-              }
-              </style>
-              <!-- <img src="/static/images/cell-tsne2.png" style="position: absolute; top: 0px; right: 0px; width:100%;"> -->
             </div>
 
         </div>
-      <!-- </div> -->
     </div>
   </div>
+
+        <div style="background-color: black">
+          <br>
+            <div class="example-result" id="example-result2" style="visibility: hidden; position: relative; width: 100%; margin-left: auto; margin-right: auto;">
+              <img src="/static/images/cell-tsne2.png" id="tsne_example" style="position: relative; z-index:-1; top: 0px; right: 0px; width:100%;">
+              <svg id="tsne_example_cover" style='position:absolute; top: 0; right: 0; position:absolute; top: 0; right: 0; height:100%; width:100%; overflow: visible;' version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <line id="xaxis-line2" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="90%" y2="90%" />
+                <line id="yaxis-line2" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="10%" y2="10%" />
+                <text x="91%" y="91.5%" font-size="2em" fill="white" text-anchor="left">
+                   t-SNE1
+                 </text>
+                <text x="10%" y="7%" font-size="2em" fill="white" text-anchor="middle">
+                   t-SNE2
+                 </text>
+                 <rect x="11%" y="81.3%" width="1.5%" height="3%" style="fill:#066fd5;stroke-width:0" />
+                <text x="13.5%" y="83.7%" font-size="1em" fill="white" text-anchor="left">
+                   Cervical Cancer (SiHa cells)
+                 </text>
+                 <rect x="11%" y="85.3%" width="1.5%" height="3%" style="fill:#ff0000;stroke-width:0" />
+                <text x="13.5%" y="87.7%" font-size="1em" fill="white" text-anchor="left">
+                   Li–Fraumeni Cancer Predisposition Syndrome (Fibroblast cells)
+                 </text>
+              </svg>
+            <!-- <img src="/static/images/spindly.png" style="position: absolute; top: 20px; right: 20px; width:30%;">
+            <img src="/static/images/foci.png" style="position: absolute; top: 30px; right: 30px; width:30%;">
+            <img src="/static/images/round.png" style="position: absolute; top: 40px; right: 40px; width:30%;">
+             -->  
+            </div>
+
+          
+          <br>
+            <div class="example-result" id="example-result3" style="visibility: hidden; position: relative; width: 100%; margin-left: auto; margin-right: auto;">
+              <img src="/static/images/cell-tsne2.png" id="tsne_example" style="position: relative; z-index:-1; top: 0px; right: 0px; width:100%;">
+              <svg id="tsne_example_cover" style='position:absolute; top: 0; right: 0; position:absolute; top: 0; right: 0; height:100%; width:100%; overflow: visible;' version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <line id="xaxis-line3" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="90%" y2="90%" />
+                <line id="yaxis-line3" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="10%" y2="10%" />
+                <text x="91%" y="91.5%" font-size="2em" fill="white" text-anchor="left">
+                   t-SNE1
+                 </text>
+                <text x="10%" y="7%" font-size="2em" fill="white" text-anchor="middle">
+                   t-SNE2
+                 </text>
+                 <rect x="11%" y="81.3%" width="1.5%" height="3%" style="fill:#066fd5;stroke-width:0" />
+                <text x="13.5%" y="83.7%" font-size="1em" fill="white" text-anchor="left">
+                   Cervical Cancer (SiHa cells)
+                 </text>
+                 <rect x="11%" y="85.3%" width="1.5%" height="3%" style="fill:#ff0000;stroke-width:0" />
+                <text x="13.5%" y="87.7%" font-size="1em" fill="white" text-anchor="left">
+                   Li–Fraumeni Cancer Predisposition Syndrome (Fibroblast cells)
+                 </text>
+              </svg>
+            <!-- <img src="/static/images/spindly.png" style="position: absolute; top: 20px; right: 20px; width:30%;">
+            <img src="/static/images/foci.png" style="position: absolute; top: 30px; right: 30px; width:30%;">
+            <img src="/static/images/round.png" style="position: absolute; top: 40px; right: 40px; width:30%;">
+             -->  
+            </div>
+        </div>
+
 
 <!-- Old Header -->
 <!-- 

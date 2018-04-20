@@ -601,3 +601,55 @@ a:hover {
 input:disabled{
   color:#333;
 }
+
+
+#xaxis-line{
+    stroke: white;
+    stroke-width: 2;
+    animation: offset 6s ease forwards;
+    /*animation-delay: 2s;*/
+    animation-play-state: paused;
+}
+#yaxis-line{
+    stroke: white;
+    stroke-width: 2;
+    animation: offset 10s ease forwards;
+    /*animation-delay: 2s;*/
+    animation-play-state: paused;
+}
+
+#xaxis-line2{
+    stroke: white;
+    stroke-width: 2;
+    animation: offset 6s ease forwards;
+    /*animation-delay: 2s;*/
+    animation-play-state: paused;
+}
+#yaxis-line2{
+    stroke: white;
+    stroke-width: 2;
+    animation: offset 10s ease forwards;
+    /*animation-delay: 2s;*/
+    animation-play-state: paused;
+}
+
+#xaxis-line3{
+    stroke: white;
+    stroke-width: 2;
+    animation: offset 6s ease forwards;
+    /*animation-delay: 2s;*/
+    animation-play-state: paused;
+}
+#yaxis-line3{
+    stroke: white;
+    stroke-width: 2;
+    animation: offset 10s ease forwards;
+    /*animation-delay: 2s;*/
+    animation-play-state: paused;
+}
+
+@keyframes offset {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
