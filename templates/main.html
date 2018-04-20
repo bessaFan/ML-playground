@@ -155,6 +155,18 @@
        if($(this).prop('complete')) $(this).load();
      });
 
+      $("#tsne_example2").on('load', function() {
+        magnify("tsne_example2", "tsne_example_cover2", 3);
+      }).each(function() {
+       if($(this).prop('complete')) $(this).load();
+     });
+
+      $("#tsne_example3").on('load', function() {
+        magnify("tsne_example3", "tsne_example_cover3", 3);
+      }).each(function() {
+       if($(this).prop('complete')) $(this).load();
+     });
+
     });
 
     function setVisible_step1(){
@@ -487,8 +499,8 @@
         <div style="background-color: black">
           <br>
             <div class="example-result" id="example-result2" style="visibility: hidden; position: relative; width: 100%; margin-left: auto; margin-right: auto;">
-              <img src="/static/images/cell-tsne2.png" id="tsne_example" style="position: relative; z-index:-1; top: 0px; right: 0px; width:100%;">
-              <svg id="tsne_example_cover" style='position:absolute; top: 0; right: 0; position:absolute; top: 0; right: 0; height:100%; width:100%; overflow: visible;' version="1.1" xmlns="http://www.w3.org/2000/svg">
+              <img src="/static/images/example3.png" id="tsne_example2" style="position: relative; z-index:-1; top: 0px; right: 0px; max-height: 1000px;margin-left: auto; margin-right: auto;display:block;">
+              <svg id="tsne_example_cover2" style='position:absolute; top: 0; right: 0; position:absolute; top: 0; right: 0; height:100%; width:100%; overflow: visible;' version="1.1" xmlns="http://www.w3.org/2000/svg">
                 <line id="xaxis-line2" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="90%" y2="90%" />
                 <line id="yaxis-line2" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="10%" y2="10%" />
                 <text x="91%" y="91.5%" font-size="2em" fill="white" text-anchor="left">
@@ -515,8 +527,8 @@
           
           <br>
             <div class="example-result" id="example-result3" style="visibility: hidden; position: relative; width: 100%; margin-left: auto; margin-right: auto;">
-              <img src="/static/images/cell-tsne2.png" id="tsne_example" style="position: relative; z-index:-1; top: 0px; right: 0px; width:100%;">
-              <svg id="tsne_example_cover" style='position:absolute; top: 0; right: 0; position:absolute; top: 0; right: 0; height:100%; width:100%; overflow: visible;' version="1.1" xmlns="http://www.w3.org/2000/svg">
+              <img src="/static/images/example1.png" id="tsne_example3" style="position: relative; z-index:-1; top: 0px; right: 0px; max-height: 1000px;margin-left: auto; margin-right: auto;display:block;">
+              <svg id="tsne_example_cover3" style='position:absolute; top: 0; right: 0; position:absolute; top: 0; right: 0; height:100%; width:100%; overflow: visible;' version="1.1" xmlns="http://www.w3.org/2000/svg">
                 <line id="xaxis-line3" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="90%" y2="90%" />
                 <line id="yaxis-line3" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="10%" y2="10%" />
                 <text x="91%" y="91.5%" font-size="2em" fill="white" text-anchor="left">
