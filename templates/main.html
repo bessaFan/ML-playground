@@ -106,16 +106,19 @@
       document.getElementById("yaxis-line").style.webkitAnimationPlayState = "running";
       }
       sr.reveal('#example-result', { duration: 1000, afterReveal: animateExampleResult});
+
       function animateExampleResult2( element ){
       document.getElementById("xaxis-line2").style.webkitAnimationPlayState = "running";
       document.getElementById("yaxis-line2").style.webkitAnimationPlayState = "running";
       }
       sr.reveal('#example-result2', { duration: 1000, afterReveal: animateExampleResult2});
+
       function animateExampleResult3( element ){
       document.getElementById("xaxis-line3").style.webkitAnimationPlayState = "running";
       document.getElementById("yaxis-line3").style.webkitAnimationPlayState = "running";
       }
       sr.reveal('#example-result3', { duration: 1000, afterReveal: animateExampleResult3});
+
       // Highlight first step
       document.getElementById("fileinput").style.border = "2px dashed rgb(46, 117, 145, 0.3)";
       elem = document.getElementById("instruction_step1");
@@ -434,6 +437,7 @@
             <!-- <h1 style="text-align: center; margin-top: 10px; margin: 0px">Animals Example</h1> -->
             <div class="example-result" id="example-result" style="visibility: hidden; position: relative; width: 100%; margin-left: auto; margin-right: auto;">
               <img src="/static/images/Artboard 2.png" id="tsne_example" style="position: relative; z-index:-1; top: 0px; right: 0px; width:100%;">
+
               <svg id="tsne_example_cover" onmouseover="magnify('tsne_example', 'tsne_example_cover', 3);" style='position:absolute; top: 0; right: 0; position:absolute; top: 0; right: 0; height:100%; width:100%; overflow: visible;' version="1.1" xmlns="http://www.w3.org/2000/svg">
                 <line id="xaxis-line" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="90%" y2="90%" />
                 <line id="yaxis-line" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="10%" y2="10%" />
@@ -475,7 +479,9 @@
 
             <div class="example-result" id="example-result2" style="visibility: hidden; position: relative; width: 100%; margin-left: auto; margin-right: auto;">
               <img src="/static/images/cell-tsne2.png" id="tsne_example2" style="position: relative; z-index:-1; top: 0px; right: 0px; width:100%;">
+
               <svg id="tsne_example_cover2" onmouseover="magnify('tsne_example2', 'tsne_example_cover2', 3);" style='position:absolute; top: 0; right: 0; position:absolute; top: 0; right: 0; height:100%; width:100%; overflow: visible;' version="1.1" xmlns="http://www.w3.org/2000/svg">
+
                 <text x="73.5%" y="29.7%" font-size="1.6em" fill="white" text-anchor="left">
                   Nucleus Dominant
                 </text>
@@ -519,7 +525,9 @@
 
             <div class="example-result" id="example-result3" style="visibility: hidden; position: relative; width: 100%; margin-left: auto; margin-right: auto;">
               <img src="/static/images/fashion-example.png" id="tsne_example3" style="position: relative; z-index:-1; top: 0px; right: 0px; width:100%;">
+
               <svg id="tsne_example_cover3" onmouseover="magnify('tsne_example3', 'tsne_example_cover3', 3);" style='position:absolute; top: 0; right: 0; position:absolute; top: 0; right: 0; height:100%; width:100%; overflow: visible;' version="1.1" xmlns="http://www.w3.org/2000/svg">
+
                 <line id="xaxis-line3" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="85%" y2="90%" />
                 <line id="yaxis-line3" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="10%" y2="17%" />
                 <text x="86%" y="91.5%" font-size="2em" fill="white" text-anchor="left">
@@ -834,4 +842,5 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="static/js/bootstrap.min.js"></script>
+
 <script src="static/node_modules/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js" rel="stylesheet"></script>

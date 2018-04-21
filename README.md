@@ -4,6 +4,11 @@
 Our web app provides a **"No code. No installation"** platform for researchers to upload images and compare clustering results with popular **machine learning models and manifold learning algorithms**, making experimenting and prototyping with ML less time-consuming. There’s currently no existing app that allows fast organization and visualization of data.
 
 
+## Example
+<p align="center">
+ <img src="https://github.com/bessaFan/ML-playground/blob/master/static/images/animals-example-black.png" height="455px">
+</p>
+
 
 ## Project Layout
 
