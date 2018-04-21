@@ -6,7 +6,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'UA-38176147-3');
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,22 +25,19 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
   <!-- (Optional) Latest compiled and minified JavaScript translation files -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/i18n/defaults-*.min.js"></script>
+
   <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
+
   <script>
-
-
     function magnify(imgID, topFile, zoom) {
       var img, glass, w, h, bw, top;
-
       img = document.getElementById(imgID);
       top = document.getElementById(topFile);
       /*create magnifier glass:*/
       glass = document.createElement("DIV");
       glass.setAttribute("class", "img-magnifier-glass");
-
       /*insert magnifier glass:*/
       img.parentElement.insertBefore(glass, img);
-
       /*set background properties for the magnifier glass:*/
       glass.style.backgroundImage = "url('" + img.src + "')";
       glass.style.backgroundRepeat = "no-repeat";
@@ -49,11 +45,9 @@
       bw = 3;
       w = glass.offsetWidth / 3;
       h = glass.offsetHeight / 3;
-
       /*execute a function when someone moves the magnifier glass over the image:*/
       glass.addEventListener("mousemove", moveMagnifier);
       top.addEventListener("mousemove", moveMagnifier);
-
       /*and also for touch screens:*/
       glass.addEventListener("touchmove", moveMagnifier);
       top.addEventListener("touchmove", moveMagnifier);
@@ -66,17 +60,16 @@
         x = pos.x;
         y = pos.y;
         /*prevent the magnifier glass from being positioned outside the image:*/
-        if (x > img.width - (w / zoom)) {x = img.width - (w / zoom);}
-        if (x < w / zoom) {x = w / zoom;}
-        if (y > img.height - (h / zoom)) {y = img.height - (h / zoom);}
-        if (y < h / zoom) {y = h / zoom;}
+        if (x > img.width - (w / zoom)) {glass.remove();}
+        if (x < w / zoom) {glass.remove();}
+        if (y > img.height - (h / zoom)) {glass.remove();}
+        if (y < h / zoom) {glass.remove();}
         /*set the position of the magnifier glass:*/
         glass.style.left = (x - w) + "px";
         glass.style.top = (y - h) + "px";
         /*display what the magnifier glass "sees":*/
         glass.style.backgroundPosition = "-" + ((x * zoom) - w + bw) + "px -" + ((y * zoom) - h + bw) + "px";
       }
-
       function getCursorPos(e) {
         var a, x = 0, y = 0;
         e = e || window.event;
@@ -94,86 +87,69 @@
     $(function () {
       $('[data-toggle="tooltip"]').tooltip()
     })
-
     $(function () {
      $('#cp').colorpicker();
    });
-
-
     // Smooth scrolling when clicking href links
     $(document).on('click', 'a[href^="#"]', function (event) {
       event.preventDefault();
-
       $('html, body').animate({
         scrollTop: $($.attr(this, 'href')).offset().top
       }, 500);
     });
-
     // On page load
     $(document).ready(function() { 
-
       // Reveal example result when user scrolls to it
       window.sr = ScrollReveal();
-
       function animateExampleResult( element ){
       document.getElementById("xaxis-line").style.webkitAnimationPlayState = "running";
       document.getElementById("yaxis-line").style.webkitAnimationPlayState = "running";
       }
-      sr.reveal('#example-result', { duration: 2000, afterReveal: animateExampleResult});
-
+      sr.reveal('#example-result', { duration: 1000, afterReveal: animateExampleResult});
       function animateExampleResult2( element ){
       document.getElementById("xaxis-line2").style.webkitAnimationPlayState = "running";
       document.getElementById("yaxis-line2").style.webkitAnimationPlayState = "running";
       }
-      sr.reveal('#example-result2', { duration: 2000, afterReveal: animateExampleResult2});
-
+      sr.reveal('#example-result2', { duration: 1000, afterReveal: animateExampleResult2});
       function animateExampleResult3( element ){
       document.getElementById("xaxis-line3").style.webkitAnimationPlayState = "running";
       document.getElementById("yaxis-line3").style.webkitAnimationPlayState = "running";
       }
-      sr.reveal('#example-result3', { duration: 2000, afterReveal: animateExampleResult3});
-
+      sr.reveal('#example-result3', { duration: 1000, afterReveal: animateExampleResult3});
       // Highlight first step
       document.getElementById("fileinput").style.border = "2px dashed rgb(46, 117, 145, 0.3)";
       elem = document.getElementById("instruction_step1");
       if (elem) {
         elem.style.border = "2px dashed rgb(46, 117, 145, 0.3)";
       }
-
       // Enable magnifier glass (after it loads)
-     //  $("#tsne_plot").on('load', function() {
-     //    magnify("tsne_plot", "circles", 3);
+      $("#tsne_plot").on('load', function() {
+        magnify("tsne_plot", "circles", 3);
+      }).each(function() {
+       if($(this).prop('complete')) $(this).load();
+     });
+     //  $("#tsne_example").on('load', function() {
+     //    magnify("tsne_example", "tsne_example_cover", 3);
      //  }).each(function() {
      //   if($(this).prop('complete')) $(this).load();
      // });
-
-      $("#tsne_example").on('load', function() {
-        magnify("tsne_example", "tsne_example_cover", 3);
-      }).each(function() {
-       if($(this).prop('complete')) $(this).load();
-     });
-
-      $("#tsne_example2").on('load', function() {
-        magnify("tsne_example2", "tsne_example_cover2", 3);
-      }).each(function() {
-       if($(this).prop('complete')) $(this).load();
-     });
-
-      $("#tsne_example3").on('load', function() {
-        magnify("tsne_example3", "tsne_example_cover3", 3);
-      }).each(function() {
-       if($(this).prop('complete')) $(this).load();
-     });
-
+     //  $("#tsne_example2").on('load', function() {
+     //    magnify("tsne_example2", "tsne_example_cover2", 3);
+     //  }).each(function() {
+     //   if($(this).prop('complete')) $(this).load();
+     // });
+     //  $("#tsne_example3").on('load', function() {
+     //    magnify("tsne_example3", "tsne_example_cover3", 3);
+     //  }).each(function() {
+     //   if($(this).prop('complete')) $(this).load();
+     // });
     });
-
     function setVisible_step1(){
       document.getElementById("fileinput").style.border = "2px dashed rgb(46, 117, 145, 0.3)";
       document.getElementById("step2").style.border = "1px solid #ccc";
       document.getElementById("step3").style.border = "2px dashed #337ab7";
       document.getElementById("step4").style.border = "2px dashed #f4f9fa";
       document.getElementById("generate_button").style.border = "2px dashed #5cb85c";
-
       document.getElementById("instruction_step1").style.border = "2px dashed rgb(46, 117, 145, 0.3)";
       document.getElementById("instruction_step2").style.border = "2px dashed rgba(0,0,0,0)";
       document.getElementById("instruction_step3").style.border = "2px dashed rgba(0,0,0,0)";
@@ -186,7 +162,6 @@
       document.getElementById("step3").style.border = "2px dashed #337ab7";
       document.getElementById("step4").style.border = "2px dashed #f4f9fa";
       document.getElementById("generate_button").style.border = "2px dashed #5cb85c";
-
       document.getElementById("instruction_step1").style.border = "2px dashed rgba(0,0,0,0)";
       document.getElementById("instruction_step2").style.border = "2px dashed rgb(46, 117, 145, 0.3)";
       document.getElementById("instruction_step3").style.border = "2px dashed rgba(0,0,0,0)";
@@ -199,7 +174,6 @@
       document.getElementById("step3").style.border = "2px dashed black";
       document.getElementById("step4").style.border = "2px dashed #f4f9fa";
       document.getElementById("generate_button").style.border = "2px dashed #5cb85c";
-
       document.getElementById("instruction_step1").style.border = "2px dashed rgba(0,0,0,0)";
       document.getElementById("instruction_step2").style.border = "2px dashed rgba(0,0,0,0)";
       document.getElementById("instruction_step3").style.border = "2px dashed rgb(46, 117, 145, 0.3)";
@@ -212,7 +186,6 @@
       document.getElementById("step3").style.border = "2px dashed #337ab7";
       document.getElementById("step4").style.border = "2px dashed rgb(46, 117, 145, 0.3)";
       document.getElementById("generate_button").style.border = "2px dashed #5cb85c";
-
       document.getElementById("instruction_step1").style.border = "2px dashed rgba(0,0,0,0)";
       document.getElementById("instruction_step2").style.border = "2px dashed rgba(0,0,0,0)";
       document.getElementById("instruction_step3").style.border = "2px dashed rgba(0,0,0,0)";
@@ -225,14 +198,12 @@
       document.getElementById("step3").style.border = "2px dashed #337ab7";
       document.getElementById("step4").style.border = "2px dashed #f4f9fa";
       document.getElementById("generate_button").style.border = "2px dashed #000";
-
       document.getElementById("instruction_step1").style.border = "2px dashed rgba(0,0,0,0)";
       document.getElementById("instruction_step2").style.border = "2px dashed rgba(0,0,0,0)";
       document.getElementById("instruction_step3").style.border = "2px dashed rgba(0,0,0,0)";
       document.getElementById("instruction_step4").style.border = "2px dashed rgba(0,0,0,0)";
       document.getElementById("instruction_step5").style.border = "2px dashed rgb(46, 117, 145, 0.3)";
     }
-
     function generateTSNE() {
     // do ajax request to ask for what the location of the TSNE image is. Then use in in the following line.
     console.log('button pressed')
@@ -272,11 +243,9 @@
   }
   function checkFolder() {
     console.log('hi')
-
     alert("hi");
       // if(document.getElementById("image").files.length == 0 ){
         if(document.getElementById("input-images")=== null ){
-
           console.log("no files selected");
           alert("no files selected");
         }
@@ -285,8 +254,6 @@
     // Get files that user selected
     input = document.getElementById('fileinput');
     files = input.files;
-
-
     // Check if size of files exceed limit
     // console.log('input.files[0]: ', input.files[0], files[0].size);
     for (i = 0; i < files.length; i++) { 
@@ -294,8 +261,6 @@
         $('#modalImageTooBig').modal('show');
       }
     }
-
-
     // Check if number of files exceed limit
     num_image_limit = 60;
     existing_images = document.getElementsByClassName('input-image');
@@ -304,8 +269,6 @@
       input.value = '';
       $('#modalTooManyImages').modal('show');
     }
-
-
     // Check if number of files doesn't reach limit
     num_image_min = 3;
     // existing_images = document.getElementsByClassName('input-image');
@@ -314,14 +277,10 @@
       input.value = '';
       $('#modalTooFewImages').modal('show');
     }
-
-
   }
-
   function ModelSelectChange() {
     model_name_elem = document.getElementById('model_name');
     model_name = model_name_elem.value;
-
     if (model_name == 'ResNet V2 152') {
       model_layer = 'Pool 5 (Last Hidden Layer)';
       num_features = '2048';
@@ -332,105 +291,11 @@
       model_layer = 'None';
       num_features = '40,000 pixels (input resized to 200x200)';
     }
-
     document.getElementById('model_layer').value = model_layer;
     document.getElementById('num_features').value = num_features;
   }
-
 </script>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    * {box-sizing: border-box}
-    body {font-family: Verdana, sans-serif; margin:0}
-    .mySlides {display: none}
-    img {vertical-align: middle;}
-
-    /* Slideshow container */
-    .slideshow-container {
-      max-width: 1000px;
-      position: relative;
-      margin: auto;
-    }
-
-    /* Next & previous buttons */
-    .prev, .next {
-      cursor: pointer;
-      position: absolute;
-      top: 50%;
-      width: auto;
-      padding: 16px;
-      margin-top: -22px;
-      color: white;
-      font-weight: bold;
-      font-size: 18px;
-      transition: 0.6s ease;
-      border-radius: 0 3px 3px 0;
-    }
-
-    /* Position the "next button" to the right */
-    .next {
-      right: 0;
-      border-radius: 3px 0 0 3px;
-    }
-
-    /* On hover, add a black background color with a little bit see-through */
-    .prev:hover, .next:hover {
-      background-color: rgba(0,0,0,0.8);
-    }
-
-    /* Caption text */
-    .text {
-      color: #f2f2f2;
-      font-size: 15px;
-      padding: 8px 12px;
-      position: absolute;
-      bottom: 8px;
-      width: 100%;
-      text-align: center;
-    }
-
-    /* Number text (1/3 etc) */
-    .numbertext {
-      color: #f2f2f2;
-      font-size: 12px;
-      padding: 8px 12px;
-      position: absolute;
-      top: 0;
-    }
-
-    /* The dots/bullets/indicators */
-    .dot {
-      cursor: pointer;
-      height: 15px;
-      width: 15px;
-      margin: 0 2px;
-      background-color: #bbb;
-      border-radius: 50%;
-      display: inline-block;
-      transition: background-color 0.6s ease;
-    }
-
-    .active, .dot:hover {
-      background-color: #717171;
-    }
-
-    /* Fading animation; --> but theres no animation because the images fade away after the animation... deleted the transition and made the animation 10h long (so that the image stays:'))*/
-    .fade {
-      animation-name: fade;
-      animation-duration: 36000s;
-    }
-
-    @keyframes fade {
-      from {opacity: 1} 
-      to {opacity: 1}
-    }
-
-    /* On smaller screens, decrease text size */
-    @media only screen and (max-width: 300px) {
-      .prev, .next,.text {font-size: 11px}
-    }
-  </style>
 </head>
 
 
@@ -539,80 +404,6 @@
         </div>
       </div>
 
-
-
-
-
-
-      <!-- <div class=container> -->
-      <div class="header" style="height: 100%; padding: 150px 100px 40px 100px;">
-        <div class="header-title">
-          Deep Learning<br>Image Similarity<br>Web Tool
-        </div>
-        <div>
-          <!-- <img src="/static/images/cell-tsne-transparent.png" style="height:500px; padding-top:50px; filter: invert(100%)"> -->
-        </div>
-        <div class="header-subtitle" style="padding-top: 50px">
-          <!-- No install. No code. Instant Visualization.  -->
-          <!-- Use our web tool to experiment with popular ML models and visualization techniques designed to expose similarities, trends, differences, and outliers in your image set. Built at the SickKids Research Institute for cell biology research. -->
-          Our open source web app provides a "No code—No installation" platform for you to upload images and compare popular machine learning models and manifold learning algorithms. Pick from the options and we'll generate a 2D plot where similar images are placed close together and dissimilar images are far apart. Find similarities, trends, differences, and outliers in your image set. While this is not a classification tool, you can apply colored labels to indiviual images at the time of uploading. Lastly, you can download feature vectors to CSV and do your own analysis.
-          <!-- Our web app provides a "No code. No installation" platform for researchers to upload images and compare clustering results with popular machine learning models and manifold learning algorithms, making experimenting and prototyping with ML less time-consuming. There’s currently no existing app that allows fast organization and visualization of data -->
-        </div>
-        <a href="#try" >
-          <button class="btn btn-default" id="try-btn">TRY NOW</button>
-        </a>
-        <br>
-
-        <div class="example-result" id="example-result" style="visibility: hidden; position: relative; width: 100%; margin-left: auto; margin-right: auto;">
-          <!-- <img src="/static/images/cell-tsne.png" style="position: absolute; top: 0px; right: 0px; width:100%;"> -->
-          <img src="/static/images/cell-tsne2.png" id="tsne_example" style="position: relative; z-index:-1; top: 0px; right: 0px; width:100%;">
-          <svg id="tsne_example_cover" style='position:absolute; top: 0; right: 0; position:absolute; top: 0; right: 0; height:100%; width:100%; overflow: visible;' version="1.1" xmlns="http://www.w3.org/2000/svg">
-            <line id="xaxis-line" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="90%" y2="90%" />
-            <line id="yaxis-line" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="10%" y2="10%" />
-            <text x="91%" y="91.5%" font-size="2em" fill="white" text-anchor="left">
-             t-SNE1
-           </text>
-           <text x="10%" y="7%" font-size="2em" fill="white" text-anchor="middle">
-             t-SNE2
-           </text>
-           <text x="10%" y="7%" font-size="2em" fill="white" text-anchor="middle">
-             t-SNE2
-           </text>
-           <rect x="11%" y="81.3%" width="1.5%" height="3%" style="fill:#066fd5;stroke-width:0" />
-           <text x="13.5%" y="83.7%" font-size="1em" fill="white" text-anchor="left">
-             Cervical Cancer (SiHa cells)
-           </text>
-           <rect x="11%" y="85.3%" width="1.5%" height="3%" style="fill:#ff0000;stroke-width:0" />
-           <text x="13.5%" y="87.7%" font-size="1em" fill="white" text-anchor="left">
-             Li–Fraumeni Cancer Predisposition Syndrome (Fibroblast cells)
-           </text>
-         </svg>
-       </div>
-
-       <style>
-        #xaxis-line{
-          stroke: white;
-          stroke-width: 2;
-          animation: offset 6s ease forwards;
-          /*animation-delay: 2s;*/
-          animation-play-state: paused;
-        }
-        #yaxis-line{
-          stroke: white;
-          stroke-width: 2;
-          animation: offset 10s ease forwards;
-          /*animation-delay: 2s;*/
-          animation-play-state: paused;
-        }
-
-        @keyframes offset {
-          to {
-            stroke-dashoffset: 0;
-          }
-        }
-      </style>
-      <!-- <img src="/static/images/cell-tsne2.png" style="position: absolute; top: 0px; right: 0px; width:100%;"> -->
-
         <div class="header" style="height: 100%; padding: 150px 100px 40px 100px;">
           <div class="header-title">
             Deep Learning<br>Image Similarity<br>Web Tool
@@ -630,9 +421,20 @@
             <button class="btn btn-default" id="try-btn">TRY NOW</button>
           </a>
           <br>
+
+          <div class="example-header-container" style="left: -150px; top: -15px; position:relative;">
+              <h1 class="example-header">Animals Example</h1>
+              <div class="triangle-container" style="left: -69px; width: 136px;">
+                <svg  xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 46 10" preserveAspectRatio="none" class="triangle-svg">
+                  <polygon class="triangle-polygon" points="0,0 9,0 0,10"></polygon>
+                </svg>
+              </div>
+          </div>
+
+            <!-- <h1 style="text-align: center; margin-top: 10px; margin: 0px">Animals Example</h1> -->
             <div class="example-result" id="example-result" style="visibility: hidden; position: relative; width: 100%; margin-left: auto; margin-right: auto;">
-              <img src="/static/images/cell-tsne2.png" id="tsne_example" style="position: relative; z-index:-1; top: 0px; right: 0px; width:100%;">
-              <svg id="tsne_example_cover" style='position:absolute; top: 0; right: 0; position:absolute; top: 0; right: 0; height:100%; width:100%; overflow: visible;' version="1.1" xmlns="http://www.w3.org/2000/svg">
+              <img src="/static/images/Artboard 2.png" id="tsne_example" style="position: relative; z-index:-1; top: 0px; right: 0px; width:100%;">
+              <svg id="tsne_example_cover" onmouseover="magnify('tsne_example', 'tsne_example_cover', 3);" style='position:absolute; top: 0; right: 0; position:absolute; top: 0; right: 0; height:100%; width:100%; overflow: visible;' version="1.1" xmlns="http://www.w3.org/2000/svg">
                 <line id="xaxis-line" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="90%" y2="90%" />
                 <line id="yaxis-line" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="10%" y2="10%" />
                 <text x="91%" y="91.5%" font-size="2em" fill="white" text-anchor="left">
@@ -641,36 +443,49 @@
                 <text x="10%" y="7%" font-size="2em" fill="white" text-anchor="middle">
                    t-SNE2
                  </text>
-                 <rect x="11%" y="81.3%" width="1.5%" height="3%" style="fill:#066fd5;stroke-width:0" />
-                <text x="13.5%" y="83.7%" font-size="1em" fill="white" text-anchor="left">
-                   Cervical Cancer (SiHa cells)
-                 </text>
-                 <rect x="11%" y="85.3%" width="1.5%" height="3%" style="fill:#ff0000;stroke-width:0" />
-                <text x="13.5%" y="87.7%" font-size="1em" fill="white" text-anchor="left">
-                   Li–Fraumeni Cancer Predisposition Syndrome (Fibroblast cells)
-                 </text>
+                  <rect x="11%" y="77.3%" width="1.5%" height="3%" style="fill:#fff100;stroke-width:0" />
+                 <text x="13.5%" y="79.7%" font-size="1em" fill="white" text-anchor="left">
+                    Chickens
+                  </text>
+                  <rect x="11%" y="81.3%" width="1.5%" height="3%" style="fill:#196f90;stroke-width:0" />
+                 <text x="13.5%" y="83.7%" font-size="1em" fill="white" text-anchor="left">
+                    Dogs
+                  </text>
+                  <rect x="11%" y="85.3%" width="1.5%" height="3%" style="fill:#ff0000;stroke-width:0" />
+                 <text x="13.5%" y="87.7%" font-size="1em" fill="white" text-anchor="left">
+                    Cats
+                  </text>
               </svg>
-            <!-- <img src="/static/images/spindly.png" style="position: absolute; top: 20px; right: 20px; width:30%;">
-            <img src="/static/images/foci.png" style="position: absolute; top: 30px; right: 30px; width:30%;">
-            <img src="/static/images/round.png" style="position: absolute; top: 40px; right: 40px; width:30%;">
-             -->  
             </div>
 
         </div>
     </div>
-
   </div>
-  <!-- </div> -->
-</div>
-</div>
 
-<!-- Old Header -->
+        <div style="background: linear-gradient(141deg, #47bcc3 0%, #0d6982 75%);">
 
-        <div style="background-color: black">
-          <br>
+          <div class="example-header-container">
+              <h1 class="example-header">Human Cells Examples</h1>
+              <div class="triangle-container">
+                <svg  xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 10 10" preserveAspectRatio="none" class="triangle-svg">
+                  <polygon class="triangle-polygon" points="0,0 9,0 0,10"></polygon>
+                </svg>
+              </div>
+          </div>
+
             <div class="example-result" id="example-result2" style="visibility: hidden; position: relative; width: 100%; margin-left: auto; margin-right: auto;">
-              <img src="/static/images/example3.png" id="tsne_example2" style="position: relative; z-index:-1; top: 0px; right: 0px; max-height: 1000px;margin-left: auto; margin-right: auto;display:block;">
-              <svg id="tsne_example_cover2" style='position:absolute; top: 0; right: 0; position:absolute; top: 0; right: 0; height:100%; width:100%; overflow: visible;' version="1.1" xmlns="http://www.w3.org/2000/svg">
+              <img src="/static/images/cell-tsne2.png" id="tsne_example2" style="position: relative; z-index:-1; top: 0px; right: 0px; width:100%;">
+              <svg id="tsne_example_cover2" onmouseover="magnify('tsne_example2', 'tsne_example_cover2', 3);" style='position:absolute; top: 0; right: 0; position:absolute; top: 0; right: 0; height:100%; width:100%; overflow: visible;' version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <text x="73.5%" y="29.7%" font-size="1.6em" fill="white" text-anchor="left">
+                  Nucleus Dominant
+                </text>
+                <text x="13.5%" y="25.7%" font-size="1.6em" fill="white" text-anchor="left">
+                  Long Spindly
+                  <tspan x="13.5%" dy="1.2em">Cells</tspan>
+                </text>
+                <text x="12.5%" y="57.7%" font-size="1.6em" fill="white" text-anchor="left">
+                  Aberration
+                </text>
                 <line id="xaxis-line2" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="90%" y2="90%" />
                 <line id="yaxis-line2" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="10%" y2="10%" />
                 <text x="91%" y="91.5%" font-size="2em" fill="white" text-anchor="left">
@@ -681,46 +496,44 @@
                  </text>
                  <rect x="11%" y="81.3%" width="1.5%" height="3%" style="fill:#066fd5;stroke-width:0" />
                 <text x="13.5%" y="83.7%" font-size="1em" fill="white" text-anchor="left">
-                   Cervical Cancer (SiHa cells)
+                   Cervical Carcinoma (SiHa Fibroblast cells)
                  </text>
                  <rect x="11%" y="85.3%" width="1.5%" height="3%" style="fill:#ff0000;stroke-width:0" />
                 <text x="13.5%" y="87.7%" font-size="1em" fill="white" text-anchor="left">
-                   Li–Fraumeni Cancer Predisposition Syndrome (Fibroblast cells)
+                   Li–Fraumeni Cancer Predisposition (Skin Fibroblast cells)
                  </text>
               </svg>
-            <!-- <img src="/static/images/spindly.png" style="position: absolute; top: 20px; right: 20px; width:30%;">
-            <img src="/static/images/foci.png" style="position: absolute; top: 30px; right: 30px; width:30%;">
-            <img src="/static/images/round.png" style="position: absolute; top: 40px; right: 40px; width:30%;">
-             -->  
             </div>
+          </div>
 
+        <div class="example3" style="background-color: black">
           
-          <br>
+          <div class="example-header-container">
+              <h1 class="example-header">Fashion Example</h1>
+              <div class="triangle-container">
+                <svg  xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 10 10" preserveAspectRatio="none" class="triangle-svg">
+                  <polygon class="triangle-polygon" points="0,0 9,0 0,10"></polygon>
+                </svg>
+              </div>
+          </div>
+
             <div class="example-result" id="example-result3" style="visibility: hidden; position: relative; width: 100%; margin-left: auto; margin-right: auto;">
-              <img src="/static/images/example1.png" id="tsne_example3" style="position: relative; z-index:-1; top: 0px; right: 0px; max-height: 1000px;">
-              <svg id="tsne_example_cover3" style='position:absolute; top: 0; right: 0; position:absolute; top: 0; right: 0; height:100%; width:100%; overflow: visible;' version="1.1" xmlns="http://www.w3.org/2000/svg">
-                <line id="xaxis-line3" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="50%" y2="90%" />
-                <line id="yaxis-line3" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="10%" y2="10%" />
-                <text x="51%" y="91.5%" font-size="2em" fill="white" text-anchor="left">
+              <img src="/static/images/fashion-example.png" id="tsne_example3" style="position: relative; z-index:-1; top: 0px; right: 0px; width:100%;">
+              <svg id="tsne_example_cover3" onmouseover="magnify('tsne_example3', 'tsne_example_cover3', 3);" style='position:absolute; top: 0; right: 0; position:absolute; top: 0; right: 0; height:100%; width:100%; overflow: visible;' version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <line id="xaxis-line3" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="85%" y2="90%" />
+                <line id="yaxis-line3" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="10%" y2="17%" />
+                <text x="86%" y="91.5%" font-size="2em" fill="white" text-anchor="left">
                    t-SNE1
                  </text>
-                <text x="10%" y="7%" font-size="2em" fill="white" text-anchor="middle">
+                <text x="10%" y="14%" font-size="2em" fill="white" text-anchor="middle">
                    t-SNE2
                  </text>
-                 <rect x="11%" y="81.3%" width="1.5%" height="3%" style="fill:#066fd5;stroke-width:0" />
-                <text x="13.5%" y="83.7%" font-size="1em" fill="white" text-anchor="left">
-                   Cervical Cancer (SiHa cells)
-                 </text>
-                 <rect x="11%" y="85.3%" width="1.5%" height="3%" style="fill:#ff0000;stroke-width:0" />
+                 <rect x="11%" y="85.3%" width="1.5%" height="3%" style="fill:#196f90;stroke-width:0" />
                 <text x="13.5%" y="87.7%" font-size="1em" fill="white" text-anchor="left">
-                   Li–Fraumeni Cancer Predisposition Syndrome (Fibroblast cells)
+                   Fashion Item
                  </text>
               </svg>
-            <!-- <img src="/static/images/spindly.png" style="position: absolute; top: 20px; right: 20px; width:30%;">
-            <img src="/static/images/foci.png" style="position: absolute; top: 30px; right: 30px; width:30%;">
-            <img src="/static/images/round.png" style="position: absolute; top: 40px; right: 40px; width:30%;">
-             -->  
-            </div>
+            </div> 
         </div>
 
   <!-- Old Header -->
@@ -741,12 +554,24 @@
 
 <!-- Body -->
 <!-- <div class="container" > -->
-<div class="row mydivider" style="height:3px; background-color: #1b9eb245;"></div>
+<div class="row mydivider" style="height:3px; background-color: #1b9eb245;">Try it</div>
+
+
+
 
 <div class="row equal" id="try">
 
   <!-- left side of the layout -->
   <div class="col-md-6 leftside" style="padding-left: 45px; padding-top: 20px">
+    
+    <div class="example-header-container" style="left: -45px; top: 0px; position:relative;">
+        <h1 class="example-header" style="padding-left: 100px">Give it a try!</h1>
+        <div class="triangle-container">
+          <svg  xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 10 10" preserveAspectRatio="none" class="triangle-svg">
+            <polygon class="triangle-polygon" points="0,0 9,0 0,10"></polygon>
+          </svg>
+        </div>
+    </div>
 <!--       {% if not image_exists %}
         <img class="arrow1-position" id="arrow1" src="static/images/picture4.png"> 
       {% else %}
@@ -776,14 +601,11 @@
           </div>
         </div>
       </div> 
-
       <div class="form-group">
         <div class="col-sm-offset-4 col-sm-3" >
           <input id="step3" type="submit" class="btn btn-primary" value="Upload" style="opacity: 0.7; border: 2px dashed  #337ab7; margin-top: 8px;margin-bottom: 4px">
         </div>
       </div>
-
-
       <div class="form-group">
         <label for="inputEmail3" class="col-sm-4 control-label">Your Image Set</label>
         <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary invert" data-toggle="tooltip" data-placement="right" title="Preview your images.">
@@ -802,15 +624,9 @@
          {% endfor %}
        </div>
      </div> 
-
-
    </form>
-
-
-
    <!-- parameters -->
    <form id="step4"  class="form-horizontal" action='/tsne' style="margin-top:15px; border-radius: 10px;" >
-
     <!-- Machine Learning Parameters -->
     <h3 style="padding-top: 15px; border-top: 1px solid rgba(18, 65, 69, .07);" >Feature Extraction</h3> 
     <span id="helpBlock" class="help-block">Choose a pre-trained machine learning model for feature extraction.</span>
@@ -829,7 +645,6 @@
       </select>
       <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary invert" data-toggle="tooltip" data-placement="right" title="Select the Machine Learning model here!">
     </div>
-
     <!-- Feature Extraction Layer -->
     <div class="form-group">
       <label for="inputEmail3" class="col-sm-4 control-label">Extract Features from Layer</label>
@@ -838,7 +653,6 @@
         <input disabled id="model_layer" class="form-control" name="model_layer" value="Pool 5 (Last Hidden Layer)" style="background-color: hsla(0, 0%, 97%, 1);">
       </div>
     </div> 
-
     <!-- Number of Input Features -->
     <div class="form-group">
       <label for="inputEmail3" class="col-sm-4 control-label">Number of Features</label>
@@ -847,7 +661,6 @@
         <input readonly id="num_features" class="form-control" name="resolution" value="4096" style="background-color: hsla(0, 0%, 97%, 1);">
       </div>
     </div> 
-
     <h3 style="padding-top: 15px; border-top: 1px solid rgba(18, 65, 69, .07);" >Dimensionality Reduction</h3> 
     <span id="helpBlock" class="help-block" style="padding-right:16%">Choose a non-linear manifold learning algorithm to perform dimensionality reduction on the features extracted by the machine learning model. This will embed each image into two dimensional space so that they can be plotted. The result is still representitive of the differences in the higher dimenional feature space.</span>
     <div class="form-group">
@@ -866,7 +679,6 @@
       </select>
       <img src="static/images/tooltip.png" style="width:50px;height:38px;" class="btn btn-secondary invert" data-toggle="tooltip" data-placement="right" title="Select the Manifold Learning model here!">
     </div> 
-
     <!-- tSNE Parameters form -->
     <h3 style="padding-top: 15px; border-top: 1px solid rgba(18, 65, 69, .07);">t-SNE Parameters</h3> 
     <span id="helpBlock" class="help-block">Settings that control the dimensionality reduction.</span>
@@ -921,81 +733,20 @@
     </div>
   </form>
 </div>
-
-
 <div class="col-md-6 rightside" style="padding-top: 20px">
   <svg class="svg-container" >
     <!-- the flower loading icon -->
     <symbol id="ei-spinner-icon" viewBox="0 0 50 50"><path d="M25 18c-.6 0-1-.4-1-1V9c0-.6.4-1 1-1s1 .4 1 1v8c0 .6-.4 1-1 1z"></path><path opacity=".3" d="M25 42c-.6 0-1-.4-1-1v-8c0-.6.4-1 1-1s1 .4 1 1v8c0 .6-.4 1-1 1z"></path><path opacity=".3" d="M29 19c-.2 0-.3 0-.5-.1-.4-.3-.6-.8-.3-1.3l4-6.9c.3-.4.8-.6 1.3-.3.4.3.6.8.3 1.3l-4 6.9c-.2.2-.5.4-.8.4z"></path><path opacity=".3" d="M17 39.8c-.2 0-.3 0-.5-.1-.4-.3-.6-.8-.3-1.3l4-6.9c.3-.4.8-.6 1.3-.3.4.3.6.8.3 1.3l-4 6.9c-.2.2-.5.4-.8.4z"></path><path opacity=".93" d="M21 19c-.3 0-.6-.2-.8-.5l-4-6.9c-.3-.4-.1-1 .3-1.3.4-.3 1-.1 1.3.3l4 6.9c.3.4.1 1-.3 1.3-.2.2-.3.2-.5.2z"></path><path opacity=".3" d="M33 39.8c-.3 0-.6-.2-.8-.5l-4-6.9c-.3-.4-.1-1 .3-1.3.4-.3 1-.1 1.3.3l4 6.9c.3.4.1 1-.3 1.3-.2.1-.3.2-.5.2z"></path><path opacity=".65" d="M17 26H9c-.6 0-1-.4-1-1s.4-1 1-1h8c.6 0 1 .4 1 1s-.4 1-1 1z"></path><path opacity=".3" d="M41 26h-8c-.6 0-1-.4-1-1s.4-1 1-1h8c.6 0 1 .4 1 1s-.4 1-1 1z"></path><path opacity=".86" d="M18.1 21.9c-.2 0-.3 0-.5-.1l-6.9-4c-.4-.3-.6-.8-.3-1.3.3-.4.8-.6 1.3-.3l6.9 4c.4.3.6.8.3 1.3-.2.3-.5.4-.8.4z"></path><path opacity=".3" d="M38.9 33.9c-.2 0-.3 0-.5-.1l-6.9-4c-.4-.3-.6-.8-.3-1.3.3-.4.8-.6 1.3-.3l6.9 4c.4.3.6.8.3 1.3-.2.3-.5.4-.8.4z"></path><path opacity=".44" d="M11.1 33.9c-.3 0-.6-.2-.8-.5-.3-.4-.1-1 .3-1.3l6.9-4c.4-.3 1-.1 1.3.3.3.4.1 1-.3 1.3l-6.9 4c-.1.2-.3.2-.5.2z"></path><path opacity=".3" d="M31.9 21.9c-.3 0-.6-.2-.8-.5-.3-.4-.1-1 .3-1.3l6.9-4c.4-.3 1-.1 1.3.3.3.4.1 1-.3 1.3l-6.9 4c-.2.2-.3.2-.5.2z"></path></symbol>
     <symbol id="flower-icon" viewBox="0 0 65 98" fill="none" fill-rule="evenodd" stroke="#fff" stroke-width="2"><path d="M0.0434880207,0.660889225 C0.0434880207,0.660889225 38.4349751,22.2085462 38.4349744,96.8228805" id="Path-142"></path><path d="M62.0915607,5.40798425 C62.0915607,5.40798425 36.9588366,-4.08164371 28.3460397,24.8902199 C57.7428081,31.9172508 62.0915607,5.40798425 62.0915607,5.40798425 Z" id="Imported-Layers"></path></symbol>
   </svg>
-
-
-
   <section >
     <section>
-
       <!-- Plot displaying -->
       {% if plot_exists %}
-
       <div class="image" id="the_result_plot">
         <h1>Result</h1>
         <div style="position: relative">
-
-<!-- deleted id="tsne_plot" -->
-          <div class="slideshow-container">
-             <div class="mySlides fade">
-              <div class="numbertext">1 / 3</div>
-              <img src="{{files[0]}}?timestamp={{timestamp}}" style="width: 100%;"> 
-              <div class="text">Caption Text</div>
-            </div>
-
-            <div class="mySlides fade">
-              <div class="numbertext">2 / 3</div>
-              <img  src="{{files[1]}}?timestamp={{timestamp}}" style="width: 100%;"> 
-              <div class="text">Caption Two</div>
-            </div>
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-    <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-          </div>
-          <div style="text-align:center">
-            <span class="dot" onclick="currentSlide(1)"></span> 
-            <span class="dot" onclick="currentSlide(2)"></span> 
-          </div>
-
-          <script>
-            var slideIndex = 1;
-            showSlides(slideIndex);
-
-            function plusSlides(n) {
-              showSlides(slideIndex += n);
-            }
-
-            function currentSlide(n) {
-              showSlides(slideIndex = n);
-            }
-
-            function showSlides(n) {
-              var i;
-              var slides = document.getElementsByClassName("mySlides");
-              var dots = document.getElementsByClassName("dot");
-              if (n > slides.length) {slideIndex = 1}    
-                if (n < 1) {slideIndex = slides.length}
-                  for (i = 0; i < slides.length; i++) {
-                    slides[i].style.display = "none";  
-                  }
-                  for (i = 0; i < dots.length; i++) {
-                    dots[i].className = dots[i].className.replace(" active", "");
-                  }
-                  slides[slideIndex-1].style.display = "block";  
-                  dots[slideIndex-1].className += " active";
-
-                }
-            </script>
-          </div>
-          <!-- circles -->
-<!--            <svg id="circles" height="1000" width="100%" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%); opacity: .2;">
+          <svg id="circles" height="1000" width="100%" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%); opacity: .2;">
             <circle  cx="50%" cy="50%" r="350"  />
             <circle  cx="50%" cy="50%" r="270"  />
             <circle  cx="50%" cy="50%" r="200"  />
@@ -1003,93 +754,57 @@
             <circle  cx="50%" cy="50%" r="90"  />
             <circle  cx="50%" cy="50%" r="50"  />
             <circle  cx="50%" cy="50%" r="20"  />
-          </svg>   -->
-        </div>
-
-
-
-
-
-          <!-- 
-
-          <div class="mySlides fade" style="display: none;">
-            <div class="numbertext">3 / 3</div>
-            <img src="../static/images/3.jpg" style="width:100%">
-            <div class="text">Caption Three</div>
-           </div>
-          <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-            <img id="tsne_plot" src="{{files[1]}}?timestamp={{timestamp}}" style="width: 100%;">  -->
-
-<!--           {% for file in files %}
-          <div class="slideshow-container">
-            <span id="input-images">
-              <div class="mySlides fade">
-                <img id="tsne_plot" src="{{file}}?timestamp={{timestamp}}" style="width: 100%;"> 
-                <div class="text">{{file}}</div>
-              </div>
-            </span>
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-          </div>
-          {% endfor %} -->
-
-
-
+          </svg>  
+          <img id="tsne_plot" src="{{plot_name}}?timestamp={{timestamp}}" style="width: 100%;"> 
           <!-- <img id="tsne_plot" src="static/output/{{session_id}}/ResultPlot_ModelName:{{model_name}}__Resolution:{{resolution}}_Perplexity:{{perplexity}}_EarlyExaggeration:{{early_exaggeration}}_LearningRate:{{learning_rate}}_DPI:{{DotsPerInchs}}.png" style="width: 100%;"> -->
-
           <!-- <img id="tsne_plot" src="static/output/{{session_id}}/ResultPlot_ModelName:{{model_name}}__Resolution:{{resolution}}_Perplexity:{{perplexity}}_EarlyExaggeration:{{early_exaggeration}}_LearningRate:{{learning_rate}}_DPI:{{DotsPerInchs}}.png?timestamp={{timestamp}}" style="width: 100%; max-height: 1000px; object-fit: contain; /*border: 4px solid gainsboro*/">  -->
-
-
-        
-        <!-- download image button and tweet result-->
-        <div>
-          <input type="checkbox" onclick="tweet_checkbox()" id="permission" name="subscribe" value="newsletter" style="opacity: 0.7;bottom: 130px;position: absolute;left: 34px;">
-          <label for="permission" style="font-size: 17px;  left: 60px; bottom: 120px; position: absolute;" >Can we tweet your result? (for science!)</label>
         </div>
-        {% if featureCSV_exists %}
-        <a href="static/output/{{session_id}}/FeatureVectors.csv?timestamp={{timestamp}}" class="btn btn-info text-center" id="btn-download" download="FeatureVectors.csv" style="bottom: 60px;width: 320px;left: 20px;position: absolute;opacity: 0.7;display:inherit;margin: 15px;">Save Feature Vectors CSV</a>
-        {% else %}
-        <a href="static/output/{{session_id}}/FeatureVectors.csv?timestamp={{timestamp}}" class="btn btn-info text-center" id="btn-download" download="FeatureVectors.csv" style="bottom: 60px;left: 20px;position: absolute; width: 320px;opacity: 0.7;display:inherit;margin: 15px;" disabled>Save Feature Vectors CSV</a>
-        {% endif %}
+      </div>
+      <!-- download image button and tweet result-->
+      <div>
+        <input type="checkbox" onclick="tweet_checkbox()" id="permission" name="subscribe" value="newsletter" style="opacity: 0.7;bottom: 130px;position: absolute;left: 34px;">
+        <label for="permission" style="font-size: 17px;  left: 60px; bottom: 120px; position: absolute;" >Can we tweet your result? (for science!)</label>
+      </div>
+      {% if featureCSV_exists %}
+      <a href="static/output/{{session_id}}/FeatureVectors.csv?timestamp={{timestamp}}" class="btn btn-info text-center" id="btn-download" download="FeatureVectors.csv" style="bottom: 60px;width: 320px;left: 20px;position: absolute;opacity: 0.7;display:inherit;margin: 15px;">Save Feature Vectors CSV</a>
+      {% else %}
+      <a href="static/output/{{session_id}}/FeatureVectors.csv?timestamp={{timestamp}}" class="btn btn-info text-center" id="btn-download" download="FeatureVectors.csv" style="bottom: 60px;left: 20px;position: absolute; width: 320px;opacity: 0.7;display:inherit;margin: 15px;" disabled>Save Feature Vectors CSV</a>
+      {% endif %}
+      <a href="static/output/{{session_id}}/ReducedFeatures.csv?timestamp={{timestamp}}" class="btn btn-info text-center" id="btn-download" download="ReducedFeatures.csv" style="bottom: 60px;width: 320px; position: absolute;right: 20px;opacity: 0.7;display:inherit;margin: 15px;">Save Reduced Features CSV</a>
+      <a href="{{plot_name}}?timestamp={{timestamp}}" class="btn btn-warning text-center" id="btn-download" download="{{plot_name_no_dir}}" style="bottom: 0px;left: 20px;position: absolute;right: 20px;opacity: 0.7;display:inherit;margin: 15px;">Save Image</a>
+      <!-- <button type="submit" id="btn-download" class="btn btn-success" style="opacity: 0.7; border-width: 0px;>Generate t-SNE</button> -->
 
-        <a href="static/output/{{session_id}}/ReducedFeatures.csv?timestamp={{timestamp}}" class="btn btn-info text-center" id="btn-download" download="ReducedFeatures.csv" style="bottom: 60px;width: 320px; position: absolute;right: 20px;opacity: 0.7;display:inherit;margin: 15px;">Save Reduced Features CSV</a>
+      {% else %}
 
-        <a href="{{plot_name}}?timestamp={{timestamp}}" class="btn btn-warning text-center" id="btn-download" download="{{plot_name_no_dir}}" style="bottom: 0px;left: 20px;position: absolute;right: 20px;opacity: 0.7;display:inherit;margin: 15px;">Save Image</a>
-
-        <!-- <button type="submit" id="btn-download" class="btn btn-success" style="opacity: 0.7; border-width: 0px;>Generate t-SNE</button> -->
-
-        {% else %}
-
-        <div class="col-md-12 rightside" id="instruction" style="visibility: visible;">
-          <div class="">
-            <h1> Instructions</h1> <br>
-            <!-- <h4> Mouse over the instructions!</h4> -->
-            <button id="instruction_step1" class="instruction_steps" onmouseover="setVisible_step1()">Step 1: Select the input images that you wish to run the algorithm with</button><br>
-            <button id="instruction_step2" class="instruction_steps" onmouseover="setVisible_step2()">Step 2: Add a marker to image sets by selecting the color of the image border</button><br>
-            <button id="instruction_step3" class="instruction_steps" onmouseover="setVisible_step3()">Step 3: Upload the images</button><br>
-            <button id="instruction_step4" class="instruction_steps" onmouseover="setVisible_step4()">Step 4: Select the display parameters and algorithm parameters</button><br>
-            <button id="instruction_step5" class="instruction_steps" onmouseover="setVisible_step5()">Step 5: Generate t-SNE plot and save the generated image!</button><br>
-          </div>
+      <div class="col-md-12 rightside" id="instruction" style="visibility: visible;">
+        <div class="">
+          <h1> Instructions</h1> <br>
+          <!-- <h4> Mouse over the instructions!</h4> -->
+          <button id="instruction_step1" class="instruction_steps" onmouseover="setVisible_step1()">Step 1: Select the input images that you wish to run the algorithm with</button><br>
+          <button id="instruction_step2" class="instruction_steps" onmouseover="setVisible_step2()">Step 2: Add a marker to image sets by selecting the color of the image border</button><br>
+          <button id="instruction_step3" class="instruction_steps" onmouseover="setVisible_step3()">Step 3: Upload the images</button><br>
+          <button id="instruction_step4" class="instruction_steps" onmouseover="setVisible_step4()">Step 4: Select the display parameters and algorithm parameters</button><br>
+          <button id="instruction_step5" class="instruction_steps" onmouseover="setVisible_step5()">Step 5: Generate t-SNE plot and save the generated image!</button><br>
         </div>
-        {% endif %}
-        <div class="page-loader-content" id="loader" style= "visibility: hidden;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);}">
-          <div class="icon-loader">
-            <svg class="svg-icon-loader"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ei-spinner-icon"></use></svg>
-          </div>
-          <div class="icon-flower">
-            <svg class="svg-icon-flower"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#flower-icon"></use></svg>
-          </div>
-          <div style="position: absolute;right: -50px;top: 180px;left: 30px;color:#626d70; opacity: .8;">
-            <h4>Hold tight!</h4>
-          </div>
-          <div style="position: absolute;right: -50px;top: 210px;left: -35px;color:#626d70; opacity: .8;">
-            <h4 style="top: 40px;">This might take a minute...</h4><h4>
-          </h4></div>
+      </div>
+      {% endif %}
+      <div class="page-loader-content" id="loader" style= "visibility: hidden;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);}">
+        <div class="icon-loader">
+          <svg class="svg-icon-loader"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ei-spinner-icon"></use></svg>
         </div>
-      </section>
+        <div class="icon-flower">
+          <svg class="svg-icon-flower"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#flower-icon"></use></svg>
+        </div>
+        <div style="position: absolute;right: -50px;top: 180px;left: 30px;color:#626d70; opacity: .8;">
+          <h4>Hold tight!</h4>
+        </div>
+        <div style="position: absolute;right: -50px;top: 210px;left: -35px;color:#626d70; opacity: .8;">
+          <h4 style="top: 40px;">This might take a minute...</h4><h4>
+        </h4></div>
+      </div>
     </section>
-  </div>
+  </section>
+</div>
 </div>
 <!-- </div> -->
 <!-- Footer -->
