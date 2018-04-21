@@ -466,6 +466,17 @@
             <button class="btn btn-default" id="try-btn">TRY NOW</button>
           </a>
           <br>
+
+          <div class="example-header-container" style="left: -150px; top: -15px; position:relative;">
+              <h1 class="example-header">Animals Example</h1>
+              <div class="triangle-container" style="left: -69px; width: 136px;">
+                <svg  xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 46 10" preserveAspectRatio="none" class="triangle-svg">
+                  <polygon class="triangle-polygon" points="0,0 9,0 0,10"></polygon>
+                </svg>
+              </div>
+          </div>
+
+            <!-- <h1 style="text-align: center; margin-top: 10px; margin: 0px">Animals Example</h1> -->
             <div class="example-result" id="example-result" style="visibility: hidden; position: relative; width: 100%; margin-left: auto; margin-right: auto;">
               <img src="/static/images/Artboard 2.png" id="tsne_example" style="position: relative; z-index:-1; top: 0px; right: 0px; width:100%;">
               <svg id="tsne_example_cover" style='position:absolute; top: 0; right: 0; position:absolute; top: 0; right: 0; height:100%; width:100%; overflow: visible;' version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -497,8 +508,16 @@
   </div>
 
         <div style="background: linear-gradient(141deg, #47bcc3 0%, #0d6982 75%);">
-        <!-- <div style="background-color: #001a2b"> -->
-          <br>
+
+          <div class="example-header-container">
+              <h1 class="example-header">Human Cells Examples</h1>
+              <div class="triangle-container">
+                <svg  xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 10 10" preserveAspectRatio="none" class="triangle-svg">
+                  <polygon class="triangle-polygon" points="0,0 9,0 0,10"></polygon>
+                </svg>
+              </div>
+          </div>
+
             <div class="example-result" id="example-result2" style="visibility: hidden; position: relative; width: 100%; margin-left: auto; margin-right: auto;">
               <img src="/static/images/cell-tsne2.png" id="tsne_example2" style="position: relative; z-index:-1; top: 0px; right: 0px; width:100%;">
               <svg id="tsne_example_cover2" style='position:absolute; top: 0; right: 0; position:absolute; top: 0; right: 0; height:100%; width:100%; overflow: visible;' version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -507,6 +526,7 @@
                 </text>
                 <text x="13.5%" y="25.7%" font-size="1.6em" fill="white" text-anchor="left">
                   Long Spindly
+                  <tspan x="13.5%" dy="1.2em">Cells</tspan>
                 </text>
                 <text x="12.5%" y="57.7%" font-size="1.6em" fill="white" text-anchor="left">
                   Aberration
@@ -532,7 +552,16 @@
           </div>
 
         <div class="example3" style="background-color: black">
-          <br>
+          
+          <div class="example-header-container">
+              <h1 class="example-header">Fashion Example</h1>
+              <div class="triangle-container">
+                <svg  xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 10 10" preserveAspectRatio="none" class="triangle-svg">
+                  <polygon class="triangle-polygon" points="0,0 9,0 0,10"></polygon>
+                </svg>
+              </div>
+          </div>
+
             <div class="example-result" id="example-result3" style="visibility: hidden; position: relative; width: 100%; margin-left: auto; margin-right: auto;">
               <img src="/static/images/fashion-example.png" id="tsne_example3" style="position: relative; z-index:-1; top: 0px; right: 0px; width:100%;">
               <svg id="tsne_example_cover3" style='position:absolute; top: 0; right: 0; position:absolute; top: 0; right: 0; height:100%; width:100%; overflow: visible;' version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -570,12 +599,24 @@
 
 <!-- Body -->
 <!-- <div class="container" > -->
-<div class="row mydivider" style="height:3px; background-color: #1b9eb245;"></div>
+<div class="row mydivider" style="height:3px; background-color: #1b9eb245;">Try it</div>
+
+
+
 
 <div class="row equal" id="try">
 
   <!-- left side of the layout -->
   <div class="col-md-6 leftside" style="padding-left: 45px; padding-top: 20px">
+    
+    <div class="example-header-container" style="left: -45px; top: 0px; position:relative;">
+        <h1 class="example-header" style="padding-left: 100px">Give it a try!</h1>
+        <div class="triangle-container">
+          <svg  xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 10 10" preserveAspectRatio="none" class="triangle-svg">
+            <polygon class="triangle-polygon" points="0,0 9,0 0,10"></polygon>
+          </svg>
+        </div>
+    </div>
 <!--       {% if not image_exists %}
         <img class="arrow1-position" id="arrow1" src="static/images/picture4.png"> 
       {% else %}
