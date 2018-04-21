@@ -5,6 +5,11 @@ Our web app provides a **"No code. No installation"** platform for researchers t
 
 
 
+<p align="center">
+ <img src="https://github.com/bessaFan/ML-playground/blob/master/static/images/Artboard%202.png" height="600px">
+</p>
+
+
 ## Project Layout
 
 | Directory or file| Description                                                                                        |
