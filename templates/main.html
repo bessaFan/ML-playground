@@ -121,19 +121,19 @@
       document.getElementById("xaxis-line").style.webkitAnimationPlayState = "running";
       document.getElementById("yaxis-line").style.webkitAnimationPlayState = "running";
       }
-      sr.reveal('#example-result', { duration: 2000, afterReveal: animateExampleResult});
+      sr.reveal('#example-result', { duration: 1000, afterReveal: animateExampleResult});
 
       function animateExampleResult2( element ){
       document.getElementById("xaxis-line2").style.webkitAnimationPlayState = "running";
       document.getElementById("yaxis-line2").style.webkitAnimationPlayState = "running";
       }
-      sr.reveal('#example-result2', { duration: 2000, afterReveal: animateExampleResult2});
+      sr.reveal('#example-result2', { duration: 1000, afterReveal: animateExampleResult2});
 
       function animateExampleResult3( element ){
       document.getElementById("xaxis-line3").style.webkitAnimationPlayState = "running";
       document.getElementById("yaxis-line3").style.webkitAnimationPlayState = "running";
       }
-      sr.reveal('#example-result3', { duration: 2000, afterReveal: animateExampleResult3});
+      sr.reveal('#example-result3', { duration: 1000, afterReveal: animateExampleResult3});
 
       // Highlight first step
       document.getElementById("fileinput").style.border = "2px dashed rgb(46, 117, 145, 0.3)";
@@ -496,18 +496,19 @@
     </div>
   </div>
 
-        <div style="background-color: black">
+        <div style="background: linear-gradient(141deg, #47bcc3 0%, #0d6982 75%);">
+        <!-- <div style="background-color: #001a2b"> -->
           <br>
             <div class="example-result" id="example-result2" style="visibility: hidden; position: relative; width: 100%; margin-left: auto; margin-right: auto;">
               <img src="/static/images/cell-tsne2.png" id="tsne_example2" style="position: relative; z-index:-1; top: 0px; right: 0px; width:100%;">
               <svg id="tsne_example_cover2" style='position:absolute; top: 0; right: 0; position:absolute; top: 0; right: 0; height:100%; width:100%; overflow: visible;' version="1.1" xmlns="http://www.w3.org/2000/svg">
-                <text x="73.5%" y="29.7%" font-size="2em" fill="white" text-anchor="left">
+                <text x="73.5%" y="29.7%" font-size="1.6em" fill="white" text-anchor="left">
                   Nucleus Dominant
                 </text>
-                <text x="13.5%" y="25.7%" font-size="2em" fill="white" text-anchor="left">
+                <text x="13.5%" y="25.7%" font-size="1.6em" fill="white" text-anchor="left">
                   Long Spindly
                 </text>
-                <text x="12.5%" y="57.7%" font-size="2em" fill="white" text-anchor="left">
+                <text x="12.5%" y="57.7%" font-size="1.6em" fill="white" text-anchor="left">
                   Aberration
                 </text>
                 <line id="xaxis-line2" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="90%" y2="90%" />
@@ -528,25 +529,27 @@
                  </text>
               </svg>
             </div>
+          </div>
 
-      <!--     <br>
+        <div class="example3" style="background-color: black">
+          <br>
             <div class="example-result" id="example-result3" style="visibility: hidden; position: relative; width: 100%; margin-left: auto; margin-right: auto;">
-              <img src="/static/images/example1.png" id="tsne_example3" style="position: relative; z-index:-1; top: 0px; right: 0px; max-height: 1000px;">
+              <img src="/static/images/fashion-example.png" id="tsne_example3" style="position: relative; z-index:-1; top: 0px; right: 0px; width:100%;">
               <svg id="tsne_example_cover3" style='position:absolute; top: 0; right: 0; position:absolute; top: 0; right: 0; height:100%; width:100%; overflow: visible;' version="1.1" xmlns="http://www.w3.org/2000/svg">
-                <line id="xaxis-line3" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="50%" y2="90%" />
-                <line id="yaxis-line3" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="10%" y2="10%" />
-                <text x="51%" y="91.5%" font-size="2em" fill="white" text-anchor="left">
+                <line id="xaxis-line3" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="85%" y2="90%" />
+                <line id="yaxis-line3" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="10%" y2="17%" />
+                <text x="86%" y="91.5%" font-size="2em" fill="white" text-anchor="left">
                    t-SNE1
                  </text>
-                <text x="10%" y="7%" font-size="2em" fill="white" text-anchor="middle">
+                <text x="10%" y="14%" font-size="2em" fill="white" text-anchor="middle">
                    t-SNE2
                  </text>
-                 <rect x="11%" y="81.3%" width="1.5%" height="3%" style="fill:#196f90;stroke-width:0" />
-                <text x="13.5%" y="83.7%" font-size="1em" fill="white" text-anchor="left">
+                 <rect x="11%" y="85.3%" width="1.5%" height="3%" style="fill:#196f90;stroke-width:0" />
+                <text x="13.5%" y="87.7%" font-size="1em" fill="white" text-anchor="left">
                    Fashion Item
                  </text>
               </svg>
-            </div>  -->
+            </div> 
         </div>
 
   <!-- Old Header -->
@@ -862,39 +865,3 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="static/js/bootstrap.min.js"></script>
 <script src="static/node_modules/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js" rel="stylesheet"></script>
-
-<div style="text-align:center">
-  <span class="dot" onclick="currentSlide(1)"></span> 
-  <span class="dot" onclick="currentSlide(2)"></span> 
-  <span class="dot" onclick="currentSlide(3)"></span> 
-</div>
-
-
-<script>
-  var slideIndex = 1;
-  showSlides(slideIndex);
-
-  function plusSlides(n) {
-    showSlides(slideIndex += n);
-  }
-
-  function currentSlide(n) {
-    showSlides(slideIndex = n);
-  }
-
-  function showSlides(n) {
-    var i;
-    var slides = document.getElementsByClassName("mySlides");
-    var dots = document.getElementsByClassName("dot");
-    if (n > slides.length) {slideIndex = 1}    
-      if (n < 1) {slideIndex = slides.length}
-        for (i = 0; i < slides.length; i++) {
-          slides[i].style.display = "none";  
-        }
-        for (i = 0; i < dots.length; i++) {
-          dots[i].className = dots[i].className.replace(" active", "");
-        }
-        slides[slideIndex-1].style.display = "block";  
-        dots[slideIndex-1].className += " active";
-      }
-    </script>

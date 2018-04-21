@@ -749,3 +749,10 @@ img {vertical-align: middle;}
 @media only screen and (max-width: 300px) {
   .prev, .next,.text {font-size: 11px}
 }
+
+.example3 {
+  background: url('../images/41.jpg') ; 
+  width: 100%; 
+  background-size: cover; 
+  background-color: #000;
+}
