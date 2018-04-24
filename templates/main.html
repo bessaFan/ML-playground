@@ -126,11 +126,11 @@
         elem.style.border = "2px dashed rgb(46, 117, 145, 0.3)";
       }
       // Enable magnifier glass (after it loads)
-      $("#tsne_plot").on('load', function() {
-        magnify("tsne_plot", "circles", 3);
-      }).each(function() {
-       if($(this).prop('complete')) $(this).load();
-     });
+     //  $("#tsne_plot").on('load', function() {
+     //    magnify("tsne_plot", "circles", 3);
+     //  }).each(function() {
+     //   if($(this).prop('complete')) $(this).load();
+     // });
      //  $("#tsne_example").on('load', function() {
      //    magnify("tsne_example", "tsne_example_cover", 3);
      //  }).each(function() {
@@ -758,7 +758,7 @@
       <div class="image" id="the_result_plot">
         <h1>Result</h1>
         <div style="position: relative">
-          <svg id="circles" height="1000" width="100%" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%); opacity: .2;">
+          <svg id="circles" height="1000" onmouseover="magnify('tsne_plot', 'circles', 3);" width="100%" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%); opacity: .2;">
             <circle  cx="50%" cy="50%" r="350"  />
             <circle  cx="50%" cy="50%" r="270"  />
             <circle  cx="50%" cy="50%" r="200"  />
@@ -766,6 +766,7 @@
             <circle  cx="50%" cy="50%" r="90"  />
             <circle  cx="50%" cy="50%" r="50"  />
             <circle  cx="50%" cy="50%" r="20"  />
+            <rect id="border-line" style="fill:rgba(133,203,233,0);" x="0%" y="10%" width="100%" height="80%"></line>
           </svg>  
           <img id="tsne_plot" src="{{plot_name}}?timestamp={{timestamp}}" style="width: 100%;"> 
           <!-- <img id="tsne_plot" src="static/output/{{session_id}}/ResultPlot_ModelName:{{model_name}}__Resolution:{{resolution}}_Perplexity:{{perplexity}}_EarlyExaggeration:{{early_exaggeration}}_LearningRate:{{learning_rate}}_DPI:{{DotsPerInchs}}.png" style="width: 100%;"> -->
