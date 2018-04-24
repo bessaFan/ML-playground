@@ -105,7 +105,7 @@
       document.getElementById("xaxis-line").style.webkitAnimationPlayState = "running";
       document.getElementById("yaxis-line").style.webkitAnimationPlayState = "running";
       }
-      sr.reveal('#example-result', { duration: 1000, afterReveal: animateExampleResult});
+      sr.reveal('#example-result1', { duration: 1000, afterReveal: animateExampleResult});
 
       function animateExampleResult2( element ){
       document.getElementById("xaxis-line2").style.webkitAnimationPlayState = "running";
@@ -435,11 +435,13 @@
           </div>
 
             <!-- <h1 style="text-align: center; margin-top: 10px; margin: 0px">Animals Example</h1> -->
-            <div class="example-result" id="example-result" style="visibility: hidden; position: relative; width: 100%; margin-left: auto; margin-right: auto;">
+            <div class="example-result" id="example-result1" style="visibility: hidden; position: relative; width: 100%; margin-left: auto; margin-right: auto;">
               <img src="/static/images/Artboard 2.png" id="tsne_example" style="position: relative; z-index:-1; top: 0px; right: 0px; width:100%;">
 
               <svg id="tsne_example_cover" onmouseover="magnify('tsne_example', 'tsne_example_cover', 3);" style='position:absolute; top: 0; right: 0; position:absolute; top: 0; right: 0; height:100%; width:100%; overflow: visible;' version="1.1" xmlns="http://www.w3.org/2000/svg">
                 <line id="xaxis-line" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="90%" y2="90%" />
+                <line id="border-line" style="stroke:rgba(133,203,233,0);stroke-width:100" x1="130" y1="70" x2="1200" y2="70"></line>
+                <line id="border-line" style="stroke:rgba(133,203,233,0);stroke-width:100" x1="1180" y1="70" x2="1180" y2="580"></line>
                 <line id="yaxis-line" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="10%" y2="10%" />
                 <text x="91%" y="91.5%" font-size="2em" fill="white" text-anchor="left">
                    t-SNE1
@@ -494,6 +496,8 @@
                 </text>
                 <line id="xaxis-line2" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="90%" y2="90%" />
                 <line id="yaxis-line2" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="10%" y2="10%" />
+                <line id="border-line" style="stroke:rgba(133,203,233,0);stroke-width:100" x1="130" y1="70" x2="1200" y2="70"></line>
+                <line id="border-line" style="stroke:rgba(133,203,233,0);stroke-width:100" x1="1180" y1="70" x2="1180" y2="580"></line>
                 <text x="91%" y="91.5%" font-size="2em" fill="white" text-anchor="left">
                    t-SNE1
                  </text>
@@ -527,7 +531,8 @@
               <img src="/static/images/fashion-example.png" id="tsne_example3" style="position: relative; z-index:-1; top: 0px; right: 0px; width:100%;">
 
               <svg id="tsne_example_cover3" onmouseover="magnify('tsne_example3', 'tsne_example_cover3', 3);" style='position:absolute; top: 0; right: 0; position:absolute; top: 0; right: 0; height:100%; width:100%; overflow: visible;' version="1.1" xmlns="http://www.w3.org/2000/svg">
-
+                <line id="border-line" style="stroke:rgba(133,203,233,0);stroke-width:100" x1="130" y1="70" x2="1200" y2="70"></line>
+                <line id="border-line" style="stroke:rgba(133,203,233,0);stroke-width:100" x1="1180" y1="70" x2="1180" y2="580"></line>
                 <line id="xaxis-line3" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="85%" y2="90%" />
                 <line id="yaxis-line3" stroke-dasharray="200%" stroke-dashoffset="200%"   x1="10%" y1="90%" x2="10%" y2="17%" />
                 <text x="86%" y="91.5%" font-size="2em" fill="white" text-anchor="left">
