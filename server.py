@@ -44,6 +44,7 @@ def main():
 
     # Check if plot exists, the front-end will display different things
     # plot_exists = os.path.exists('static/output/%s/*.png' % session_id)
+    pathlength=len("static/output/"+session_id)
     plot_exists = False
     plot_name=""
     plot_name_no_dir=""
@@ -55,7 +56,7 @@ def main():
     if (len(files)!=0):
       plot_exists=True
       plot_name= max(files, key=os.path.getctime).encode('ascii','ignore')    #getting the name of the newest file
-      plot_name_no_dir=plot_name[51:]
+      plot_name_no_dir=plot_name[pathlength:]
 
     csv_exists = False
     csv_name=""
@@ -68,7 +69,7 @@ def main():
     if (len(files)!=0):
       csv_exists=True
       csv_name= max(files, key=os.path.getctime).encode('ascii','ignore')    #getting the name of the newest file
-      csv_name_no_dir=csv_name[51:]
+      csv_name_no_dir=csv_name[pathlength:]
 
 
     # Create list of files organized by colors
