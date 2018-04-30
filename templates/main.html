@@ -795,10 +795,10 @@
         <input type="checkbox" onclick="tweet_checkbox()" id="permission" name="subscribe" value="newsletter" style="opacity: 0.7;bottom: 130px;position: absolute;left: 34px;">
         <label for="permission" style="font-size: 17px;  left: 60px; bottom: 120px; position: absolute;" >Can we tweet your result? (for science!)</label>
       </div>
-      {% if featureCSV_exists %}
-      <a href="static/output/{{session_id}}/FeatureVectors.csv?timestamp={{timestamp}}" class="btn btn-info text-center" id="btn-download" download="FeatureVectors.csv" style="bottom: 60px;width: 320px;left: 20px;position: absolute;opacity: 0.7;display:inherit;margin: 15px;">Save Feature Vectors CSV</a>
+      {% if csv_exists %}
+      <a href="static/output/{{session_id}}/{{csv_name}}?timestamp={{timestamp}}" class="btn btn-info text-center" id="btn-download" download="{{csv_name}}" style="bottom: 60px;width: 320px;left: 20px;position: absolute;opacity: 0.7;display:inherit;margin: 15px;">Save Feature Vectors CSV</a>
       {% else %}
-      <a href="static/output/{{session_id}}/FeatureVectors.csv?timestamp={{timestamp}}" class="btn btn-info text-center" id="btn-download" download="FeatureVectors.csv" style="bottom: 60px;left: 20px;position: absolute; width: 320px;opacity: 0.7;display:inherit;margin: 15px;" disabled>Save Feature Vectors CSV</a>
+      <a href="static/output/{{session_id}}/{{csv_name}}?timestamp={{timestamp}}" class="btn btn-info text-center" id="btn-download" download="{{csv_name}}" style="bottom: 60px;left: 20px;position: absolute; width: 320px;opacity: 0.7;display:inherit;margin: 15px;" disabled>Save Feature Vectors CSV</a>
       {% endif %}
       <a href="static/output/{{session_id}}/ReducedFeatures.csv?timestamp={{timestamp}}" class="btn btn-info text-center" id="btn-download" download="ReducedFeatures.csv" style="bottom: 60px;width: 320px; position: absolute;right: 20px;opacity: 0.7;display:inherit;margin: 15px;">Save Reduced Features CSV</a>
       <a href="{{plot_name}}?timestamp={{timestamp}}" class="btn btn-warning text-center" id="btn-download" download="{{plot_name_no_dir}}" style="bottom: 0px;left: 20px;position: absolute;right: 20px;opacity: 0.7;display:inherit;margin: 15px;">Save Image</a>

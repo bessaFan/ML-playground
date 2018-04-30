@@ -50,7 +50,7 @@ pip install flask-thumbnails==1.0.3
 (with flask)
 export FLASK_DEBUG=1   # optional
 export FLASK_APP=server.py
-python -m flask run --host=0.0.0.0
+python -m flask run --host=0.0.0.0 --port=5000
 
 (with gunicorn)
 sudo gunicorn server:app -b:80 --limit-request-line 0 --timeout 0

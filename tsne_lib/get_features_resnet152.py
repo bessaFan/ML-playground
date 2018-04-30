@@ -25,7 +25,7 @@ from sklearn.metrics import average_precision_score
 slim = tf.contrib.slim
 
 
-def resnet(filenames, session_id, res,perplexity, early_exaggeration, learning_rate, dpi):
+def resnet(filenames, session_id, res,perplexity, early_exaggeration, learning_rate, dpi,):
   # Clean up model 
   tf.reset_default_graph()
 

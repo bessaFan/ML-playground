@@ -24,7 +24,7 @@ from sklearn.metrics import average_precision_score
 slim = tf.contrib.slim
 vgg = nets.vgg
 
-def vgg16(filenames, session_id):
+def vgg16(filenames, session_id, res,perplexity, early_exaggeration, learning_rate, dpi):
   # Load images
   images = np.zeros((len(filenames), 224, 224, 3), dtype=np.float32)
   for i, imageName in enumerate(filenames): 
@@ -54,7 +54,7 @@ def vgg16(filenames, session_id):
   tf.reset_default_graph()
   features = features.squeeze() # remove dimensions that are only 1 long
 
-  utils.save_features_to_csv_file(features, filenames, session_id, 'VGG16_features')
+  utils.save_features_to_csv_file(features, filenames, session_id, 'VGG16_features:Resolution:%d_Perplexity:%d_EarlyExaggeration:%d_LearningRate:%d_DPI:%d.csv' % (res,perplexity, early_exaggeration, learning_rate, dpi))
 
   return features 
 

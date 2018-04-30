@@ -57,6 +57,20 @@ def main():
       plot_name= max(files, key=os.path.getctime).encode('ascii','ignore')    #getting the name of the newest file
       plot_name_no_dir=plot_name[51:]
 
+    csv_exists = False
+    csv_name=""
+    csv_name_no_dir=""
+
+    files = list(glob.glob('static/output/%s/*features*.csv' % session_id))
+    for x in range(0,len(files)):
+      files[x]=files[x].encode('ascii','ignore');
+
+    if (len(files)!=0):
+      csv_exists=True
+      csv_name= max(files, key=os.path.getctime).encode('ascii','ignore')    #getting the name of the newest file
+      csv_name_no_dir=csv_name[51:]
+
+
     # Create list of files organized by colors
     colors = []
     color_names=list(glob.glob('static/uploads/%s/*' % session_id))
@@ -65,10 +79,10 @@ def main():
         images=list(glob.glob('static/uploads/%s/%s/*' % (session_id,color_name)))
         images=[ x for x in images if "100x100" not in x ] # remove thumbnails from list, they will be generated
         colors.append({'hex':color_name,'images':images})
-
+    embed()
     image_exists = len(colors)
-    featureCSV_exists = os.path.exists('static/output/%s/FeatureVectors.csv' % session_id)
-    return render_template('main.html', files=files, colors=colors, session_id=session_id, plot_exists=plot_exists, featureCSV_exists=featureCSV_exists, image_exists=image_exists, timestamp=str(time.time()), plot_name=plot_name, plot_name_no_dir=plot_name_no_dir)
+    featureCSV_exists = os.path.exists('static/output/%s/*features*.csv' % session_id)
+    return render_template('main.html', files=files, colors=colors, session_id=session_id, plot_exists=plot_exists, featureCSV_exists=featureCSV_exists, image_exists=image_exists, timestamp=str(time.time()), plot_name=plot_name, plot_name_no_dir=plot_name_no_dir, csv_name=csv_name_no_dir)
 
 
 @app.route("/tsne", methods=['POST', 'GET'])
