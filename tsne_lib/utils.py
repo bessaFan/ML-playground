@@ -94,7 +94,7 @@ def save_features_to_csv_file(features, filenames, session_id, feature_name):
   for x in range (0, len(filenames)): #create a list of filenames in the order of the files
     filenames_csv[x] =filenames[x][59:]
 
-  csv= 'static/output/%s/FeatureVectors.csv' % session_id # name the csv
+  csv= 'static/output/%s/%s' % (session_id, feature_name) # name the csv
   # if os.path.isfile(csv):
   #   df = utils.read_csv(csv)
   #   df['File Name']=pd.Series (filenames_csv)

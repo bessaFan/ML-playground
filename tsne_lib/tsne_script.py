@@ -53,9 +53,9 @@ def tsne_images(session_id,colors_dict, res, perplexity, early_exaggeration, lea
 
   if model_name != 'None':
     if model_name == 'ResNet V2 152':
-      x_value = resnet(filenames= filenames, session_id=session_id) 
+      x_value = resnet(filenames= filenames, session_id=session_id, res=res,perplexity=perplexity, early_exaggeration=early_exaggeration, learning_rate=learning_rate, dpi=dpi)) 
     if model_name == 'VGG 16':
-      x_value = vgg16(filenames=filenames, session_id=session_id) 
+      x_value = vgg16(filenames=filenames, session_id=session_id, res=res,perplexity=perplexity, early_exaggeration=early_exaggeration, learning_rate=learning_rate, dpi=dpi))
 
   # vis_data = bh_sne(x_value,perplexity=perplexity)# tsne embedding
   tsne = manifold.TSNE(init='pca', random_state=0, early_exaggeration=early_exaggeration, learning_rate=learning_rate,perplexity=perplexity)

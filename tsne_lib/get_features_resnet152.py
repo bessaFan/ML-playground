@@ -25,7 +25,7 @@ from sklearn.metrics import average_precision_score
 slim = tf.contrib.slim
 
 
-def resnet(filenames, session_id):
+def resnet(filenames, session_id, res,perplexity, early_exaggeration, learning_rate, dpi):
   # Clean up model 
   tf.reset_default_graph()
 
@@ -55,9 +55,11 @@ def resnet(filenames, session_id):
 
   # Clean up model 
   tf.reset_default_graph()
-
   features = features.squeeze() # remove dimensions that are only 1 long
 
-  utils.save_features_to_csv_file(features, filenames, session_id, 'Resnet_features')
+  utils.save_features_to_csv_file(features, filenames, session_id, 'Resnet_features:Resolution:%d_Perplexity:%d_EarlyExaggeration:%d_LearningRate:%d_DPI:%d.csv' % (res,perplexity, early_exaggeration, learning_rate, dpi))
 
   return features
+
+
+
