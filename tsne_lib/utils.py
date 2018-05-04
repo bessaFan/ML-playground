@@ -1,4 +1,5 @@
 # utils.py
+import os
 import numpy as np
 import pylab
 import mahotas as mh
@@ -88,11 +89,11 @@ def save_features_to_csv_file(features, filenames, session_id, feature_name):
   ## preparing colour list
   colours_csv = [None] * len(filenames) #create empty list 
   for x in range (0, len(filenames)): #create a list of colours in the order of the files
-    colours_csv[x] =filenames[x][52:58]
+    colours_csv[x] = os.path.basename(os.path.dirname(filenames[x])) # gives the last folder which is the colour name
   ## preparing filename list
   filenames_csv = [None] * len(filenames) #create empty list 
   for x in range (0, len(filenames)): #create a list of filenames in the order of the files
-    filenames_csv[x] =filenames[x][59:]
+    filenames_csv[x] = os.path.basename(filenames[x]) # gives the file name
 
   csv= 'static/output/%s/%s' % (session_id, feature_name) # name the csv
   # if os.path.isfile(csv):
@@ -104,3 +105,4 @@ def save_features_to_csv_file(features, filenames, session_id, feature_name):
   df['Colour (in Hex)']=pd.Series (colours_csv)
   df[feature_name]=pd.Series (features_csv)
   df.to_csv(csv, index=False)
+
