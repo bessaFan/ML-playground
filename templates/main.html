@@ -29,24 +29,6 @@
   <script src="static/node_modules/bootstrap-select/dist/css/bootstrap-select.min.css"></script>
   <script src="static/node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
-  <!-- paypal stuff -->
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://www.paypalobjects.com/api/checkout.js"></script>
-
-
-  <!-- dont need -->
-  <!-- <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script> -->
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> -->
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script> -->
-  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/i18n/defaults-*.min.js"></script> -->
-<!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script> -->
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css"> -->
-
 
   <script>
     function magnify(imgID, topFile, zoom) {
@@ -419,69 +401,13 @@
           <div class="modal-body">
           <!-- paypal button -->
             <div id="paypal-button"></div>
- 
-<script src="https://www.paypalobjects.com/api/checkout.js"></script>
 
-<div id="paypal-button-container"></div>
+         <div  class="modal-body">
+          <a href="https://www.paypal.me/MLplayground" target="_blank">
+            <img style="width:150px;" src="/static/images/paypal.png">
+          </a>
+        </div>
 
-<script>
-
-    // Render the PayPal button
-
-    paypal.Button.render({
-
-        // Set your environment
-
-        env: 'sandbox', // sandbox | production
-
-        // Specify the style of the button
-
-        style: {
-            size:  'medium', // small | medium | large | responsive
-            shape: 'rect',  // pill | rect
-            tagline: false
-        },
-
-        funding: {
-            allowed: [ paypal.FUNDING.CREDIT ]
-        },
-
-        // PayPal Client IDs - replace with your own
-        // Create a PayPal app: https://developer.paypal.com/developer/applications/create
-
-        client: {
-            sandbox:    'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R',
-            production: '<insert production client id>'
-        },
-
-        // Wait for the PayPal button to be clicked
-
-        payment: function(data, actions) {
-
-            // Set up a payment and make credit the landing page
-
-            return actions.payment.create({
-                payment: {
-                    transactions: [
-                        {
-                            amount: { total: '0.01', currency: 'USD' }
-                        }
-                    ]
-                }
-            });
-        },
-
-        // Wait for the payment to be authorized by the customer
-
-        onAuthorize: function(data, actions) {
-            return actions.payment.execute().then(function() {
-                window.alert('Payment Complete!');
-            });
-        }
-
-    }, '#paypal-button-container');
-
-</script>
     
           </div>
         <div class="modal-footer">
