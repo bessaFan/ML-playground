@@ -29,6 +29,8 @@
   <script src="static/node_modules/bootstrap-select/dist/css/bootstrap-select.min.css"></script>
   <script src="static/node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
   <script>
     function magnify(imgID, topFile, zoom) {
@@ -209,7 +211,7 @@
       document.getElementById("instruction_step4").style.border = "2px dashed rgba(0,0,0,0)";
       document.getElementById("instruction_step5").style.border = "2px dashed rgb(46, 117, 145, 0.3)";
     }
-    function generateTSNE() {
+    function generateTSNE() {    
     // do ajax request to ask for what the location of the TSNE image is. Then use in in the following line.
     console.log('button pressed')
     httpGetAsync('/test',handleTSNEResponse)
@@ -233,6 +235,9 @@
     console.log('done')
   }
   function setVisible() {
+    // Display loading spinner in generate button
+    document.getElementById("generate_button").innerHTML = 'Generate Plot <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>';
+
     elem = document.getElementById("instruction");
     if (elem != null) {
       elem.remove();
@@ -788,7 +793,7 @@
         {% if not image_exists %}
         <button type="submit" class="btn btn-success btn-lg" id= "generate_button" style="opacity: 0.7; border-width: 0px; z-index: 100;" onclick= "setVisible()" onclick= "checkFolder()" onclick="generateTSNE()" disabled>Generate Plot</button>
         {% else %}
-        <button type="submit" class="btn btn-success btn-lg" id= "generate_button" style="opacity: 0.7; border-width: 0px; z-index: 100;" onclick= "setVisible()" onclick= "checkFolder()" onclick="generateTSNE() ">Generate Plot</button>
+        <button type="submit" class="btn btn-success btn-lg " id= "generate_button" style="opacity: 0.7; border-width: 0px; z-index: 100;" onclick= "setVisible()" onclick= "checkFolder()" onclick="generateTSNE() ">Generate Plot</button>
         {% endif %}
       </div>
     </div>
@@ -830,7 +835,7 @@
       {% if csv_exists %}
       <a href="static/output/{{session_id}}/{{csv_name}}?timestamp={{timestamp}}" class="btn btn-info text-center" id="btn-download" download="{{csv_name}}" style="bottom: 60px;width: 320px;left: 20px;position: absolute;opacity: 0.7;display:inherit;margin: 15px;">Save Feature Vectors CSV</a>
       {% else %}
-      <a href="static/output/{{session_id}}/{{csv_name}}?timestamp={{timestamp}}" class="btn btn-info text-center" id="btn-download" download="{{csv_name}}" style="bottom: 60px;left: 20px;position: absolute; width: 320px;opacity: 0.7;display:inherit;margin: 15px;" disabled>Save Feature Vectors CSV</a>
+      <a href="static/output/{{session_id}}/{{csv_name}}?timestamp={{timestamp}}" class="btn btn-info text-center" id="btn-download" download="{{csv_name}}" style="bottom: 60px;left: 20px;position: absolute; width: 320px;opacity: 0.7;display:inherit;margin: 15px;" disabled>Save Feature Vectors CSV Disabled</a>
       {% endif %}
       <a href="static/output/{{session_id}}/ReducedFeatures.csv?timestamp={{timestamp}}" class="btn btn-info text-center" id="btn-download" download="ReducedFeatures.csv" style="bottom: 60px;width: 320px; position: absolute;right: 20px;opacity: 0.7;display:inherit;margin: 15px;">Save Reduced Features CSV</a>
       <a href="{{plot_name}}?timestamp={{timestamp}}" class="btn btn-warning text-center" id="btn-download" download="{{plot_name_no_dir}}" style="bottom: 0px;left: 20px;position: absolute;right: 20px;opacity: 0.7;display:inherit;margin: 15px;">Save Image</a>
