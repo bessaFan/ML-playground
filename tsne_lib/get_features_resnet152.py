@@ -60,6 +60,3 @@ def resnet(filenames, session_id, res,perplexity, early_exaggeration, learning_r
   utils.save_features_to_csv_file(features, filenames, session_id, 'Resnet_features:Resolution:%d_Perplexity:%d_EarlyExaggeration:%d_LearningRate:%d_DPI:%d.csv' % (res,perplexity, early_exaggeration, learning_rate, dpi))
 
   return features
-
-
-
