@@ -29,6 +29,7 @@ plt.switch_backend('agg')
 
 from get_features_resnet152 import resnet
 from get_features_vgg16 import vgg16
+from get_features_inceptionv3 import inceptionv3
 
  
 def tsne_images(session_id,colors_dict, res, perplexity, early_exaggeration, learning_rate, dpi, canvasSize,colour, model_name):
@@ -56,6 +57,8 @@ def tsne_images(session_id,colors_dict, res, perplexity, early_exaggeration, lea
       x_value = resnet(filenames= filenames, session_id=session_id, res=res,perplexity=perplexity, early_exaggeration=early_exaggeration, learning_rate=learning_rate, dpi=dpi)
     if model_name == 'VGG 16':
       x_value = vgg16(filenames=filenames, session_id=session_id, res=res,perplexity=perplexity, early_exaggeration=early_exaggeration, learning_rate=learning_rate, dpi=dpi)
+      if model_name == 'Inception V3':
+      x_value = inceptionv3(filenames=filenames, session_id=session_id, res=res,perplexity=perplexity, early_exaggeration=early_exaggeration, learning_rate=learning_rate, dpi=dpi)
 
   # vis_data = bh_sne(x_value,perplexity=perplexity)# tsne embedding
   tsne = manifold.TSNE(init='pca', random_state=0, early_exaggeration=early_exaggeration, learning_rate=learning_rate,perplexity=perplexity)
