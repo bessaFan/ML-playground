@@ -1,7 +1,8 @@
 #!/usr/bin/python
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2' # disables warning: Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
-
+from IPython import embed
+embed()
 import time
 import utils 
 import csv
@@ -14,10 +15,8 @@ import numpy as np
 import mahotas as mh
 import tensorflow as tf
 import tensorflow.contrib.slim.nets as nets
-from nets import inception_utils
-
+from tensorflow.contrib.slim.nets import inception_utils
 from PIL import Image
-from IPython import embed
 from tensorflow.python.tools import inspect_checkpoint as chkp
 from sklearn.metrics import average_precision_score
 
@@ -36,17 +35,15 @@ def inceptionv3(filenames, session_id, res,perplexity, early_exaggeration, learn
     images[i,:,:,:] = img
 
   in_images = tf.placeholder(tf.float32, images.shape)
-#
-  with slim.arg_scope(inception_utils.inception_arg_scope()):
-    model, intermed = inception_v3.inception_V3(in_images)
-    fc7 = intermed['inception_v3/fc7']
+  # processing 
+  with slim.arg_scope(inception_v3.inception_v3_arg_scope()):
+    model, intermed = inception_v3.InceptionV3(in_images, None, is_training=False)
     restored_variables = tf.contrib.framework.get_variables_to_restore()
     restorer = tf.train.Saver(restored_variables)
-
     with tf.Session() as sess:
       img_net_path = 'models/inception_v3.ckpt'
       restorer.restore(sess, img_net_path)
-      features = sess.run(fc7, feed_dict={in_images:images})
+      features = sess.run(model, feed_dict={in_images:images})    
 
   # Clean up model 
   tf.reset_default_graph()
