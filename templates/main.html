@@ -300,7 +300,12 @@
     } else if (model_name == 'VGG 16') {
       model_layer = 'Fully Connected 7 (Last Hidden Layer)';
       num_features = '4096';
-    } else if (model_name == 'None') {
+    } 
+    // else if (model_name == 'Inception V3') {
+    //   model_layer = 'None';
+    //   num_features = '40,000 pixels (input resized to 200x200)';
+    // }
+    else if (model_name == 'None') {
       model_layer = 'None';
       num_features = '40,000 pixels (input resized to 200x200)';
     }
@@ -702,7 +707,7 @@
         <option data-subtext="Passthrough pixels to feature reduction">None</option>
         <option >ResNet V2 152</option>
         <option selected >VGG 16</option>
-        <option disabled>Inception V3</option>
+        <option >Inception V3</option>
         <option disabled>Inception V4</option>
         <option disabled>Inception-ResNet-v2</option>
         <option disabled>NASNet-A_Large_331</option>
