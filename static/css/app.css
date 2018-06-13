@@ -9,6 +9,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'SlopeOpera';
+    src: url("/static/fonts/Slope_Opera.otf");
+  font-weight: 400;
+  font-style: normal;
+}
+
 body {
   font-family: "ColfaxWeb", Monospace !important;
   color: #fff;
@@ -64,7 +71,7 @@ body {
   font-size: 56px;
   font-weight: 777;
   letter-spacing: 1px;
-  text-shadow: 2px 2px black;
+  /*text-shadow: 2px 2px black;*/
 }
 
 .header-subtitle {
@@ -660,7 +667,7 @@ img {vertical-align: middle;}
 
 
 
-.example3 {
+    .example3 {
   /*background: url('../images/41.jpg') ; */
   background: linear-gradient(321deg, #021826 0%, #033452 75%);
   width: 100%; 
@@ -723,4 +730,15 @@ img {vertical-align: middle;}
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
+}
+
+
+.titletext {
+  font-size: 8vw;
+  font-family: 'SlopeOpera', Monospace;
+  background: linear-gradient(to right, #30CFD0 0%, #FFFFFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 2px;
+  /*text-shadow: 2px 2px transparent;*/
 }
