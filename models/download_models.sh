@@ -30,3 +30,4 @@ rm nasnet-a_large_04_10_2017.tar.gz
 wget https://storage.googleapis.com/download.tensorflow.org/models/pnasnet-5_large_2017_12_13.tar.gz
 tar -xvf pnasnet-5_large_2017_12_13.tar.gz
 rm pnasnet-5_large_2017_12_13.tar.gz
+

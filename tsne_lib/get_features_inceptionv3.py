@@ -2,7 +2,6 @@
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2' # disables warning: Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
 from IPython import embed
-embed()
 import time
 import utils 
 import csv
@@ -14,8 +13,13 @@ import scipy
 import numpy as np
 import mahotas as mh
 import tensorflow as tf
-import tensorflow.contrib.slim.nets as nets
-from tensorflow.contrib.slim.nets import inception_utils
+# import tensorflow.contrib.slim.nets as nets
+# from nets import inception
+# from tensorflow.contrib.slim.nets import inception
+# from tensorflow.contrib.slim.python.slim.nets import inception_v3
+# from tensorflow.contrib.slim.python.slim.nets import inception_v4
+from nets import inception_v4
+
 from PIL import Image
 from tensorflow.python.tools import inspect_checkpoint as chkp
 from sklearn.metrics import average_precision_score
@@ -36,14 +40,16 @@ def inceptionv3(filenames, session_id, res,perplexity, early_exaggeration, learn
 
   in_images = tf.placeholder(tf.float32, images.shape)
   # processing 
-  with slim.arg_scope(inception_v3.inception_v3_arg_scope()):
-    model, intermed = inception_v3.InceptionV3(in_images, None, is_training=False)
+  with slim.arg_scope(inception_v4.inception_v4_arg_scope()):
+    model, intermed = inception_v4.inception_v4(in_images, 1001, reuse=tf.AUTO_REUSE)
+    # embed()
+    PreLogitsFlatten = intermed['PreLogitsFlatten']
     restored_variables = tf.contrib.framework.get_variables_to_restore()
     restorer = tf.train.Saver(restored_variables)
     with tf.Session() as sess:
-      img_net_path = 'models/inception_v3.ckpt'
+      img_net_path = 'models/inception_v4.ckpt'
       restorer.restore(sess, img_net_path)
-      features = sess.run(model, feed_dict={in_images:images})    
+      features = sess.run(PreLogitsFlatten, feed_dict={in_images:images})    
 
   # Clean up model 
   tf.reset_default_graph()

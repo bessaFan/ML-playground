@@ -10,7 +10,7 @@
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <title>Image Similarity Tool</title>
+  <title>DeepScatter</title>
   <!-- external links -->
 
 
@@ -417,7 +417,7 @@
             <img style="width:150px;" src="/static/images/paypal.png">
           </a>
           <br>
-          Address:
+          Paypal Address:
           <a href="https://www.paypal.me/MLplayground" target="_blank">
             https://www.paypal.me/MLplayground
           </a>
@@ -429,9 +429,21 @@
           </a>
           <br>
           <br>
-          Address:
+          Bitcoin  Address:
           <a href="bitcoin:3Mu9REaoZLFvmFf4ph8HwPZVPAk1Md3htn" target="_blank">
             3Mu9REaoZLFvmFf4ph8HwPZVPAk1Md3htn
+          </a>
+        </div>
+
+         <div  class="modal-body">
+          <a href="mailto:danielsnider12@gmail.com; bessaFan01@gmail.com" target="_blank">
+            <img style="width:100px;" src="/static/images/lovebot.png">
+          </a>
+          <br>
+          <br>
+          We also accept kind words of thanks or comments: 
+          <a href="mailto:danielsnider12@gmail.com; bessaFan01@gmail.com" target="_blank">
+            here!
           </a>
         </div>
 
@@ -468,15 +480,21 @@
 
         <div class="header" style="height: 100%; padding: 150px 100px 40px 100px;">
           <div class="header-title">
-            Deep Learning<br>Image Similarity<br>Web Tool
+            <div style="font-size: 57px; font-family:monospace;">DeepScatter</div>
+            <div style="font-size: 35px">
+              Use deep learning to visualize image similarity in a scatter plot.
+            </div>
+            <!-- <div style="font-size: 35px">
+              ○ Deep Learning<br> ○ Image Similarity<br> ○ Scatter Plotting Tool
+            </div> -->
           </div>
           <div>
             <!-- <img src="/static/images/cell-tsne-transparent.png" style="height:500px; padding-top:50px; filter: invert(100%)"> -->
           </div>
-          <div class="header-subtitle" style="padding-top: 50px">
+          <div class="header-subtitle" style="padding-top: 20px">
             <!-- No install. No code. Instant Visualization.  -->
             <!-- Use our web tool to experiment with popular ML models and visualization techniques designed to expose similarities, trends, differences, and outliers in your image set. Built at the SickKids Research Institute for cell biology research. -->
-            Our open source web app provides a "No code—No installation" platform for you to upload images and compare popular machine learning models and manifold learning algorithms. Pick from the options and we'll generate a 2D plot where similar images are placed close together and dissimilar images are far apart. Find similarities, trends, differences, and outliers in your image set. While this is not a classification tool, you can apply colored labels to indiviual images at the time of uploading. Lastly, you can download feature vectors to CSV and do your own analysis.
+            This open source web-app lets you compare popular machine learning models and manifold learning algorithms with your own images. Generate scatter plots with similar images are placed close together and dissimilar images far apart. Find similarities, trends, differences, and outliers in your image set. While this is not a classification tool, you can apply colored labels to indiviual images at the time of uploading. Lastly, you can download hidden layer feature vectors to CSV files and do your own analysis.
             <!-- Our web app provides a "No code. No installation" platform for researchers to upload images and compare clustering results with popular machine learning models and manifold learning algorithms, making experimenting and prototyping with ML less time-consuming. There’s currently no existing app that allows fast organization and visualization of data -->
           </div>
           <a href="#try" >
@@ -700,7 +718,7 @@
    <form id="step4"  class="form-horizontal" action='/tsne' style="margin-top:15px; border-radius: 10px;" >
     <!-- Machine Learning Parameters -->
     <h3 style="padding-top: 15px; border-top: 1px solid rgba(18, 65, 69, .07);" >Feature Extraction</h3> 
-    <span id="helpBlock" class="help-block">Choose a pre-trained machine learning model for feature extraction.</span>
+    <span id="helpBlock" class="help-block">Choose a pre-trained machine learning model for feature extraction from your images.</span>
     <div class="form-group">
       <label for="exampleDropdownForm" class="col-sm-4 control-label">Deep Learning Model</label>
       <select id="model_name" data-show-subtext="true" class="selectpicker show-tick col-xs-6" name="model_name" onchange="ModelSelectChange()">
@@ -741,7 +759,7 @@
         <option data-subtext="Uniform Manifold Approximation and Projection" disabled>UMAP</option>
         <option data-subtext="Local Tangent Space Alignment" disabled>LTSA</option>
         <option data-subtext="Modified Locally Linear Embedding" disabled>Modified LLE</option>
-        <option data-subtext="Multi-dimensional Scalingdisabled" disabled>MDS</option>
+        <option data-subtext="Multi-dimensional Scaling" disabled>MDS</option>
         <option disabled>Isomap</option>
         <option disabled>Locally Linear Embedding</option>
         <option disabled>Spectral Embedding</option>
