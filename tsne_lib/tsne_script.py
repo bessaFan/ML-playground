@@ -29,7 +29,7 @@ plt.switch_backend('agg')
 
 from get_features_resnet152 import resnet
 from get_features_vgg16 import vgg16
-from get_features_inceptionv3 import inceptionv3
+#from get_features_inceptionv3 import inceptionv3
 
  
 def tsne_images(session_id,colors_dict, res, perplexity, early_exaggeration, learning_rate, dpi, canvasSize,colour, model_name):
