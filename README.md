@@ -54,7 +54,7 @@ export FLASK_APP=server.py
 python -m flask run --host=0.0.0.0 --port=5000
 
 (with gunicorn)
-sudo gunicorn server:app -b:80 --limit-request-line 0 --timeout 0
+sudo gunicorn server:app -b:80 --limit-request-line 0 --timeout 0 --access-logfile -
 
 ```
 
