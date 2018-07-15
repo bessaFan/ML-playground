@@ -1,0 +1,15 @@
+
+
+[Unit]
+Description=Gunicorn instance to serve deepscatter
+After=network.target
+
+[Service]
+User=dan
+Group=www-data
+WorkingDirectory=/home/bessa/generate_tsne_plots_online
+ExecStart=/usr/local/bin/gunicorn --workers 3 --bind unix:deepscatter.sock -m 007 server:app --limit-request-line 0 --timeout 0 --access-logfile /var/log/deepscatter-access.log
+
+[Install]
+WantedBy=multi-user.target
+
