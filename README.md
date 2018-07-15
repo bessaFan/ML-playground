@@ -56,6 +56,12 @@ python -m flask run --host=0.0.0.0 --port=5000
 (with gunicorn)
 sudo gunicorn server:app -b:80 --limit-request-line 0 --timeout 0 --access-logfile -
 
+(for production server)
+sudo cp nginx.conf /etc/nginx/
+sudo nginx # starts nginx
+cp deepscatter.upstart.service /etc/init/deepscatter.conf
+start deepscatter 
+
 ```
 
 ### Server Setup
